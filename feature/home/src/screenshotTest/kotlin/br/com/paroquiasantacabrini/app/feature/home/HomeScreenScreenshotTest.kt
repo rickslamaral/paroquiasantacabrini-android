@@ -1,0 +1,59 @@
+/*
+ * Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package br.com.paroquiasantacabrini.app.feature.home
+
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenSizePreviews
+import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenVariantPreviews
+import br.com.paroquiasantacabrini.app.feature.home.ui.HomeScreen
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.FactorialResult
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
+import com.android.tools.screenshot.PreviewTest
+
+@PreviewTest
+@ScreenSizePreviews
+@Composable
+public fun HomeScreenSizePreview() {
+    HomeScreenCalculatedResult()
+}
+
+@PreviewTest
+@ScreenVariantPreviews
+@Composable
+public fun HomeScreenVariantPreview() {
+    HomeScreenCalculatedResult()
+}
+
+@Composable
+private fun HomeScreenCalculatedResult() {
+    val colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
+    MaterialTheme(colorScheme = colorScheme) {
+        HomeScreen(
+            state = HomeUiState(
+                input = "5",
+                result = FactorialResult(input = 5, value = 120),
+            ),
+            onInputChanged = {},
+            onCalculateClick = {},
+            onExploreNavigationClick = {},
+        )
+    }
+}

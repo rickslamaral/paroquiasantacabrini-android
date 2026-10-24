@@ -1,0 +1,130 @@
+# Testing reference
+
+## Principle
+
+Test the smallest contract that proves the behavior. Prefer fast, deterministic tests and add
+Android framework, Compose, navigation, dependency injection, or device integration only when that
+integration is the behavior under test.
+
+## Choose the test layer
+
+| Behavior to prove | Preferred test |
+| --- | --- |
+| Pure calculation, validation, mapping, or domain rule | Kotlin/JVM unit test |
+| Repository or state-holder behavior | JVM unit test with fakes |
+| Retrofit serialization or multi-class data boundary | JVM integration test in `src/integrationTest` |
+| Coroutine scheduling, cancellation, or `Flow` emissions | `runTest` and Turbine or direct collection |
+| Compose content, semantics, enabled state, or callback wiring | Plain state-driven Compose test |
+| Layout, typography, clipping, color, elevation, or visual focus | Screenshot test |
+| Navigation, lifecycle, manifest, DI, or platform integration | Instrumentation or managed-device test |
+| Stable cross-feature application journey | Standalone managed-device test in `tests/e2e` |
+| Startup, frame timing, or baseline-profile coverage | Macrobenchmark in `benchmarks` |
+
+Use the command matrix in [`commands.md`](commands.md) to select the narrowest task.
+
+## Source-set ownership
+
+- Put platform-independent tests in `src/test`; keep their production code free of Android APIs.
+- Put tests requiring Android framework behavior in the owning Android module.
+- Put navigation and application wiring integration tests in `app`; put stable cross-feature user
+  journeys in `tests/e2e`.
+- Put design-system interaction and semantics tests beside the design-system component.
+- Keep macrobenchmarks and baseline-profile generation in `benchmarks`.
+- Do not move logic to an Android test merely because the current production class is difficult to
+  construct. Fix the boundary first when practical.
+
+## Kotlin, coroutines, and Flow
+
+- Prefer fakes with explicit state over broad mocks of repositories or services.
+- Use `runTest`, test dispatchers, and virtual time for suspending behavior; do not use
+  `runBlocking` as a test bridge.
+- Assert the complete state or event sequence when order matters.
+- Verify cancellation and error behavior for long-running or retrying work.
+- Do not use real network, database files, wall clocks, random values, or global dispatchers in
+  deterministic unit tests.
+- Match the production primitive: persistent state, broadcast updates, and one-consumer events have
+  different `Flow` semantics.
+
+See [`kotlin-coroutines-structured-concurrency`](../skills/kotlin-coroutines-structured-concurrency/SKILL.md)
+and [`kotlin-flow-state-event-modeling`](../skills/kotlin-flow-state-event-modeling/SKILL.md) before
+adding coroutine or Flow test infrastructure.
+
+## Compose
+
+- Test the plain UI composable with immutable state and callbacks. Avoid constructing the whole
+  application graph to test a rendering branch.
+- Prefer user-visible semantics such as text, role, state, and content description. Add test tags
+  only when stable semantics cannot identify the node.
+- Assert callback results or state changes after interaction, not merely that a node still exists.
+- Inject deterministic image loaders, clocks, animation progress, and interaction sources.
+- Use screenshot tests only for visual contracts that semantics cannot prove.
+- Cover representative loading, content, empty, and error states when the screen supports them.
+- Test keyboard, D-pad, and focus behavior with key input and focus assertions when those input
+  modes are supported.
+
+Follow [`compose-ui-testing-patterns`](../skills/compose-ui-testing-patterns/SKILL.md) for detailed
+Compose test patterns.
+
+## Repository examples
+
+- Pure Kotlin behavior:
+  [`FactorialCalculatorTest.kt`](../../library-kotlin/src/test/java/br/com/paroquiasantacabrini/app/library/FactorialCalculatorTest.kt)
+- Domain use-case behavior:
+  [`GetPostsPageUseCaseTest.kt`](../../feature/posts/domain/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/posts/domain/usecase/GetPostsPageUseCaseTest.kt)
+- Repository mapping, cache, failure, and cancellation behavior:
+  [`PostsRepositoryImplTest.kt`](../../feature/posts/data/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/posts/data/repository/PostsRepositoryImplTest.kt)
+- Navigation state:
+  [`NavigatorTest.kt`](../../core/navigation/src/test/kotlin/br/com/paroquiasantacabrini/app/core/navigation/NavigatorTest.kt)
+- Design-system semantics and callbacks:
+  [`TemplateComponentsTest.kt`](../../core/designsystem/src/test/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/TemplateComponentsTest.kt)
+- State-holder behavior:
+  [`PostsViewModelTest.kt`](../../feature/posts/presentation/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/posts/presentation/ui/PostsViewModelTest.kt)
+- Plain feature UI behavior:
+  [`PostsScreenTest.kt`](../../feature/posts/presentation/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/posts/presentation/ui/PostsScreenTest.kt)
+- Deterministic feature screenshot:
+  [`HomeScreenScreenshotTest.kt`](../../feature/home/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/feature/home/HomeScreenScreenshotTest.kt)
+- Retrofit integration:
+  [`RetrofitPostsRemoteDataSourceIntegrationTest.kt`](../../feature/posts/data/src/integrationTest/kotlin/br/com/paroquiasantacabrini/app/feature/posts/data/remote/RetrofitPostsRemoteDataSourceIntegrationTest.kt)
+- SQLite integration:
+  [`TemplateDatabaseTest.kt`](../../core/database/src/androidTest/kotlin/br/com/paroquiasantacabrini/app/core/database/TemplateDatabaseTest.kt)
+- Application navigation integration:
+  [`MainNavigationTest.kt`](../../app/src/androidTest/kotlin/br/com/paroquiasantacabrini/app/MainNavigationTest.kt)
+- End-to-end application journey:
+  [`HomeJourneyTest.kt`](../../tests/e2e/src/main/kotlin/br/com/paroquiasantacabrini/app/tests/e2e/HomeJourneyTest.kt)
+- Startup measurement:
+  ``ExampleStartupBenchmark.kt``
+
+Treat these as current examples, not permanent exceptions. Improve the example when the recommended
+project pattern changes.
+
+## Change expectations
+
+| Change | Expected evidence |
+| --- | --- |
+| Business rule or bug fix | Focused unit regression test |
+| State-holder or Flow behavior | State/event sequence test |
+| Compose behavior | Plain UI semantics/callback test |
+| Intent, permission, or exported component | Hostile-input or access-control test plus lint |
+| Intentional visual change | Screenshot verification and reviewed baseline update |
+| Navigation or DI wiring | Small integration smoke test |
+| Performance-sensitive path | Before/after measurement using the same setup |
+
+Do not regenerate screenshot, dependency, lint, or baseline-profile artifacts merely to make a
+verification task pass.
+
+Compose screenshot previews live in `src/screenshotTest`; approved images live in
+`src/screenshotTestDebug/reference`. `make verify` and `make screenshot-test` compare against those
+images. Only `make screenshot-record` updates them, and every update requires visual review.
+
+Screen-level screenshots use the nine compact/medium/expanded width and height combinations from
+`core/testing` plus dark-theme and 1.5 font-scale variants. Visually distinct loading, content,
+empty, and error states receive deterministic compact references.
+
+## Definition of done
+
+- The test fails for the old behavior and passes for the intended behavior when a regression is
+  being fixed.
+- The lowest useful layer owns most assertions; integration coverage is intentionally small.
+- External inputs and time are deterministic.
+- The narrow owning-module check passes, followed by broader checks in proportion to the change.
+- The final report lists exact commands and anything not run.

@@ -1,0 +1,44 @@
+/*
+ * Designed and developed by 2022 ashtanko (Oleksii Shtanko)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package br.com.paroquiasantacabrini.app.home
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.core.view.WindowCompat
+import br.com.paroquiasantacabrini.app.home.navigation.MainNavigation
+import br.com.paroquiasantacabrini.app.ui.setEdgeToEdgeConfig
+import br.com.paroquiasantacabrini.app.ui.theme.TemplateTheme
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setEdgeToEdgeConfig()
+        super.onCreate(savedInstanceState)
+
+        // This app draws behind the system bars, so we want to handle fitting system windows
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        setContent {
+            TemplateTheme {
+                MainNavigation()
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "applicationPackage": "br.com.paroquiasantacabrini.app",
+  "author": "ashtanko (Oleksii Shtanko)",
+  "buildLogicGroup": "br.com.paroquiasantacabrini.app.buildlogic",
+  "buildLogicPackage": "br.com.paroquiasantacabrini.app.buildlogic",
+  "codePackage": "br.com.paroquiasantacabrini.app",
+  "displayName": "Par\u00f3quia Santa Cabrini",
+  "pluginAlias": "app",
+  "projectName": "Paroquia Santa Cabrini"
+}

@@ -1,0 +1,212 @@
+GRADLE := ./gradlew
+GRADLE_ARGS ?=
+LOCALE ?= pt-PT
+FORMAT ?= table
+
+.DEFAULT_GOAL := help
+
+.PHONY: \
+	help \
+	setup \
+	setup-ui \
+	docs-check \
+	template-check \
+	rename-validate \
+	localization-check \
+	localization-report \
+	localization-report-html \
+	localization-serve \
+	localization-web-build \
+	secrets-check \
+	build \
+	generate-release-key \
+	release \
+	install \
+	test \
+	integration-test \
+	check \
+	verify \
+	lint \
+	detekt \
+	detekt-compose \
+	detekt-fix \
+	format-check \
+	format \
+	device-test \
+	device-test-ci \
+	device-test-all \
+	benchmark \
+	screenshot-test \
+	screenshot-record \
+	coverage \
+	coverage-verify \
+	dependency-guard \
+	dependency-guard-baseline \
+	baseline-profile \
+	tasks \
+	gradle-version
+
+help:
+	@echo "Usage: make <target> [GRADLE_ARGS=\"...\"]"
+	@echo
+	@echo "Project setup:"
+	@echo "  setup                       Launch the guided terminal project wizard"
+	@echo "  setup-ui                    Launch the local browser project wizard"
+	@echo
+	@echo "Build and verification:"
+	@echo "  docs-check                  Validate documentation links and project facts"
+	@echo "  template-check              Validate rename dry run and module generation"
+	@echo "  rename-validate             Verify this project was fully renamed from the template"
+	@echo "  localization-check          Validate every translated Android resource"
+	@echo "  localization-report         Report locale coverage (LOCALE, FORMAT)"
+	@echo "  localization-report-html    Write the localization status dashboard (HTML)"
+	@echo "  localization-serve          Run the local localization web wizard (dev only)"
+	@echo "  localization-web-build      Build the localization web wizard frontend"
+	@echo "  secrets-check               Reject tracked credentials and sensitive files"
+	@echo "  build                       Assemble debug artifacts"
+	@echo "  generate-release-key        Create an upload keystore and local signing file"
+	@echo "  release                     Build the signed release Android App Bundle"
+	@echo "  install                     Install the app's debug build"
+	@echo "  test                        Run unit tests"
+	@echo "  integration-test            Run JVM integration tests"
+	@echo "  check                       Run routine static checks"
+	@echo "  verify                      Assemble debug, test, and run routine checks"
+	@echo "  lint                        Run Android lint"
+	@echo "  detekt                      Run Detekt in every module"
+	@echo "  detekt-compose              Run Compose-specific Detekt rules"
+	@echo "  detekt-fix                  Apply safe Detekt auto-corrections"
+	@echo "  format-check                Check formatting"
+	@echo "  format                      Apply formatting changes"
+	@echo
+	@echo "Device and visual tests:"
+	@echo "  device-test                 Run debug instrumentation tests"
+	@echo "  device-test-ci              Run all instrumentation and E2E tests on CI devices"
+	@echo "  device-test-all             Run all instrumentation and E2E tests on all devices"
+	@echo "  benchmark                   Run benchmarkRelease macrobenchmarks"
+	@echo "  screenshot-test             Verify Compose screenshot baselines"
+	@echo "  screenshot-record           Update Compose screenshot baselines"
+	@echo
+	@echo "Reports and maintenance:"
+	@echo "  coverage                    Generate JVM and Android coverage reports"
+	@echo "  coverage-verify             Enforce JVM business-logic coverage thresholds"
+	@echo "  dependency-guard            Check dependency baselines"
+	@echo "  dependency-guard-baseline   Update the app dependency baseline"
+	@echo "  baseline-profile            Generate the app baseline profile"
+	@echo "  tasks                       List available Gradle tasks"
+	@echo "  gradle-version              Print Gradle, Kotlin, and JVM versions"
+
+setup:
+	bash scripts/setup-project.sh
+
+setup-ui:
+	bash scripts/setup-project.sh --ui
+
+docs-check:
+	bash scripts/check-docs.sh
+
+template-check:
+	bash scripts/check-template-tools.sh
+
+rename-validate:
+	bash scripts/validate-rename.sh
+
+localization-check:
+	python3 -m unittest discover -s scripts/tests -p 'test_*.py'
+	PYTHONPATH=scripts python3 -m localization check
+
+localization-report:
+	PYTHONPATH=scripts python3 -m localization report --locale "$(LOCALE)" --format "$(FORMAT)"
+
+localization-report-html:
+	PYTHONPATH=scripts python3 -m localization report --format html \
+		--output build/reports/localization/index.html
+
+localization-serve:
+	PYTHONPATH=scripts python3 -m localization serve --host 127.0.0.1 --port 8080
+
+localization-web-build:
+	cd tools/localization-web && npm install && npm run build
+
+secrets-check:
+	bash scripts/check-secrets.sh
+
+build:
+	$(GRADLE) assembleDebug $(GRADLE_ARGS)
+
+generate-release-key:
+	bash scripts/generate-release-key.sh
+
+release:
+	$(GRADLE) :app:bundleRelease --no-configuration-cache $(GRADLE_ARGS)
+
+install:
+	$(GRADLE) :app:installDebug $(GRADLE_ARGS)
+
+test:
+	$(GRADLE) test $(GRADLE_ARGS)
+
+integration-test:
+	$(GRADLE) integrationTest $(GRADLE_ARGS)
+
+check: localization-check secrets-check
+	$(GRADLE) lint detekt spotlessCheck dependencyGuard $(GRADLE_ARGS)
+
+verify: docs-check template-check localization-check secrets-check
+	$(GRADLE) :build-logic:convention:check assembleDebug test integrationTest coverageVerification coverageReport lint detekt spotlessCheck dependencyGuard validateDebugScreenshotTest $(GRADLE_ARGS)
+
+lint:
+	$(GRADLE) lint $(GRADLE_ARGS)
+
+detekt:
+	$(GRADLE) detekt $(GRADLE_ARGS)
+
+detekt-compose:
+	$(GRADLE) detektCompose $(GRADLE_ARGS)
+
+detekt-fix:
+	$(GRADLE) detektAutoCorrect $(GRADLE_ARGS)
+
+format-check:
+	$(GRADLE) spotlessCheck $(GRADLE_ARGS)
+
+format:
+	$(GRADLE) spotlessApply $(GRADLE_ARGS)
+
+device-test:
+	$(GRADLE) connectedDebugAndroidTest $(GRADLE_ARGS)
+
+device-test-ci:
+	$(GRADLE) ciManagedDeviceTest $(GRADLE_ARGS)
+
+device-test-all:
+	$(GRADLE) allManagedDeviceTest $(GRADLE_ARGS)
+
+benchmark:
+	$(GRADLE) :benchmarks:connectedBenchmarkReleaseAndroidTest $(GRADLE_ARGS)
+
+screenshot-test:
+	$(GRADLE) validateDebugScreenshotTest $(GRADLE_ARGS)
+
+screenshot-record:
+	$(GRADLE) updateDebugScreenshotTest $(GRADLE_ARGS)
+
+coverage:
+	$(GRADLE) coverageReport $(GRADLE_ARGS)
+
+coverage-verify:
+	$(GRADLE) coverageVerification $(GRADLE_ARGS)
+
+dependency-guard:
+	$(GRADLE) dependencyGuard $(GRADLE_ARGS)
+
+dependency-guard-baseline:
+	$(GRADLE) :app:dependencyGuardBaseline $(GRADLE_ARGS)
+
+baseline-profile:
+	$(GRADLE) :app:generateBaselineProfile $(GRADLE_ARGS)
+
+tasks:
+	$(GRADLE) tasks $(GRADLE_ARGS)
+
+gradle-version:
+	$(GRADLE) --version
