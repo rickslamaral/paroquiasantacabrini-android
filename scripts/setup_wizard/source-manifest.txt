@@ -499,6 +499,7 @@ scripts/localization/report.py
 scripts/localization/warnings.py
 scripts/localization/web.py
 scripts/localization/writer.py
+scripts/release-notes.sh
 scripts/rename-template.py
 scripts/rename-template.sh
 scripts/setup-project.py

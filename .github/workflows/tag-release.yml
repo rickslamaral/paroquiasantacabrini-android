@@ -1,6 +1,7 @@
 name: Tag release
 
-# Creates the vX.Y.Z tag and a GitHub Release when the app version on `main` has no release yet.
+# Creates the vX.Y.Z tag and a GitHub Release, with notes generated from the Conventional Commit
+# subjects since the previous tag, when the app version on `main` has no release yet.
 # It uses only the built-in GITHUB_TOKEN, so it needs no secrets. The signed release bundle is
 # built separately by the manual "Release" workflow, which needs the production signing secrets.
 
@@ -17,6 +18,7 @@ on:
     paths:
       - 'app/build.gradle.kts'
       - '.github/workflows/tag-release.yml'
+      - 'scripts/release-notes.sh'
 
 concurrency:
   group: tag-release
@@ -54,6 +56,7 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
           TAG: ${{ steps.version.outputs.tag }}
           TARGET: ${{ inputs.target || github.sha }}
         run: |
@@ -62,8 +65,14 @@ jobs:
             echo "Release ${TAG} already exists; nothing to do."
             exit 0
           fi
+
+          # The newest earlier version tag that is reachable from the target commit, if any.
+          previous="$(git tag --list 'v[0-9]*' --merged "${TARGET}" --sort=-v:refname | grep -vx "${TAG}" | head -n 1 || true)"
+          bash scripts/release-notes.sh "${TAG}" "${TARGET}" "${previous}" > release-notes.md
+          cat release-notes.md
+
           gh release create "${TAG}" \
             --target "${TARGET}" \
             --title "${TAG}" \
-            --generate-notes \
+            --notes-file release-notes.md \
             --latest
