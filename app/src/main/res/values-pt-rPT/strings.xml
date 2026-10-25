@@ -16,4 +16,8 @@
 -->
 <resources>
     <string name="navigation_next">Seguinte</string>
+    <string name="main_tab_home">Início</string>
+    <string name="main_tab_calendar">Agenda</string>
+    <string name="main_tab_pray">Rezar</string>
+    <string name="main_tab_more">Mais</string>
 </resources>

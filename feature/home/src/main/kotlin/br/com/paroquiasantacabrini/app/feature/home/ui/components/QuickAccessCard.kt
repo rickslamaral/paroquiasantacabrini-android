@@ -39,13 +39,19 @@ internal data class QuickAccessItem(
     internal val destination: HomeDestination,
     internal val emoji: String,
     @get:StringRes internal val labelRes: Int,
+    internal val isPrimary: Boolean,
 )
 
 internal val QuickAccessItems: List<QuickAccessItem> = listOf(
-    QuickAccessItem(HomeDestination.DailyLiturgy, "📖", R.string.feature_home_daily_liturgy),
-    QuickAccessItem(HomeDestination.MassSchedule, "🕒", R.string.feature_home_mass_schedule),
-    QuickAccessItem(HomeDestination.PrayerRequests, "🙏", R.string.feature_home_prayer_requests),
-    QuickAccessItem(HomeDestination.TithesAndOfferings, "💳", R.string.feature_home_tithes_and_offerings),
+    QuickAccessItem(HomeDestination.DailyLiturgy, "📖", R.string.feature_home_daily_liturgy, isPrimary = true),
+    QuickAccessItem(HomeDestination.MassSchedule, "🕒", R.string.feature_home_mass_schedule, isPrimary = false),
+    QuickAccessItem(HomeDestination.PrayerRequests, "🙏", R.string.feature_home_prayer_requests, isPrimary = false),
+    QuickAccessItem(
+        HomeDestination.TithesAndOfferings,
+        "💳",
+        R.string.feature_home_tithes_and_offerings,
+        isPrimary = true,
+    ),
 )
 
 @Composable
@@ -55,14 +61,10 @@ internal fun QuickAccessCard(
     modifier: Modifier = Modifier,
 ) {
     val colors = MaterialTheme.colorScheme
-    val (container, content) = when (item.destination) {
-        HomeDestination.DailyLiturgy,
-        HomeDestination.TithesAndOfferings,
-        -> colors.primaryContainer to colors.onPrimaryContainer
-
-        HomeDestination.MassSchedule,
-        HomeDestination.PrayerRequests,
-        -> colors.secondaryContainer to colors.onSecondaryContainer
+    val (container, content) = if (item.isPrimary) {
+        colors.primaryContainer to colors.onPrimaryContainer
+    } else {
+        colors.secondaryContainer to colors.onSecondaryContainer
     }
 
     Card(

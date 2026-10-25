@@ -17,4 +17,8 @@
 <resources>
     <string name="app_name" translatable="false">Paróquia Santa Cabrini</string>
     <string name="navigation_next">Next</string>
+    <string name="main_tab_home">Home</string>
+    <string name="main_tab_calendar">Calendar</string>
+    <string name="main_tab_pray">Pray</string>
+    <string name="main_tab_more">More</string>
 </resources>

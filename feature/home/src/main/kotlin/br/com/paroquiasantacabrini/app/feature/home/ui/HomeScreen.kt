@@ -70,9 +70,9 @@ private fun HomeScreenPreview() {
                 announcements = listOf(
                     AnnouncementUiModel(
                         id = "1",
-                        title = "Festa da padroeira",
-                        message = "Missa solene às 19h seguida de confraternização.",
-                        dateLabel = "13 de novembro",
+                        title = "Adoração ao Santíssimo",
+                        message = "Quintas-feiras, às 18h, antes da missa.",
+                        dateLabel = "INFORMAÇÃO À COMUNIDADE",
                     ),
                 ),
             ),

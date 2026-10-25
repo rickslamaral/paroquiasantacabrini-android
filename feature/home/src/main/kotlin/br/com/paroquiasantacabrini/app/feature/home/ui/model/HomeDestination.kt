@@ -16,10 +16,14 @@
 
 package br.com.paroquiasantacabrini.app.feature.home.ui.model
 
-/** Quick-access shortcuts shown on the home dashboard. */
+/** Places the home dashboard can send the reader to. */
 public enum class HomeDestination {
     DailyLiturgy,
     MassSchedule,
     PrayerRequests,
     TithesAndOfferings,
+    MassMode,
+    SaintCabrini,
+    Notices,
+    ShowAll,
 }

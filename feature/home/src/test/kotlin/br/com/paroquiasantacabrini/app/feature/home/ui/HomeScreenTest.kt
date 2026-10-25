@@ -33,7 +33,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [35], qualifiers = "w411dp-h1600dp")
+@Config(sdk = [35], qualifiers = "w411dp-h3000dp")
 public class HomeScreenTest {
 
     @get:Rule
@@ -89,16 +89,16 @@ public class HomeScreenTest {
                 announcements = listOf(
                     AnnouncementUiModel(
                         id = "1",
-                        title = "Festa da padroeira",
-                        message = "Missa solene às 19h.",
-                        dateLabel = "13 de novembro",
+                        title = "Adoração ao Santíssimo",
+                        message = "Quintas-feiras, às 18h, antes da missa.",
+                        dateLabel = "INFORMAÇÃO À COMUNIDADE",
                     ),
                 ),
             ),
         )
 
-        composeTestRule.onNodeWithText("Festa da padroeira").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Missa solene às 19h.").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Adoração ao Santíssimo").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Quintas-feiras, às 18h, antes da missa.").assertIsDisplayed()
         composeTestRule.onNodeWithText("No announcements right now.").assertDoesNotExist()
     }
 
@@ -111,6 +111,35 @@ public class HomeScreenTest {
             "Front of the parish church at dusk, with the lit cross on the bell tower and a " +
                 "stained-glass window of the Sacred Heart and Saint Frances Cabrini",
         ).assertIsDisplayed()
+    }
+
+    @Test
+    public fun massCardAndModeBannerOpenTheirDestinations() {
+        val clicked = mutableListOf<HomeDestination>()
+        setHomeContent(onQuickAccessClick = { clicked += it })
+
+        composeTestRule.onNodeWithText("Come celebrate with us").performClick()
+        composeTestRule.onNodeWithText("Mass Mode").performClick()
+
+        assertThat(clicked).containsExactly(HomeDestination.MassSchedule, HomeDestination.MassMode).inOrder()
+    }
+
+    @Test
+    public fun sectionActionsOpenAllNoticesAndThePatroness() {
+        val clicked = mutableListOf<HomeDestination>()
+        setHomeContent(onQuickAccessClick = { clicked += it })
+
+        composeTestRule.onNodeWithText("See all").performClick()
+        composeTestRule.onNodeWithText("All").performClick()
+        composeTestRule.onNodeWithText("Learn more").performClick()
+        composeTestRule.onNodeWithText("Saint Frances Xavier Cabrini").performClick()
+
+        assertThat(clicked).containsExactly(
+            HomeDestination.ShowAll,
+            HomeDestination.Notices,
+            HomeDestination.SaintCabrini,
+            HomeDestination.SaintCabrini,
+        ).inOrder()
     }
 
     @Test

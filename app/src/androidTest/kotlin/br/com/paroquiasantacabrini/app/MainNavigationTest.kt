@@ -94,6 +94,22 @@ class MainNavigationTest {
     }
 
     @Test
+    fun testBottomBar_SwitchesBetweenSections() {
+        composeTestRule.setContent {
+            MainNavigation(postsContent = { Text("Posts") })
+        }
+
+        composeTestRule.onNodeWithText("Pray").performClick()
+        composeTestRule.onNodeWithText("A moment of prayer").assertIsDisplayed()
+
+        composeTestRule.onNodeWithText("More").performClick()
+        composeTestRule.onNodeWithText("Explore").assertIsDisplayed()
+
+        composeTestRule.onNodeWithText("Home").performClick()
+        composeTestRule.onNodeWithText("Switch parish").assertIsDisplayed()
+    }
+
+    @Test
     fun testBackNavigation_RemovesEntries() {
         composeTestRule.setContent {
             MainNavigation(postsContent = { Text("Posts") })

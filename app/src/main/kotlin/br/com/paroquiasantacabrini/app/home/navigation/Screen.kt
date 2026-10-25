@@ -79,4 +79,7 @@ sealed interface Screen {
 
     @Serializable
     public data object Notices : NavKey
+
+    @Serializable
+    public data object More : NavKey
 }

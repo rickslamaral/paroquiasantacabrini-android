@@ -25,6 +25,9 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavBackStack
@@ -42,18 +45,31 @@ fun MainNavigation(
     backStack: NavBackStack<NavKey> = rememberNavBackStack(Screen.ScreenA),
     postsContent: @Composable (Modifier) -> Unit = { PostsRoute(modifier = it) },
 ) {
-    NavDisplay(
-        backStack = backStack,
-        onBack = { backStack.removeLastOrNull() },
+    Scaffold(
         modifier = modifier,
-        entryProvider = mainEntryProvider(
+        bottomBar = {
+            MainNavigationBar(
+                selected = backStack.lastOrNull().toTab(),
+                onTabClick = { tab -> backStack.openTab(tab) },
+            )
+        },
+    ) { innerPadding ->
+        NavDisplay(
             backStack = backStack,
-            postsContent = postsContent,
-        ),
-        transitionSpec = { horizontalSlideTransition(isPop = false) },
-        popTransitionSpec = { horizontalSlideTransition(isPop = true) },
-        predictivePopTransitionSpec = { horizontalSlideTransition(isPop = true) },
-    )
+            onBack = { backStack.removeLastOrNull() },
+            // Screens pad themselves for the system bars; the bar already consumed the bottom inset.
+            modifier = Modifier
+                .padding(innerPadding)
+                .consumeWindowInsets(innerPadding),
+            entryProvider = mainEntryProvider(
+                backStack = backStack,
+                postsContent = postsContent,
+            ),
+            transitionSpec = { horizontalSlideTransition(isPop = false) },
+            popTransitionSpec = { horizontalSlideTransition(isPop = true) },
+            predictivePopTransitionSpec = { horizontalSlideTransition(isPop = true) },
+        )
+    }
 }
 
 private fun mainEntryProvider(
@@ -61,6 +77,7 @@ private fun mainEntryProvider(
     postsContent: @Composable (Modifier) -> Unit,
 ) = entryProvider<NavKey> {
     homeEntries(backStack)
+    moreEntries(backStack)
     liturgyEntries(backStack)
     prayerEntries(backStack)
     parishEntries(backStack)

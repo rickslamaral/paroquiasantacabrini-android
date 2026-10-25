@@ -21,6 +21,7 @@ import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenSizePreviews
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenVariantPreviews
 import br.com.paroquiasantacabrini.app.feature.home.ui.HomeScreen
+import br.com.paroquiasantacabrini.app.feature.home.ui.MoreRoute
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 import com.android.tools.screenshot.PreviewTest
@@ -47,9 +48,9 @@ private fun HomeScreenWithAnnouncement() {
                 announcements = listOf(
                     AnnouncementUiModel(
                         id = "1",
-                        title = "Festa da padroeira",
-                        message = "Missa solene às 19h seguida de confraternização.",
-                        dateLabel = "13 de novembro",
+                        title = "Adoração ao Santíssimo",
+                        message = "Quintas-feiras, às 18h, antes da missa.",
+                        dateLabel = "INFORMAÇÃO À COMUNIDADE",
                     ),
                 ),
             ),
@@ -58,4 +59,11 @@ private fun HomeScreenWithAnnouncement() {
             onLinkClick = {},
         )
     }
+}
+
+@PreviewTest
+@ScreenVariantPreviews
+@Composable
+public fun MoreScreenVariantPreview() {
+    ParoquiaTheme { MoreRoute(onDestinationClick = {}) }
 }

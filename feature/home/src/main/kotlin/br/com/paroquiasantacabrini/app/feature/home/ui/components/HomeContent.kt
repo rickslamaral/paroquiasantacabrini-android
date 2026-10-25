@@ -57,8 +57,18 @@ internal fun HomeContent(
                 onSwitchParishClick = onSwitchParishClick,
             )
         }
+        item(key = "mass_card", span = { GridItemSpan(maxLineSpan) }) {
+            MassCard(onClick = { onQuickAccessClick(HomeDestination.MassSchedule) })
+        }
+        item(key = "mass_mode_banner", span = { GridItemSpan(maxLineSpan) }) {
+            MassModeBanner(onClick = { onQuickAccessClick(HomeDestination.MassMode) })
+        }
         item(key = "quick_access_title", span = { GridItemSpan(maxLineSpan) }) {
-            SectionTitle(text = stringResource(R.string.feature_home_quick_access_title))
+            SectionTitleWithAction(
+                text = stringResource(R.string.feature_home_quick_access_title),
+                actionLabel = stringResource(R.string.feature_home_see_all),
+                onActionClick = { onQuickAccessClick(HomeDestination.ShowAll) },
+            )
         }
         items(items = QuickAccessItems, key = { it.destination }) { item ->
             QuickAccessCard(
@@ -67,7 +77,11 @@ internal fun HomeContent(
             )
         }
         item(key = "announcements_title", span = { GridItemSpan(maxLineSpan) }) {
-            SectionTitle(text = stringResource(R.string.feature_home_announcements_title))
+            SectionTitleWithAction(
+                text = stringResource(R.string.feature_home_announcements_title),
+                actionLabel = stringResource(R.string.feature_home_all),
+                onActionClick = { onQuickAccessClick(HomeDestination.Notices) },
+            )
         }
         if (state.announcements.isEmpty()) {
             item(key = "announcements_empty", span = { GridItemSpan(maxLineSpan) }) {
@@ -84,6 +98,16 @@ internal fun HomeContent(
             ) { announcement ->
                 AnnouncementCard(announcement = announcement)
             }
+        }
+        item(key = "patroness_title", span = { GridItemSpan(maxLineSpan) }) {
+            SectionTitleWithAction(
+                text = stringResource(R.string.feature_home_patroness_title),
+                actionLabel = stringResource(R.string.feature_home_patroness_more),
+                onActionClick = { onQuickAccessClick(HomeDestination.SaintCabrini) },
+            )
+        }
+        item(key = "patroness", span = { GridItemSpan(maxLineSpan) }) {
+            PatronessCard(onClick = { onQuickAccessClick(HomeDestination.SaintCabrini) })
         }
         item(key = "gallery_title", span = { GridItemSpan(maxLineSpan) }) {
             SectionTitle(text = stringResource(R.string.feature_home_gallery_title))

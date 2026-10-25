@@ -35,4 +35,44 @@
     <string name="feature_home_photo_facade">Front of the parish church at dusk, with the lit cross on the bell tower and a stained-glass window of the Sacred Heart and Saint Frances Cabrini</string>
     <string name="feature_home_photo_celebration">Celebration before the crucifix, with the priest and altar servers at the altar</string>
     <string name="feature_home_photo_altar">Altar with a crucifix and the Blessed Sacrament exposed</string>
+    <string name="feature_home_mass_card_eyebrow">HOLY MASS</string>
+    <string name="feature_home_mass_card_title">Come celebrate with us</string>
+    <string name="feature_home_mass_card_text">Today and during the week · see the times</string>
+    <string name="feature_home_massmode_banner_eyebrow">Follow the celebration</string>
+    <string name="feature_home_massmode_banner_title">Mass Mode</string>
+    <string name="feature_home_massmode_banner_text">The parts of the Mass laid out in sequence ›</string>
+    <string name="feature_home_see_all">See all</string>
+    <string name="feature_home_all">All</string>
+    <string name="feature_home_notice_label">INFORMATION FOR THE COMMUNITY</string>
+    <string name="feature_home_notice_adoration_title">Adoration of the Blessed Sacrament</string>
+    <string name="feature_home_notice_adoration_text">Thursdays at 18h, before Mass.</string>
+    <string name="feature_home_patroness_title">Meet our patroness</string>
+    <string name="feature_home_patroness_more">Learn more</string>
+    <string name="feature_home_patroness_name">Saint Frances Xavier Cabrini</string>
+    <string name="feature_home_patroness_text">Patroness of migrants · memorial on December 22</string>
+    <string name="feature_home_patroness_image">Illustration of Saint Frances Xavier Cabrini</string>
+    <string name="feature_home_more_title">Explore</string>
+    <string name="feature_home_more_eyebrow" translatable="false">Paróquia Santa Cabrini</string>
+    <string name="feature_home_more_intro">Information, groups and parish channels.</string>
+    <string name="feature_home_more_mass_times">Mass times</string>
+    <string name="feature_home_more_mass_mode">Mass Mode</string>
+    <string name="feature_home_more_liturgy">Liturgy</string>
+    <string name="feature_home_more_saints">Saints</string>
+    <string name="feature_home_more_community">Community</string>
+    <string name="feature_home_more_calendar">Calendar</string>
+    <string name="feature_home_more_prayer">Prayer</string>
+    <string name="feature_home_more_tithes">Tithes</string>
+    <string name="feature_home_more_contact">Contact</string>
+    <string name="feature_home_more_groups">Groups</string>
+    <string name="feature_home_more_catechesis">Catechesis</string>
+    <string name="feature_home_more_confirmation">Confirmation</string>
+    <string name="feature_home_more_novenas">Novenas</string>
+    <string name="feature_home_more_rosary">Rosary</string>
+    <string name="feature_home_more_exam">Examination</string>
+    <string name="feature_home_more_secretary_title">Talk to the parish office</string>
+    <string name="feature_home_more_secretary_hours_label">Service hours</string>
+    <string name="feature_home_more_secretary_hours">Tuesday to Friday, 14h–18h · Saturday, 08h–12h</string>
+    <string name="feature_home_more_secretary_phone" translatable="false">(11) 5928-9576</string>
+    <string name="feature_home_more_secretary_phone_label">Phone and WhatsApp</string>
+    <string name="feature_home_more_contacts_button">See contacts and address</string>
 </resources>

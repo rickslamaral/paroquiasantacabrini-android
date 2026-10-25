@@ -29,6 +29,7 @@ import br.com.paroquiasantacabrini.app.feature.community.ui.ConfirmationRoute
 import br.com.paroquiasantacabrini.app.feature.community.ui.GroupsRoute
 import br.com.paroquiasantacabrini.app.feature.community.ui.NoticesRoute
 import br.com.paroquiasantacabrini.app.feature.home.ui.HomeRoute
+import br.com.paroquiasantacabrini.app.feature.home.ui.MoreRoute
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
 import br.com.paroquiasantacabrini.app.feature.liturgy.ui.DailyLiturgyRoute
 import br.com.paroquiasantacabrini.app.feature.liturgy.ui.MassModeRoute
@@ -53,11 +54,24 @@ internal fun EntryProviderScope<NavKey>.homeEntries(backStack: NavBackStack<NavK
                         HomeDestination.MassSchedule -> Screen.MassSchedule
                         HomeDestination.DailyLiturgy -> Screen.DailyLiturgy
                         HomeDestination.PrayerRequests -> Screen.PrayerRequest
+                        HomeDestination.MassMode -> Screen.MassMode
+                        HomeDestination.SaintCabrini -> Screen.SaintCabrini
+                        HomeDestination.Notices -> Screen.Notices
+                        HomeDestination.ShowAll -> Screen.More
                     },
                 )
             },
             // Choosing another parish needs a parish catalog, so it opens a placeholder for now.
             onSwitchParishClick = { backStack.add(Screen.ScreenC) },
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+}
+
+internal fun EntryProviderScope<NavKey>.moreEntries(backStack: NavBackStack<NavKey>) {
+    entry<Screen.More> {
+        MoreRoute(
+            onDestinationClick = { destination -> backStack.add(destination.toScreen()) },
             modifier = Modifier.fillMaxSize(),
         )
     }
