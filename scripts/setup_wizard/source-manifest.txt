@@ -90,6 +90,7 @@ app/src/androidTest/kotlin/br/com/paroquiasantacabrini/app/HiltGraphTest.kt
 app/src/androidTest/kotlin/br/com/paroquiasantacabrini/app/HiltTestRunner.kt
 app/src/androidTest/kotlin/br/com/paroquiasantacabrini/app/MainNavigationTest.kt
 app/src/main/AndroidManifest.xml
+app/src/main/ic_launcher-playstore.png
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/App.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/Greeting.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/MainActivity.kt
@@ -101,7 +102,8 @@ app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/navigation/NavigationEn
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/navigation/Screen.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/ui/EdgeToEdgeCompat.kt
 app/src/main/res/drawable/ic_launcher_background.xml
-app/src/main/res/drawable-v24/ic_launcher_foreground.xml
+app/src/main/res/drawable/ic_launcher_monochrome.xml
+app/src/main/res/drawable-nodpi/ic_launcher_foreground.png
 app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
 app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
 app/src/main/res/mipmap-hdpi/ic_launcher.png
