@@ -28,4 +28,61 @@ sealed interface Screen {
 
     @Serializable
     public data object ScreenC : NavKey
+
+    @Serializable
+    public data object Pix : NavKey
+
+    @Serializable
+    public data object MassSchedule : NavKey
+
+    @Serializable
+    public data object Contact : NavKey
+
+    @Serializable
+    public data object MassMode : NavKey
+
+    @Serializable
+    public data object DailyLiturgy : NavKey
+
+    @Serializable
+    public data object SaintCabrini : NavKey
+
+    @Serializable
+    public data object Saints : NavKey
+
+    @Serializable
+    public data object PrayerHub : NavKey
+
+    @Serializable
+    public data object Rosary : NavKey
+
+    @Serializable
+    public data object Novenas : NavKey
+
+    @Serializable
+    public data object Exam : NavKey
+
+    @Serializable
+    public data object PrayerRequest : NavKey
+
+    @Serializable
+    public data object Community : NavKey
+
+    @Serializable
+    public data object Groups : NavKey
+
+    @Serializable
+    public data object Catechesis : NavKey
+
+    @Serializable
+    public data object Confirmation : NavKey
+
+    @Serializable
+    public data object Calendar : NavKey
+
+    @Serializable
+    public data object Notices : NavKey
+
+    @Serializable
+    public data object More : NavKey
 }

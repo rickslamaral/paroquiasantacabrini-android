@@ -33,21 +33,63 @@ class MainNavigationTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun testNavigationFlow_FromHomeToPosts() {
-        // Start the app
+    fun testNavigationFlow_FromHomeToDailyLiturgy() {
         composeTestRule.setContent {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        // 1. Verify we start on the home feature
-        composeTestRule.onNodeWithText("Paroquia Santa Cabrini").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Liturgy").performClick()
 
-        // 2. Navigate to the posts demo
-        composeTestRule.onNodeWithText("Explore navigation").performClick()
+        composeTestRule.onNodeWithText("Prayer guide").assertIsDisplayed()
+    }
 
-        // Wait for transition and verify the posts destination
-        composeTestRule.onNodeWithText("Posts").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Paroquia Santa Cabrini").assertDoesNotExist()
+    @Test
+    fun testNavigationFlow_FromHomeToPrayerRequest() {
+        composeTestRule.setContent {
+            MainNavigation(postsContent = { Text("Posts") })
+        }
+
+        composeTestRule.onNodeWithText("Prayer").performClick()
+
+        composeTestRule.onNodeWithText("Your intention").assertIsDisplayed()
+    }
+
+    @Test
+    fun testNavigationFlow_FromHomeToPix() {
+        composeTestRule.setContent {
+            MainNavigation(postsContent = { Text("Posts") })
+        }
+
+        composeTestRule.onNodeWithText("Tithes").performClick()
+
+        composeTestRule.onNodeWithText("Copy Pix key").assertIsDisplayed()
+    }
+
+    @Test
+    fun testNavigationFlow_FromHomeToMassSchedule() {
+        composeTestRule.setContent {
+            MainNavigation(postsContent = { Text("Posts") })
+        }
+
+        composeTestRule.onNodeWithText("Times").performClick()
+
+        composeTestRule.onNodeWithText("Masses and celebrations").assertIsDisplayed()
+    }
+
+    @Test
+    fun testBottomBar_SwitchesBetweenSections() {
+        composeTestRule.setContent {
+            MainNavigation(postsContent = { Text("Posts") })
+        }
+
+        composeTestRule.onNodeWithText("Pray").performClick()
+        composeTestRule.onNodeWithText("A moment of prayer").assertIsDisplayed()
+
+        composeTestRule.onNodeWithText("More").performClick()
+        composeTestRule.onNodeWithText("Explore").assertIsDisplayed()
+
+        composeTestRule.onNodeWithText("Home").performClick()
+        composeTestRule.onNodeWithText("So good to have you here.").assertIsDisplayed()
     }
 
     @Test
@@ -56,16 +98,16 @@ class MainNavigationTest {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        // Navigate to posts
-        composeTestRule.onNodeWithText("Explore navigation").performClick()
-        composeTestRule.onNodeWithText("Posts").assertIsDisplayed()
+        // Navigate to a destination
+        composeTestRule.onNodeWithText("Times").performClick()
+        composeTestRule.onNodeWithText("Masses and celebrations").assertIsDisplayed()
 
         // Trigger system back (Navigation3 handles this via the onBack lambda)
         Espresso.pressBack()
 
-        // Verify we are back on the home feature
-        composeTestRule.onNodeWithText("Paroquia Santa Cabrini").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Posts").assertDoesNotExist()
+        // Verify we are back on the home dashboard
+        composeTestRule.onNodeWithText("So good to have you here.").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Masses and celebrations").assertDoesNotExist()
     }
 
     @Test

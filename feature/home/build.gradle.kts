@@ -26,8 +26,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":library-kotlin"))
-
     implementation(libs.androidx.material3)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)

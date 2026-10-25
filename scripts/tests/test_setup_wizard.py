@@ -55,6 +55,15 @@ from setup_wizard.server import (
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 
 
+def _app_version() -> tuple[int, str]:
+    """Read the app's current versionCode and versionName, which change with every release."""
+    build_file = (REPOSITORY_ROOT / "app" / "build.gradle.kts").read_text(encoding="utf-8")
+    code = re.search(r"versionCode\s*=\s*(\d+)", build_file)
+    name = re.search(r'versionName\s*=\s*"([^"]+)"', build_file)
+    assert code and name, "app/build.gradle.kts must declare versionCode and versionName"
+    return int(code.group(1)), name.group(1)
+
+
 def sample_config(
     output_path: Path,
     *,
@@ -332,8 +341,8 @@ class SetupPlanTest(unittest.TestCase):
 
         self.assertEqual(
             ProjectSettingsConfig(
-                version_code=1,
-                version_name="1.0",
+                version_code=_app_version()[0],
+                version_name=_app_version()[1],
                 compile_sdk=37,
                 min_sdk=24,
                 target_sdk=37,
@@ -601,6 +610,10 @@ class ProjectSettingsArchiveTest(unittest.TestCase):
             strings,
         )
 
+    @unittest.skipUnless(
+        (REPOSITORY_ROOT / "benchmarks").is_dir(),
+        "this repository does not include the benchmarks module",
+    )
     def test_archive_applies_application_id_to_benchmark_target(self) -> None:
         benchmark_config = self.archive.read(
             f"{self.root}benchmarks/src/main/java/com/example/wizard/benchmarks/"
@@ -715,9 +728,9 @@ class BootstrapContractTest(unittest.TestCase):
         self.assertEqual(
             {
                 "applicationId": "br.com.paroquiasantacabrini.app",
-                "displayName": "Paroquia Santa Cabrini",
-                "versionCode": 1,
-                "versionName": "1.0",
+                "displayName": "Paróquia Santa Cabrini",
+                "versionCode": _app_version()[0],
+                "versionName": _app_version()[1],
                 "compileSdk": 37,
                 "minSdk": 24,
                 "targetSdk": 37,

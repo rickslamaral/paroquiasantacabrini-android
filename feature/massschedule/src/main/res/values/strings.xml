@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_massschedule_eyebrow">Celebrations</string>
+    <string name="feature_massschedule_title">Times</string>
+    <string name="feature_massschedule_intro">Join the Masses and moments of prayer of the community.</string>
+    <string name="feature_massschedule_day_tuesday_friday">Tuesday to Friday</string>
+    <string name="feature_massschedule_day_saturday">Saturday</string>
+    <string name="feature_massschedule_day_sunday">Sunday</string>
+    <string name="feature_massschedule_day_tuesday">Tuesday</string>
+    <string name="feature_massschedule_day_wednesday">Wednesday</string>
+    <string name="feature_massschedule_day_thursday">Thursday</string>
+    <string name="feature_massschedule_day_friday">Friday</string>
+    <string name="feature_massschedule_holy_mass">Holy Mass</string>
+    <string name="feature_massschedule_mass_subtitle">%1$s · Parish church</string>
+    <string name="feature_massschedule_other_services">Other services</string>
+    <string name="feature_massschedule_adoration_title">Adoration of the Blessed Sacrament</string>
+    <string name="feature_massschedule_adoration_text">Thursday, at 18h</string>
+    <string name="feature_massschedule_confessions_title">Confessions</string>
+    <string name="feature_massschedule_confessions_text">Book with the parish office during the week or find the priest after the Sunday Masses, at 08h and 10h30.</string>
+    <string name="feature_massschedule_office_title">Parish office</string>
+    <string name="feature_massschedule_office_text">Tuesday to Friday, 14h–18h · Saturday, 08h–12h</string>
+    <string name="feature_massschedule_directions_button">How to get to the parish</string>
+    <string name="feature_massschedule_contact_eyebrow">We are here</string>
+    <string name="feature_massschedule_contact_title">Contact and address</string>
+    <string name="feature_massschedule_contact_address_format">%1$s\n%2$s\nCEP %3$s</string>
+    <string name="feature_massschedule_parish_name" translatable="false">Paróquia Santa Francisca Xavier Cabrini</string>
+    <string name="feature_massschedule_phone_note">Phone and WhatsApp</string>
+    <string name="feature_massschedule_email_label">E-mail</string>
+    <string name="feature_massschedule_pastor_label">Pastor</string>
+    <string name="feature_massschedule_secretary_label">Secretary</string>
+    <string name="feature_massschedule_action_map">Open address on the map</string>
+    <string name="feature_massschedule_action_call">Call</string>
+    <string name="feature_massschedule_action_whatsapp" translatable="false">WhatsApp</string>
+    <string name="feature_massschedule_action_email">Send e-mail</string>
+    <string name="feature_massschedule_gallery_title">Our church</string>
+    <string name="feature_massschedule_photo_facade">Front of the parish church at dusk, with the lit cross on the bell tower and a stained-glass window of the Sacred Heart and Saint Frances Cabrini</string>
+    <string name="feature_massschedule_photo_celebration">Celebration before the crucifix, with the priest and altar servers at the altar</string>
+    <string name="feature_massschedule_photo_altar">Altar with a crucifix and the Blessed Sacrament exposed</string>
+    <string name="feature_massschedule_hero_facade">Front of the parish church</string>
+</resources>

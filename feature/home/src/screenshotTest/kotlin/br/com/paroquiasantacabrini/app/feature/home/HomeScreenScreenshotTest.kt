@@ -16,15 +16,13 @@
 
 package br.com.paroquiasantacabrini.app.feature.home
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenSizePreviews
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenVariantPreviews
 import br.com.paroquiasantacabrini.app.feature.home.ui.HomeScreen
-import br.com.paroquiasantacabrini.app.feature.home.ui.model.FactorialResult
+import br.com.paroquiasantacabrini.app.feature.home.ui.MoreRoute
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 import com.android.tools.screenshot.PreviewTest
 
@@ -32,28 +30,38 @@ import com.android.tools.screenshot.PreviewTest
 @ScreenSizePreviews
 @Composable
 public fun HomeScreenSizePreview() {
-    HomeScreenCalculatedResult()
+    HomeScreenWithAnnouncement()
 }
 
 @PreviewTest
 @ScreenVariantPreviews
 @Composable
 public fun HomeScreenVariantPreview() {
-    HomeScreenCalculatedResult()
+    HomeScreenWithAnnouncement()
 }
 
 @Composable
-private fun HomeScreenCalculatedResult() {
-    val colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
-    MaterialTheme(colorScheme = colorScheme) {
+private fun HomeScreenWithAnnouncement() {
+    ParoquiaTheme {
         HomeScreen(
             state = HomeUiState(
-                input = "5",
-                result = FactorialResult(input = 5, value = 120),
+                announcements = listOf(
+                    AnnouncementUiModel(
+                        id = "1",
+                        title = "Adoração ao Santíssimo",
+                        message = "Quintas-feiras, às 18h, antes da missa.",
+                        dateLabel = "INFORMAÇÃO À COMUNIDADE",
+                    ),
+                ),
             ),
-            onInputChanged = {},
-            onCalculateClick = {},
-            onExploreNavigationClick = {},
+            onQuickAccessClick = {},
         )
     }
+}
+
+@PreviewTest
+@ScreenVariantPreviews
+@Composable
+public fun MoreScreenVariantPreview() {
+    ParoquiaTheme { MoreRoute(onDestinationClick = {}) }
 }

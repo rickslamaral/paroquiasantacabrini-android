@@ -17,39 +17,32 @@
 package br.com.paroquiasantacabrini.app.feature.home.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.createSavedStateHandle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.res.stringResource
+import br.com.paroquiasantacabrini.app.feature.home.R
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 
 @Composable
 public fun HomeRoute(
-    onExploreNavigationClick: () -> Unit,
+    onQuickAccessClick: (HomeDestination) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    HomeRoute(
-        onExploreNavigationClick = onExploreNavigationClick,
-        viewModel = viewModel {
-            HomeViewModel(createSavedStateHandle())
-        },
-        modifier = modifier,
+    // The notices will come from the offline-first data layer once a repository exists. Until then
+    // the dashboard shows the regular Adoration notice confirmed by the parish.
+    val adoration = AnnouncementUiModel(
+        id = "adoration",
+        title = stringResource(R.string.feature_home_notice_adoration_title),
+        message = stringResource(R.string.feature_home_notice_adoration_text),
+        dateLabel = stringResource(R.string.feature_home_notice_label),
     )
-}
-
-@Composable
-internal fun HomeRoute(
-    onExploreNavigationClick: () -> Unit,
-    viewModel: HomeViewModel,
-    modifier: Modifier = Modifier,
-) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val state = remember(adoration) { HomeUiState(announcements = listOf(adoration)) }
 
     HomeScreen(
         state = state,
-        onInputChanged = viewModel::onInputChanged,
-        onCalculateClick = viewModel::onCalculateClick,
-        onExploreNavigationClick = onExploreNavigationClick,
+        onQuickAccessClick = onQuickAccessClick,
         modifier = modifier,
     )
 }

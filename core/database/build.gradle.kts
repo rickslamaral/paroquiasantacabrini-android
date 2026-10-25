@@ -18,11 +18,18 @@ plugins {
     alias(libs.plugins.app.android.library.jacoco)
     alias(libs.plugins.app.android.junit5)
     alias(libs.plugins.app.android.room)
+    alias(libs.plugins.app.hilt)
     alias(libs.plugins.app.kotlin.explicit.visibility)
 }
 
 android {
     namespace = "br.com.paroquiasantacabrini.app.core.database"
+}
+
+// Room behavior is covered by instrumented tests against the real SQLite engine (androidTest);
+// the JVM unit-test source set has no tests to discover.
+tasks.withType<Test>().configureEach {
+    failOnNoDiscoveredTests = false
 }
 
 dependencies {

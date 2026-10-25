@@ -6,6 +6,7 @@
   `app/src/main/res/resources.properties` declares that policy to the Android Gradle Plugin.
 - Each Android module owns its source strings and translations. Feature text stays with the feature;
   application-wide text stays in `app`.
+- Brazilian Portuguese is the audience of this app and uses `values-pt`.
 - European Portuguese uses the `pt-PT` BCP 47 locale and Android's `values-pt-rPT` resource
   qualifier.
 - The application generates its locale configuration from app and library resources at build time,

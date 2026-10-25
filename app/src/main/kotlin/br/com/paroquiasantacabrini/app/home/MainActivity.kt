@@ -20,9 +20,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.home.navigation.MainNavigation
 import br.com.paroquiasantacabrini.app.ui.setEdgeToEdgeConfig
-import br.com.paroquiasantacabrini.app.ui.theme.TemplateTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            TemplateTheme {
+            ParoquiaTheme {
                 MainNavigation()
             }
         }

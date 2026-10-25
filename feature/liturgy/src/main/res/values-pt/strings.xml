@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_liturgy_mass_title">Modo Missa</string>
+    <string name="feature_liturgy_mass_eyebrow">Celebração eucarística</string>
+    <string name="feature_liturgy_mass_banner_description">Missal aberto diante do altar</string>
+    <string name="feature_liturgy_mass_text_smaller">Diminuir texto</string>
+    <string name="feature_liturgy_mass_text_larger">Aumentar texto</string>
+    <string name="feature_liturgy_mass_part_progress">Parte %1$d de %2$d</string>
+    <string name="feature_liturgy_mass_parts_title">Partes da celebração</string>
+    <string name="feature_liturgy_mass_parts_hint">Toque para acompanhar</string>
+    <string name="feature_liturgy_mass_part_current">Agora nesta parte</string>
+    <string name="feature_liturgy_mass_part_open">Abrir esta parte</string>
+    <string name="feature_liturgy_mass_previous">‹ Anterior</string>
+    <string name="feature_liturgy_mass_next">Próxima parte ›</string>
+    <string name="feature_liturgy_mass_part_1_title">Ritos iniciais</string>
+    <string name="feature_liturgy_mass_part_1_text">A assembleia se reúne. Acompanhe o canto de entrada, a saudação, o ato penitencial e a oração inicial.</string>
+    <string name="feature_liturgy_mass_part_2_title">Liturgia da Palavra</string>
+    <string name="feature_liturgy_mass_part_2_text">Escute as leituras bíblicas, o salmo e o Evangelho. Depois, acompanhe a homilia e a oração dos fiéis.</string>
+    <string name="feature_liturgy_mass_part_3_title">Liturgia Eucarística</string>
+    <string name="feature_liturgy_mass_part_3_text">Acompanhe a apresentação das oferendas, a oração eucarística e a comunhão. Participe conforme as orientações da comunidade.</string>
+    <string name="feature_liturgy_mass_part_4_title">Ritos finais</string>
+    <string name="feature_liturgy_mass_part_4_text">A celebração se conclui com os avisos, a bênção e o envio para viver a fé no cotidiano.</string>
+    <string name="feature_liturgy_mass_disclaimer">Roteiro demonstrativo para acompanhar a celebração. Os textos litúrgicos completos devem seguir a edição oficial aprovada pela Igreja.</string>
+    <string name="feature_liturgy_daily_title">Liturgia diária</string>
+    <string name="feature_liturgy_daily_eyebrow">Oração e Palavra</string>
+    <string name="feature_liturgy_daily_banner_description">Missal aberto para a oração e a liturgia</string>
+    <string name="feature_liturgy_daily_card_eyebrow">Para rezar hoje</string>
+    <string name="feature_liturgy_daily_card_title">A Palavra que reúne a comunidade</string>
+    <string name="feature_liturgy_daily_card_note">Conteúdo demonstrativo. As leituras oficiais devem ser consultadas nas publicações litúrgicas da Igreja.</string>
+    <string name="feature_liturgy_daily_guide_title">Roteiro de oração</string>
+    <string name="feature_liturgy_daily_guide_badge">Leitura guiada</string>
+    <string name="feature_liturgy_daily_step_1_title">1 · Preparar o coração</string>
+    <string name="feature_liturgy_daily_step_1_text">Encontre um momento de silêncio. Faça o sinal da cruz e peça a Deus que ilumine sua oração.</string>
+    <string name="feature_liturgy_daily_step_2_title">2 · Palavra do dia</string>
+    <string name="feature_liturgy_daily_step_2_text">As leituras do dia serão apresentadas aqui quando a paróquia integrar uma fonte litúrgica autorizada.</string>
+    <string name="feature_liturgy_daily_step_3_title">3 · Sua intenção</string>
+    <string name="feature_liturgy_daily_step_3_text">Apresente a Deus as alegrias, preocupações e pessoas que deseja recordar hoje.</string>
+    <string name="feature_liturgy_daily_prayer_request">Fazer um pedido de oração</string>
+</resources>

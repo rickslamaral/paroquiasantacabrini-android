@@ -17,4 +17,12 @@
 <resources>
     <string name="app_name" translatable="false">Paróquia Santa Cabrini</string>
     <string name="navigation_next">Next</string>
+    <string name="main_tab_home">Home</string>
+    <string name="main_tab_calendar">Calendar</string>
+    <string name="main_tab_pray">Pray</string>
+    <string name="main_tab_more">More</string>
+    <string name="top_bar_subtitle" translatable="false">Vila Natal · São Paulo</string>
+    <string name="top_bar_notices">Notices</string>
+    <string name="brand_mark" translatable="false">✝</string>
+    <string name="top_bar_notices_glyph" translatable="false">♧</string>
 </resources>

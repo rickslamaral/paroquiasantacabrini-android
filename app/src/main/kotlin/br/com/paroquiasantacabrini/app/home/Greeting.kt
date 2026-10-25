@@ -20,7 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.paroquiasantacabrini.app.ui.theme.TemplateTheme
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
@@ -33,7 +33,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 private fun GreetingPreview() {
-    TemplateTheme {
+    ParoquiaTheme {
         Greeting("Android")
     }
 }

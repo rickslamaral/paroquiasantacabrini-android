@@ -35,10 +35,10 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import br.com.paroquiasantacabrini.app.R
 import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
-import br.com.paroquiasantacabrini.app.ui.theme.PastelGreen
-import br.com.paroquiasantacabrini.app.ui.theme.PastelMauve
-import br.com.paroquiasantacabrini.app.ui.theme.PastelOrange
-import br.com.paroquiasantacabrini.app.ui.theme.TemplateTheme
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.PastelGreen
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.PastelMauve
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.PastelOrange
 
 @Composable
 fun ContentOrange(
@@ -120,7 +120,7 @@ private fun ColumnScope.Title(title: String) {
 @Composable
 @Preview
 private fun ContentAPreview() {
-    TemplateTheme {
+    ParoquiaTheme {
         ContentOrange(
             title = LoremIpsum(3).values.first(),
         )

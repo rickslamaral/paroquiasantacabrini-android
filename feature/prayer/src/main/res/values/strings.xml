@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_prayer_hub_title">A moment of prayer</string>
+    <string name="feature_prayer_hub_eyebrow">Spirituality</string>
+    <string name="feature_prayer_hub_intro">Choose a way to pray or share an intention with the community.</string>
+    <string name="feature_prayer_hub_rosary_title">Holy Rosary</string>
+    <string name="feature_prayer_hub_rosary_text">Pray the rosary step by step.</string>
+    <string name="feature_prayer_hub_novenas_title">Novenas</string>
+    <string name="feature_prayer_hub_novenas_text">Continue your path of prayer.</string>
+    <string name="feature_prayer_hub_requests_title">Prayer requests</string>
+    <string name="feature_prayer_hub_requests_text">Present your intention with privacy.</string>
+    <string name="feature_prayer_hub_liturgy_title">Daily liturgy</string>
+    <string name="feature_prayer_hub_liturgy_text">A space to follow the Word.</string>
+    <string name="feature_prayer_hub_exam_title">Examination of conscience</string>
+    <string name="feature_prayer_hub_exam_text">A simple outline for personal reflection and preparation for confession.</string>
+    <string name="feature_prayer_hub_exam_button">Start reflection</string>
+    <string name="feature_prayer_rosary_title">Glorious Mysteries</string>
+    <string name="feature_prayer_rosary_eyebrow">Holy Rosary</string>
+    <string name="feature_prayer_rosary_progress">Step %1$d of %2$d</string>
+    <string name="feature_prayer_rosary_back">‹ Back</string>
+    <string name="feature_prayer_rosary_next">Next step ›</string>
+    <string name="feature_prayer_rosary_hint">Follow at your own pace. You can go back or stop whenever you wish.</string>
+    <string name="feature_prayer_rosary_step_1_title">Preparation</string>
+    <string name="feature_prayer_rosary_step_1_text">In the name of the Father, and of the Son, and of the Holy Spirit. Amen.
+
+Offering: place this moment of prayer in God\'s hands.</string>
+    <string name="feature_prayer_rosary_step_2_title">Creed</string>
+    <string name="feature_prayer_rosary_step_2_text">I believe in God, the Father almighty, creator of heaven and earth.</string>
+    <string name="feature_prayer_rosary_step_3_title">Our Father</string>
+    <string name="feature_prayer_rosary_step_3_text">Our Father, who art in heaven, hallowed be thy name.</string>
+    <string name="feature_prayer_rosary_step_4_title">Hail Marys</string>
+    <string name="feature_prayer_rosary_step_4_text">Hail Mary, full of grace, the Lord is with thee.</string>
+    <string name="feature_prayer_rosary_step_5_title">Glory Be</string>
+    <string name="feature_prayer_rosary_step_5_text">Glory be to the Father, and to the Son, and to the Holy Spirit.</string>
+    <string name="feature_prayer_rosary_step_6_title">Closing</string>
+    <string name="feature_prayer_rosary_step_6_text">Give thanks for this moment and conclude with the sign of the cross.</string>
+    <string name="feature_prayer_rosary_mysteries_title">The five Glorious Mysteries</string>
+    <string name="feature_prayer_rosary_mystery_1">1 · The Resurrection</string>
+    <string name="feature_prayer_rosary_mystery_2">2 · The Ascension</string>
+    <string name="feature_prayer_rosary_mystery_3">3 · The Descent of the Holy Spirit</string>
+    <string name="feature_prayer_rosary_mystery_4">4 · The Assumption of Mary</string>
+    <string name="feature_prayer_rosary_mystery_5">5 · The Coronation of Mary</string>
+    <string name="feature_prayer_rosary_disclaimer">Illustrative text, not approved by the parish. Replace it with the approved prayer text before official use.</string>
+    <string name="feature_prayer_novena_title">Novenas</string>
+    <string name="feature_prayer_novena_eyebrow">Path of prayer</string>
+    <string name="feature_prayer_novena_banner_description">Mother Cabrini on mission among travelers</string>
+    <string name="feature_prayer_novena_card_eyebrow">Featured</string>
+    <string name="feature_prayer_novena_card_title">Novena to Saint Cabrini</string>
+    <string name="feature_prayer_novena_card_text">A nine-day prayer proposal inspired by trust and service to others.</string>
+    <string name="feature_prayer_novena_day">Day %1$d of %2$d</string>
+    <string name="feature_prayer_novena_continue">Continue prayer</string>
+    <string name="feature_prayer_novena_restart">Restart novena</string>
+    <string name="feature_prayer_novena_progress_saved">Progress updated on this device.</string>
+    <string name="feature_prayer_novena_restarted">Novena restarted.</string>
+    <string name="feature_prayer_novena_disclaimer">Illustrative prayer text. For pastoral use, replace it with content approved by the parish.</string>
+    <string name="feature_prayer_exam_title">Examination of conscience</string>
+    <string name="feature_prayer_exam_eyebrow">Personal reflection</string>
+    <string name="feature_prayer_exam_intro">Set aside a few minutes to recall your day with serenity and trust in God.</string>
+    <string name="feature_prayer_exam_reflect_title">To reflect on</string>
+    <string name="feature_prayer_exam_item">%1$d · %2$s</string>
+    <string name="feature_prayer_exam_1_title">Gratitude</string>
+    <string name="feature_prayer_exam_1_text">For which signs of care and love are you grateful today?</string>
+    <string name="feature_prayer_exam_2_title">Meeting others</string>
+    <string name="feature_prayer_exam_2_text">How did you welcome the people who crossed your path?</string>
+    <string name="feature_prayer_exam_3_title">A step for tomorrow</string>
+    <string name="feature_prayer_exam_3_text">What do you wish to hand over to God and transform?</string>
+    <string name="feature_prayer_exam_note">This outline is personal and does not save your answers. For sacramental confession, speak with a priest.</string>
+    <string name="feature_prayer_exam_finish">Finish reflection</string>
+    <string name="feature_prayer_exam_done">May this moment of reflection bring you peace.</string>
+    <string name="feature_prayer_request_title">Prayer request</string>
+    <string name="feature_prayer_request_eyebrow">Intentions</string>
+    <string name="feature_prayer_request_intro">Write your intention. In this version it stays only on this device.</string>
+    <string name="feature_prayer_request_field">Your intention</string>
+    <string name="feature_prayer_request_placeholder">Write here what you would like to place in prayer…</string>
+    <string name="feature_prayer_request_counter">%1$d / %2$d</string>
+    <string name="feature_prayer_request_privacy_label">How would you like to share it?</string>
+    <string name="feature_prayer_request_private">Private</string>
+    <string name="feature_prayer_request_community">Community</string>
+    <string name="feature_prayer_request_privacy_note">Sharing is not active yet: nothing is sent to the parish.</string>
+    <string name="feature_prayer_request_ack">I understand this version does not send my request to the parish.</string>
+    <string name="feature_prayer_request_save">Save intention on this device</string>
+    <string name="feature_prayer_request_error_empty">Write your intention to save it.</string>
+    <string name="feature_prayer_request_error_ack">Confirm that you understand to save.</string>
+    <string name="feature_prayer_request_saved_feedback">Intention saved on this device.</string>
+    <string name="feature_prayer_request_saved_title">Saved on this device</string>
+    <string name="feature_prayer_request_saved_note">Your intention was saved only on this device. It was not sent to the parish.</string>
+    <string name="feature_prayer_request_delete">Delete saved intention</string>
+    <string name="feature_prayer_request_deleted">Saved intention deleted.</string>
+    <string name="feature_prayer_hub_banner_eyebrow">A moment of recollection</string>
+    <string name="feature_prayer_hub_banner_title">Pray the Holy Rosary</string>
+    <string name="feature_prayer_hub_banner_text">Follow each step at your own pace ›</string>
+</resources>

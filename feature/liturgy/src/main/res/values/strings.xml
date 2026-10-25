@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_liturgy_mass_title">Mass Mode</string>
+    <string name="feature_liturgy_mass_eyebrow">Eucharistic celebration</string>
+    <string name="feature_liturgy_mass_banner_description">Open missal in front of the altar</string>
+    <string name="feature_liturgy_mass_text_smaller_label" translatable="false">A−</string>
+    <string name="feature_liturgy_mass_text_larger_label" translatable="false">A+</string>
+    <string name="feature_liturgy_mass_text_smaller">Decrease text size</string>
+    <string name="feature_liturgy_mass_text_larger">Increase text size</string>
+    <string name="feature_liturgy_mass_part_progress">Part %1$d of %2$d</string>
+    <string name="feature_liturgy_mass_parts_title">Parts of the celebration</string>
+    <string name="feature_liturgy_mass_parts_hint">Tap to follow along</string>
+    <string name="feature_liturgy_mass_part_current">Now in this part</string>
+    <string name="feature_liturgy_mass_part_open">Open this part</string>
+    <string name="feature_liturgy_mass_previous">‹ Previous</string>
+    <string name="feature_liturgy_mass_next">Next part ›</string>
+    <string name="feature_liturgy_mass_part_1_title">Introductory Rites</string>
+    <string name="feature_liturgy_mass_part_1_text">The assembly gathers. Follow the entrance song, the greeting, the penitential act and the opening prayer.</string>
+    <string name="feature_liturgy_mass_part_2_title">Liturgy of the Word</string>
+    <string name="feature_liturgy_mass_part_2_text">Listen to the Scripture readings, the psalm and the Gospel. Then follow the homily and the prayer of the faithful.</string>
+    <string name="feature_liturgy_mass_part_3_title">Liturgy of the Eucharist</string>
+    <string name="feature_liturgy_mass_part_3_text">Follow the presentation of the gifts, the Eucharistic prayer and communion. Take part according to the guidance of the community.</string>
+    <string name="feature_liturgy_mass_part_4_title">Concluding Rites</string>
+    <string name="feature_liturgy_mass_part_4_text">The celebration ends with the announcements, the blessing and the dismissal to live the faith in everyday life.</string>
+    <string name="feature_liturgy_mass_disclaimer">Demonstration outline to follow the celebration. The full liturgical texts must follow the official edition approved by the Church.</string>
+    <string name="feature_liturgy_daily_title">Daily liturgy</string>
+    <string name="feature_liturgy_daily_eyebrow">Prayer and the Word</string>
+    <string name="feature_liturgy_daily_banner_description">Open missal for prayer and the liturgy</string>
+    <string name="feature_liturgy_daily_card_eyebrow">To pray today</string>
+    <string name="feature_liturgy_daily_card_title">The Word that gathers the community</string>
+    <string name="feature_liturgy_daily_card_note">Demonstration content. The official readings must be consulted in the liturgical publications of the Church.</string>
+    <string name="feature_liturgy_daily_guide_title">Prayer guide</string>
+    <string name="feature_liturgy_daily_guide_badge">Guided reading</string>
+    <string name="feature_liturgy_daily_step_1_title">1 · Prepare your heart</string>
+    <string name="feature_liturgy_daily_step_1_text">Find a quiet moment. Make the sign of the cross and ask God to enlighten your prayer.</string>
+    <string name="feature_liturgy_daily_step_2_title">2 · Word of the day</string>
+    <string name="feature_liturgy_daily_step_2_text">The readings of the day will appear here once the parish connects an authorized liturgical source.</string>
+    <string name="feature_liturgy_daily_step_3_title">3 · Your intention</string>
+    <string name="feature_liturgy_daily_step_3_text">Present to God the joys, worries and people you want to remember today.</string>
+    <string name="feature_liturgy_daily_prayer_request">Make a prayer request</string>
+</resources>

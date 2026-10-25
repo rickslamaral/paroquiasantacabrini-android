@@ -1,13 +1,64 @@
 
 
-# Android Compose Template 🚀
+# Paróquia Santa Cabrini
 
-[![Use this template](https://img.shields.io/badge/from-ashtanko--template-brightgreen?logo=github)](https://github.com/ashtanko/compose-android-template/generate)
-[![Android CI](https://github.com/ashtanko/compose-android-template/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ashtanko/compose-android-template/actions/workflows/ci.yml)
-[![License](https://img.shields.io/github/license/ashtanko/compose-android-template.svg)](LICENSE)
-[![Language](https://img.shields.io/github/languages/top/ashtanko/compose-android-template?color=blue&logo=kotlin)](https://kotlinlang.org/)
+Aplicativo Android da **Paróquia Santa Francisca Xavier Cabrini** (Vila Natal, São Paulo — Diocese de
+Santo Amaro). Reúne horários, orações, liturgia, informações da padroeira, comunidade e canais
+oficiais em uma experiência simples, acolhedora e acessível.
 
-A modern, production-ready Android template built with **Jetpack Compose**, **Navigation 3**, and **Kotlin**. This template provides a solid foundation for building Android applications with best practices, comprehensive testing, and CI/CD already configured.
+Construído com **Jetpack Compose**, **Material 3**, **Navigation 3** e **Kotlin**, a partir do
+[compose-android-template](https://github.com/ashtanko/compose-android-template) (licença MIT). O guia
+técnico do template continua nas seções em inglês mais abaixo.
+
+## O que já funciona
+
+| Área | O que o aplicativo oferece |
+|---|---|
+| **Início** | Cartão de missas, banner do Modo Missa, acesso rápido, aviso regular da Adoração, padroeira, galeria da igreja e canais oficiais |
+| **Horários de missas** | Missas, Adoração ao Santíssimo, confissões, secretaria, endereço e botões de ligar, e-mail e mapa |
+| **Modo Missa** | As quatro partes da celebração, barra de progresso, anterior e próxima, índice e ajuste do tamanho do texto (A−/A+) |
+| **Liturgia diária** | Roteiro de oração; informa que as leituras oficiais dependem de uma fonte autorizada |
+| **Rezar** | Santo Rosário passo a passo, novena a Santa Cabrini (o dia fica salvo), exame de consciência e pedidos de oração |
+| **Pedidos de oração** | Salvos **somente no aparelho** e excluídos do backup; o aplicativo diz claramente que nada é enviado à paróquia |
+| **Santa Cabrini e Santos** | Perfil ilustrado da padroeira com linha do tempo e fontes, e diretório de santos com busca sem acento |
+| **Comunidade** | Grupos de oração, Catequese e Crisma, que encaminham à secretaria sem inventar datas |
+| **Agenda e avisos** | Calendário mensal com os horários regulares de cada dia e avisos |
+| **Dízimo e ofertas (Pix)** | Chave Pix (CNPJ), favorecido, banco, QR code e copiar a chave ou o "copia e cola". Nenhum pagamento acontece no aplicativo |
+| **Idiomas** | Inglês (padrão), português do Brasil e português de Portugal |
+| **Acessibilidade** | Fontes escaláveis, contraste verificado (WCAG AA), descrições para leitores de tela e áreas de toque confortáveis |
+
+## Conteúdo que depende da paróquia
+
+O que está marcado como **demonstrativo** no aplicativo precisa de aprovação pastoral antes de uma
+versão oficial:
+
+- **Liturgia diária e Modo Missa:** o texto litúrgico completo e a fonte autorizada das leituras.
+- **Orações:** Rosário, novena e exame de consciência são textos ilustrativos.
+- **Santa Cabrini e Santos:** a biografia é um resumo para revisão; o diretório de santos é uma amostra.
+- **Comunidade:** nomes e horários dos grupos, turmas de catequese e encontros de crisma não foram informados.
+- **Avisos e agenda:** só há horários regulares; eventos especiais ainda não têm fonte.
+- **Imagens:** as ilustrações do pacote do protótipo são artes ilustrativas, não fotografias históricas; confirme os direitos de uso das fotos.
+- **Dados da paróquia:** o nome do favorecido do Pix ("PAROQUIA SANTA FRANCISCA") segue o cadastro do banco.
+
+## Como rodar
+
+Requisitos: JDK 21 e o Android SDK indicado em `gradle/libs.versions.toml`. Use sempre o Gradle Wrapper.
+
+```bash
+./gradlew :app:assembleDebug      # gera o APK de debug
+./gradlew :app:installDebug       # instala em um aparelho ou emulador conectado
+./gradlew test                    # testes unitários e de interface (Robolectric)
+./gradlew validateDebugScreenshotTest   # compara as telas com as imagens de referência
+./gradlew lint detekt spotlessCheck     # análise estática e formatação
+make localization-check           # confere as traduções
+```
+
+Sem um aparelho, as telas podem ser vistas nas imagens de `*/src/screenshotTestDebug/reference/`.
+
+## Versionamento
+
+O projeto segue [SemVer](https://semver.org/lang/pt-BR/): cada funcionalidade nova incrementa a versão
+*minor*, e correções, a versão *patch*. O `versionName` do aplicativo acompanha as tags `vX.Y.Z`.
 
 ## 🎯 Quick Start
 
@@ -154,7 +205,13 @@ rules, and the complete posts demo walkthrough.
 │   ├── database/           # Room database and schemas
 │   └── testing/            # Shared test utilities and fakes
 ├── feature/                # Feature-focused modules
-│   ├── home/               # Single-module UI feature
+│   ├── home/               # Início, tela Mais e galeria
+│   ├── massschedule/       # Horários de missas e contato
+│   ├── liturgy/            # Modo Missa e liturgia diária
+│   ├── prayer/             # Rezar: rosário, novenas, exame e pedidos de oração
+│   ├── saint/              # Santa Cabrini e diretório de santos
+│   ├── community/          # Comunidade, calendário e avisos
+│   ├── pix/                # Dízimo e ofertas (Pix)
 │   └── posts/              # Clean Architecture demo
 │       ├── domain/         # model/, repository/, result/, usecase/
 │       ├── data/           # di/, local/, remote/, mapper/, repository/
@@ -221,6 +278,8 @@ those values; the summary below intentionally avoids copying fast-changing versi
   end-to-end testing.
 
 ## 📱 Features
+
+Recursos herdados do template (os da paróquia estão no início deste arquivo):
 
 - **Posts architecture demo** — Retrofit pagination, in-memory cache fallback, DTO/domain/UI
   mapping, Hilt, sealed UI state, retry, and incremental loading.

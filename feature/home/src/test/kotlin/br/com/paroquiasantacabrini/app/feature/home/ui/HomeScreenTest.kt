@@ -19,11 +19,11 @@ package br.com.paroquiasantacabrini.app.feature.home.ui
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performTextInput
-import br.com.paroquiasantacabrini.app.feature.home.ui.model.FactorialResult
-import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeInputError
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 import com.google.common.truth.Truth.assertThat
 import org.junit.Rule
@@ -33,55 +33,107 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [35])
+@Config(sdk = [35], qualifiers = "w411dp-h3000dp")
 public class HomeScreenTest {
 
     @get:Rule
     public val composeTestRule = createComposeRule()
 
     @Test
-    public fun inputAndActionsForwardUserIntent() {
-        var input = ""
-        var calculateClicks = 0
-        var navigationClicks = 0
-        composeTestRule.setContent {
-            MaterialTheme {
-                HomeScreen(
-                    state = HomeUiState(),
-                    onInputChanged = { input = it },
-                    onCalculateClick = { calculateClicks += 1 },
-                    onExploreNavigationClick = { navigationClicks += 1 },
-                )
-            }
-        }
+    public fun heroAndWelcomeIntroduceTheParish() {
+        setHomeContent()
 
-        composeTestRule.onNodeWithText("Factorial input").performTextInput("5")
-        composeTestRule.onNodeWithText("Calculate factorial").performClick()
-        composeTestRule.onNodeWithText("Explore navigation").performClick()
-
-        assertThat(input).isEqualTo("5")
-        assertThat(calculateClicks).isEqualTo(1)
-        assertThat(navigationClicks).isEqualTo(1)
+        composeTestRule.onNodeWithText("A community that welcomes.").assertIsDisplayed()
+        composeTestRule.onNodeWithText("So good to have you here.").assertIsDisplayed()
+        composeTestRule.onNodeWithContentDescription("Front of the Paróquia Santa Cabrini church")
+            .assertIsDisplayed()
     }
 
     @Test
-    public fun resultAndValidationErrorAreDisplayed() {
+    public fun quickAccessCardsForwardTheirDestination() {
+        val clicked = mutableListOf<HomeDestination>()
+        setHomeContent(onQuickAccessClick = { clicked += it })
+
+        composeTestRule.onNodeWithText("Times").performClick()
+        composeTestRule.onNodeWithText("Liturgy").performClick()
+        composeTestRule.onNodeWithText("Prayer").performClick()
+        composeTestRule.onNodeWithText("Tithes").performClick()
+
+        assertThat(clicked).containsExactly(
+            HomeDestination.MassSchedule,
+            HomeDestination.DailyLiturgy,
+            HomeDestination.PrayerRequests,
+            HomeDestination.TithesAndOfferings,
+        ).inOrder()
+    }
+
+    @Test
+    public fun emptyAnnouncementsShowPlaceholder() {
+        setHomeContent()
+
+        composeTestRule.onNodeWithText("No notices right now.").assertIsDisplayed()
+    }
+
+    @Test
+    public fun announcementsAreDisplayed() {
+        setHomeContent(
+            state = HomeUiState(
+                announcements = listOf(
+                    AnnouncementUiModel(
+                        id = "1",
+                        title = "Adoração ao Santíssimo",
+                        message = "Quintas-feiras, às 18h, antes da missa.",
+                        dateLabel = "Informação à comunidade",
+                    ),
+                ),
+            ),
+        )
+
+        composeTestRule.onNodeWithText("Adoração ao Santíssimo").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Quintas-feiras, às 18h, antes da missa.").assertIsDisplayed()
+        composeTestRule.onNodeWithText("No notices right now.").assertDoesNotExist()
+    }
+
+    @Test
+    public fun massCardAndModeBannerOpenTheirDestinations() {
+        val clicked = mutableListOf<HomeDestination>()
+        setHomeContent(onQuickAccessClick = { clicked += it })
+
+        composeTestRule.onNodeWithText("Come celebrate with us").performClick()
+        composeTestRule.onNodeWithText("Mass Mode").performClick()
+
+        assertThat(clicked).containsExactly(HomeDestination.MassSchedule, HomeDestination.MassMode).inOrder()
+    }
+
+    @Test
+    public fun sectionActionsOpenAllNoticesAndThePatroness() {
+        val clicked = mutableListOf<HomeDestination>()
+        setHomeContent(onQuickAccessClick = { clicked += it })
+
+        composeTestRule.onNodeWithText("See all").performClick()
+        composeTestRule.onNodeWithText("All").performClick()
+        composeTestRule.onNodeWithText("Learn more").performClick()
+        composeTestRule.onNodeWithText("Saint Frances Xavier Cabrini").performClick()
+
+        assertThat(clicked).containsExactly(
+            HomeDestination.ShowAll,
+            HomeDestination.Notices,
+            HomeDestination.SaintCabrini,
+            HomeDestination.SaintCabrini,
+        ).inOrder()
+    }
+
+    private fun setHomeContent(
+        state: HomeUiState = HomeUiState(),
+        onQuickAccessClick: (HomeDestination) -> Unit = {},
+    ) {
         composeTestRule.setContent {
             MaterialTheme {
                 HomeScreen(
-                    state = HomeUiState(
-                        input = "21",
-                        result = FactorialResult(input = 5, value = 120),
-                        inputError = HomeInputError.OutOfRange,
-                    ),
-                    onInputChanged = {},
-                    onCalculateClick = {},
-                    onExploreNavigationClick = {},
+                    state = state,
+                    onQuickAccessClick = onQuickAccessClick,
                 )
             }
         }
-
-        composeTestRule.onNodeWithText("5! = 120").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Enter a number from 0 to 20.").assertIsDisplayed()
     }
 }

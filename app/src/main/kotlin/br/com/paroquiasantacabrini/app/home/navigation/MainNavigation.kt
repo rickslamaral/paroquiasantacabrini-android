@@ -25,7 +25,9 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavBackStack
@@ -33,9 +35,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
-import br.com.paroquiasantacabrini.app.feature.home.ui.HomeRoute
 import br.com.paroquiasantacabrini.app.feature.posts.presentation.ui.PostsRoute
-import br.com.paroquiasantacabrini.app.home.ContentGreen
 
 private const val TRANSITION_DURATION_MS = 1000
 
@@ -45,39 +45,48 @@ fun MainNavigation(
     backStack: NavBackStack<NavKey> = rememberNavBackStack(Screen.ScreenA),
     postsContent: @Composable (Modifier) -> Unit = { PostsRoute(modifier = it) },
 ) {
-    NavDisplay(
-        backStack = backStack,
-        onBack = { backStack.removeLastOrNull() },
+    Scaffold(
         modifier = modifier,
-        entryProvider = mainEntryProvider(
+        topBar = { ParoquiaTopBar(onNoticesClick = { backStack.add(Screen.Notices) }) },
+        bottomBar = {
+            ParoquiaBottomBar(
+                selected = backStack.lastOrNull().toTab(),
+                onTabClick = { tab -> backStack.openTab(tab) },
+            )
+        },
+    ) { innerPadding ->
+        NavDisplay(
             backStack = backStack,
-            postsContent = postsContent,
-        ),
-        transitionSpec = { horizontalSlideTransition(isPop = false) },
-        popTransitionSpec = { horizontalSlideTransition(isPop = true) },
-        predictivePopTransitionSpec = { horizontalSlideTransition(isPop = true) },
-    )
+            onBack = { backStack.removeLastOrNull() },
+            // Screens pad themselves for the system bars; the bar already consumed the bottom inset.
+            modifier = Modifier
+                .padding(innerPadding)
+                .consumeWindowInsets(innerPadding),
+            entryProvider = mainEntryProvider(
+                backStack = backStack,
+                postsContent = postsContent,
+            ),
+            transitionSpec = { horizontalSlideTransition(isPop = false) },
+            popTransitionSpec = { horizontalSlideTransition(isPop = true) },
+            predictivePopTransitionSpec = { horizontalSlideTransition(isPop = true) },
+        )
+    }
 }
 
 private fun mainEntryProvider(
     backStack: NavBackStack<NavKey>,
     postsContent: @Composable (Modifier) -> Unit,
-) = entryProvider {
-    entry<Screen.ScreenA> {
-        HomeRoute(
-            onExploreNavigationClick = { backStack.add(Screen.ScreenB) },
-            modifier = Modifier.fillMaxSize(),
-        )
-    }
-    entry<Screen.ScreenB> {
-        postsContent(Modifier.fillMaxSize())
-    }
-    entry<Screen.ScreenC>(metadata = verticalSlideTransitionSpec()) {
-        ContentGreen("This is Screen C")
-    }
+) = entryProvider<NavKey> {
+    homeEntries(backStack)
+    moreEntries(backStack)
+    liturgyEntries(backStack)
+    prayerEntries(backStack)
+    parishEntries(backStack)
+    communityEntries(backStack)
+    demoEntries(postsContent)
 }
 
-private fun verticalSlideTransitionSpec() =
+internal fun verticalSlideTransitionSpec() =
     NavDisplay.transitionSpec {
         slideInVertically(
             initialOffsetY = { it },
