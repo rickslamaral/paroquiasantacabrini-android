@@ -51,4 +51,5 @@ include(":feature:massschedule")
 include(":feature:liturgy")
 include(":feature:saint")
 include(":feature:prayer")
+include(":feature:community")
 // endregion

@@ -121,8 +121,8 @@ android {
 
     defaultConfig {
         applicationId = "br.com.paroquiasantacabrini.app"
-        versionCode = 19
-        versionName = "0.15.0"
+        versionCode = 20
+        versionName = "0.16.0"
         testInstrumentationRunner = "br.com.paroquiasantacabrini.app.HiltTestRunner"
     }
 
@@ -213,6 +213,7 @@ tasks {
 dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:designsystem"))
+    implementation(project(":feature:community"))
     implementation(project(":feature:home"))
     implementation(project(":feature:liturgy"))
     implementation(project(":feature:massschedule"))

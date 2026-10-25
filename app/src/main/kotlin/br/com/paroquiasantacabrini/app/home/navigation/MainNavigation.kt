@@ -64,6 +64,7 @@ private fun mainEntryProvider(
     liturgyEntries(backStack)
     prayerEntries(backStack)
     parishEntries(backStack)
+    communityEntries(backStack)
     demoEntries(postsContent)
 }
 

@@ -22,6 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
+import br.com.paroquiasantacabrini.app.feature.community.ui.CalendarRoute
+import br.com.paroquiasantacabrini.app.feature.community.ui.CatechesisRoute
+import br.com.paroquiasantacabrini.app.feature.community.ui.CommunityHubRoute
+import br.com.paroquiasantacabrini.app.feature.community.ui.ConfirmationRoute
+import br.com.paroquiasantacabrini.app.feature.community.ui.GroupsRoute
+import br.com.paroquiasantacabrini.app.feature.community.ui.NoticesRoute
 import br.com.paroquiasantacabrini.app.feature.home.ui.HomeRoute
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
 import br.com.paroquiasantacabrini.app.feature.liturgy.ui.DailyLiturgyRoute
@@ -118,6 +124,36 @@ internal fun EntryProviderScope<NavKey>.parishEntries(backStack: NavBackStack<Na
             onBackClick = { backStack.removeLastOrNull() },
             modifier = Modifier.fillMaxSize(),
         )
+    }
+}
+
+internal fun EntryProviderScope<NavKey>.communityEntries(backStack: NavBackStack<NavKey>) {
+    entry<Screen.Community> {
+        CommunityHubRoute(
+            onGroupsClick = { backStack.add(Screen.Groups) },
+            onCatechesisClick = { backStack.add(Screen.Catechesis) },
+            onConfirmationClick = { backStack.add(Screen.Confirmation) },
+            onBackClick = { backStack.removeLastOrNull() },
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+    entry<Screen.Groups> {
+        GroupsRoute(onBackClick = { backStack.removeLastOrNull() }, modifier = Modifier.fillMaxSize())
+    }
+    entry<Screen.Catechesis> {
+        CatechesisRoute(onBackClick = { backStack.removeLastOrNull() }, modifier = Modifier.fillMaxSize())
+    }
+    entry<Screen.Confirmation> {
+        ConfirmationRoute(onBackClick = { backStack.removeLastOrNull() }, modifier = Modifier.fillMaxSize())
+    }
+    entry<Screen.Calendar> {
+        CalendarRoute(
+            onAllMassTimesClick = { backStack.add(Screen.MassSchedule) },
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+    entry<Screen.Notices> {
+        NoticesRoute(onBackClick = { backStack.removeLastOrNull() }, modifier = Modifier.fillMaxSize())
     }
 }
 
