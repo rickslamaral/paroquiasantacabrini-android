@@ -40,6 +40,8 @@ import br.com.paroquiasantacabrini.app.feature.liturgy.ui.MassModeRoute
 import br.com.paroquiasantacabrini.app.feature.massschedule.ui.MassScheduleRoute
 import br.com.paroquiasantacabrini.app.feature.pix.ui.PixRoute
 import br.com.paroquiasantacabrini.app.feature.posts.presentation.ui.PostsRoute
+import br.com.paroquiasantacabrini.app.feature.saint.ui.SaintCabriniRoute
+import br.com.paroquiasantacabrini.app.feature.saint.ui.SaintsRoute
 import br.com.paroquiasantacabrini.app.home.ContentGreen
 
 private const val TRANSITION_DURATION_MS = 1000
@@ -100,6 +102,20 @@ private fun mainEntryProvider(
     entry<Screen.DailyLiturgy> {
         DailyLiturgyRoute(
             onPrayerRequestClick = { backStack.add(Screen.ScreenC) },
+            onBackClick = { backStack.removeLastOrNull() },
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+    entry<Screen.SaintCabrini> {
+        SaintCabriniRoute(
+            onVisitCommunityClick = { backStack.add(Screen.MassSchedule) },
+            onBackClick = { backStack.removeLastOrNull() },
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+    entry<Screen.Saints> {
+        SaintsRoute(
+            onSeeCabriniClick = { backStack.add(Screen.SaintCabrini) },
             onBackClick = { backStack.removeLastOrNull() },
             modifier = Modifier.fillMaxSize(),
         )

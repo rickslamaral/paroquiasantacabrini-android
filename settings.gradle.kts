@@ -49,4 +49,5 @@ include(":feature:posts:presentation")
 include(":feature:pix")
 include(":feature:massschedule")
 include(":feature:liturgy")
+include(":feature:saint")
 // endregion

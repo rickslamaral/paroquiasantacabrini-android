@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_saint_cabrini_title">Santa Cabrini</string>
+    <string name="feature_saint_cabrini_eyebrow">A nossa padroeira</string>
+    <string name="feature_saint_cabrini_banner_description">Ilustração de Santa Francisca Xavier Cabrini</string>
+    <string name="feature_saint_illustrative_note">Imagens ilustrativas, não são fotografias históricas.</string>
+    <string name="feature_saint_memorial">Memória litúrgica · 22 de dezembro</string>
+    <string name="feature_saint_cabrini_name">Santa Francisca Xavier Cabrini</string>
+    <string name="feature_saint_cabrini_intro">Missionária italiana, fundadora das Missionárias do Sagrado Coração de Jesus e padroeira dos migrantes. A sua vida inspira o acolhimento, a educação e o cuidado de quem precisa de recomeçar longe de casa.</string>
+    <string name="feature_saint_fact_1_value">1850</string>
+    <string name="feature_saint_fact_1_label">Nascimento em Itália</string>
+    <string name="feature_saint_fact_2_value">1880</string>
+    <string name="feature_saint_fact_2_label">Fundação da congregação</string>
+    <string name="feature_saint_fact_3_value">1889</string>
+    <string name="feature_saint_fact_3_label">Missão em Nova Iorque</string>
+    <string name="feature_saint_fact_4_value">22 dez. 1917</string>
+    <string name="feature_saint_fact_4_label">Falecimento em Chicago</string>
+    <string name="feature_saint_timeline_title">Uma vida missionária</string>
+    <string name="feature_saint_mission_banner_description">Ilustração de Madre Cabrini a acolher viajantes num porto</string>
+    <string name="feature_saint_timeline_1_title">Uma vocação que atravessou fronteiras</string>
+    <string name="feature_saint_timeline_1_text">Nascida em Sant\'Angelo Lodigiano, em Itália, Francesca Cabrini reuniu uma comunidade de mulheres consagradas e fundou, em 1880, as Missionárias do Sagrado Coração de Jesus.</string>
+    <string name="feature_saint_timeline_2_title">Ao encontro dos imigrantes</string>
+    <string name="feature_saint_timeline_2_text">Em 1889, partiu para Nova Iorque com as suas irmãs. A missão cresceu com obras de acolhimento, educação e assistência, acompanhando imigrantes e pessoas em situação de vulnerabilidade.</string>
+    <string name="feature_saint_timeline_3_title">Uma missão internacional</string>
+    <string name="feature_saint_timeline_3_text">O seu trabalho estendeu-se a diferentes países, incluindo o Brasil. Fez numerosas viagens para acompanhar as comunidades e fortalecer as obras missionárias.</string>
+    <string name="feature_saint_timeline_4_title">Reconhecimento da Igreja</string>
+    <string name="feature_saint_timeline_4_text">Foi beatificada em 1938 e canonizada em 1946. Em 1950, Pio XII proclamou-a padroeira celeste dos emigrantes.</string>
+    <string name="feature_saint_legacy_eyebrow">O seu legado para a comunidade</string>
+    <string name="feature_saint_legacy_text">Acolher com dignidade, servir com coragem e levar esperança a quem está em movimento.</string>
+    <string name="feature_saint_more_title">Saiba mais</string>
+    <string name="feature_saint_link_vatican_title">Vaticano</string>
+    <string name="feature_saint_link_vatican_description">Mensagem à Congregação das Missionárias do Sagrado Coração</string>
+    <string name="feature_saint_link_congregation_title">Missionárias do Sagrado Coração de Jesus</string>
+    <string name="feature_saint_link_congregation_description">História da congregação</string>
+    <string name="feature_saint_link_shrine_title">Santuário Nacional de Santa Cabrini</string>
+    <string name="feature_saint_link_shrine_description">Vida e legado</string>
+    <string name="feature_saint_visit_community">Visite a comunidade</string>
+    <string name="feature_saint_demo_note">Resumo demonstrativo. O texto deve ser revisado pela paróquia antes da publicação oficial.</string>
+    <string name="feature_saint_saints_title">Santos</string>
+    <string name="feature_saint_saints_eyebrow">Santos e devoções</string>
+    <string name="feature_saint_today_eyebrow">Santo do dia · área demonstrativa</string>
+    <string name="feature_saint_today_title">Conheça a vida dos santos</string>
+    <string name="feature_saint_today_text">A seleção diária e o calendário litúrgico dependem de uma fonte aprovada pela paróquia.</string>
+    <string name="feature_saint_see_cabrini">Ver Santa Cabrini</string>
+    <string name="feature_saint_directory_title">Diretório de santos</string>
+    <string name="feature_saint_search_label">Pesquisar por nome</string>
+    <string name="feature_saint_search_hint">Ex.: Santa Cabrini</string>
+    <string name="feature_saint_result_patroness">Padroeira dos migrantes</string>
+    <string name="feature_saint_result_demo">Santo(a) · perfil demonstrativo</string>
+    <string name="feature_saint_empty">Nenhum santo encontrado nesta amostra.</string>
+    <string name="feature_saint_detail_eyebrow">Perfil demonstrativo</string>
+    <string name="feature_saint_detail_text">O conteúdo biográfico e a memória litúrgica deste santo deverão ser validados antes de uma publicação oficial.</string>
+    <string name="feature_saint_directory_note">Lista de exemplo para demonstrar a busca. O diretório completo e as datas precisam de ser revistos pela paróquia.</string>
+</resources>

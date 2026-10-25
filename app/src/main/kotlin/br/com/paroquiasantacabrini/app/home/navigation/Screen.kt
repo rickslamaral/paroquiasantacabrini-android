@@ -40,4 +40,10 @@ sealed interface Screen {
 
     @Serializable
     public data object DailyLiturgy : NavKey
+
+    @Serializable
+    public data object SaintCabrini : NavKey
+
+    @Serializable
+    public data object Saints : NavKey
 }

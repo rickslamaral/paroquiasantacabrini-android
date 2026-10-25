@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_saint_cabrini_title">Saint Cabrini</string>
+    <string name="feature_saint_cabrini_eyebrow">Our patroness</string>
+    <string name="feature_saint_cabrini_banner_description">Illustration of Saint Frances Xavier Cabrini</string>
+    <string name="feature_saint_illustrative_note">Illustrative images, not historical photographs.</string>
+    <string name="feature_saint_memorial">Liturgical memorial · December 22</string>
+    <string name="feature_saint_cabrini_name">Saint Frances Xavier Cabrini</string>
+    <string name="feature_saint_cabrini_intro">Italian missionary, founder of the Missionary Sisters of the Sacred Heart of Jesus and patroness of migrants. Her life inspires welcome, education and care for those who must start over far from home.</string>
+    <string name="feature_saint_fact_1_value">1850</string>
+    <string name="feature_saint_fact_1_label">Born in Italy</string>
+    <string name="feature_saint_fact_2_value">1880</string>
+    <string name="feature_saint_fact_2_label">Congregation founded</string>
+    <string name="feature_saint_fact_3_value">1889</string>
+    <string name="feature_saint_fact_3_label">Mission in New York</string>
+    <string name="feature_saint_fact_4_value">Dec 22, 1917</string>
+    <string name="feature_saint_fact_4_label">Died in Chicago</string>
+    <string name="feature_saint_timeline_title">A missionary life</string>
+    <string name="feature_saint_mission_banner_description">Illustration of Mother Cabrini welcoming travelers at a port</string>
+    <string name="feature_saint_timeline_1_title">A vocation that crossed borders</string>
+    <string name="feature_saint_timeline_1_text">Born in Sant\'Angelo Lodigiano, Italy, Francesca Cabrini gathered a community of consecrated women and founded, in 1880, the Missionary Sisters of the Sacred Heart of Jesus.</string>
+    <string name="feature_saint_timeline_2_title">Meeting the immigrants</string>
+    <string name="feature_saint_timeline_2_text">In 1889 she left for New York with her sisters. The mission grew with works of welcome, education and assistance, accompanying immigrants and people in vulnerable situations.</string>
+    <string name="feature_saint_timeline_3_title">An international mission</string>
+    <string name="feature_saint_timeline_3_text">Her work reached different countries, including Brazil. She made many journeys to accompany the communities and strengthen the missionary works.</string>
+    <string name="feature_saint_timeline_4_title">Recognition by the Church</string>
+    <string name="feature_saint_timeline_4_text">She was beatified in 1938 and canonized in 1946. In 1950, Pius XII proclaimed her heavenly patroness of emigrants.</string>
+    <string name="feature_saint_legacy_eyebrow">Her legacy for the community</string>
+    <string name="feature_saint_legacy_text">Welcome with dignity, serve with courage and bring hope to those on the move.</string>
+    <string name="feature_saint_more_title">Learn more</string>
+    <string name="feature_saint_link_vatican_title">Vatican</string>
+    <string name="feature_saint_link_vatican_description">Message to the Congregation of the Missionary Sisters of the Sacred Heart</string>
+    <string name="feature_saint_link_congregation_title">Missionary Sisters of the Sacred Heart of Jesus</string>
+    <string name="feature_saint_link_congregation_description">History of the congregation</string>
+    <string name="feature_saint_link_shrine_title">Saint Cabrini National Shrine</string>
+    <string name="feature_saint_link_shrine_description">Life and legacy</string>
+    <string name="feature_saint_visit_community">Visit the community</string>
+    <string name="feature_saint_demo_note">Summary for demonstration. The text must be reviewed by the parish before official publication.</string>
+    <string name="feature_saint_saints_title">Saints</string>
+    <string name="feature_saint_saints_eyebrow">Saints and devotions</string>
+    <string name="feature_saint_today_eyebrow">Saint of the day · demonstration area</string>
+    <string name="feature_saint_today_title">Get to know the lives of the saints</string>
+    <string name="feature_saint_today_text">The daily selection and the liturgical calendar depend on a source approved by the parish.</string>
+    <string name="feature_saint_see_cabrini">See Saint Cabrini</string>
+    <string name="feature_saint_directory_title">Saint directory</string>
+    <string name="feature_saint_search_label">Search by name</string>
+    <string name="feature_saint_search_hint">E.g. Saint Cabrini</string>
+    <string name="feature_saint_result_patroness">Patroness of migrants</string>
+    <string name="feature_saint_result_demo">Saint · demonstration profile</string>
+    <string name="feature_saint_empty">No saint found in this sample.</string>
+    <string name="feature_saint_detail_eyebrow">Demonstration profile</string>
+    <string name="feature_saint_detail_text">The biography and liturgical memorial of this saint must be validated before official publication.</string>
+    <string name="feature_saint_directory_note">Sample list to demonstrate the search. The complete directory and dates must be reviewed by the parish.</string>
+</resources>
