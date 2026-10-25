@@ -30,8 +30,8 @@ import br.com.paroquiasantacabrini.app.home.navigation.MainNavigation
 import br.com.paroquiasantacabrini.app.home.navigation.Screen
 import com.android.tools.screenshot.PreviewTest
 
-private const val PHONE_WIDTH = 390
-private const val PHONE_HEIGHT = 844
+internal const val PHONE_WIDTH = 390
+internal const val PHONE_HEIGHT = 844
 
 /** The preview renderer has no Activity, so give NavDisplay the back-event dispatcher it expects. */
 @Composable
@@ -46,7 +46,7 @@ private fun WithNavigationEvents(content: @Composable () -> Unit) {
 
 /** A full-app capture of [start] at the same 390x844 size as the design prototype. */
 @Composable
-private fun AppAt(start: NavKey) {
+internal fun AppAt(start: NavKey) {
     WithNavigationEvents {
         ParoquiaTheme {
             MainNavigation(

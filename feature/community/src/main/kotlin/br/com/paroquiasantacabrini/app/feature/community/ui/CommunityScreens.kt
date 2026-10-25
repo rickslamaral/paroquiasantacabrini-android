@@ -16,13 +16,7 @@
 
 package br.com.paroquiasantacabrini.app.feature.community.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,9 +25,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
 import br.com.paroquiasantacabrini.app.core.designsystem.component.NavCard
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
-import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.community.R
 
 @Composable
@@ -51,7 +46,11 @@ internal fun CommunityHubScreen(
         eyebrow = stringResource(R.string.feature_community_hub_eyebrow),
         onBackClick = onBackClick,
     ) {
-        Text(text = stringResource(R.string.feature_community_hub_intro), style = MaterialTheme.typography.bodyLarge)
+        Text(
+            text = stringResource(R.string.feature_community_hub_intro),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
         NavCard(
             title = stringResource(R.string.feature_community_hub_groups_title),
             description = stringResource(R.string.feature_community_hub_groups_text),
@@ -71,7 +70,7 @@ internal fun CommunityHubScreen(
             onClick = onConfirmationClick,
         )
         Callout(text = stringResource(R.string.feature_community_hub_note))
-        Button(onClick = onContactClick, modifier = Modifier.fillMaxWidth()) {
+        TemplateButton(onClick = onContactClick, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.feature_community_hub_contact))
         }
     }
@@ -92,19 +91,19 @@ internal fun CommunityInfoPage(
     modifier: Modifier = Modifier,
 ) {
     ParoquiaPage(title = title, modifier = modifier, eyebrow = eyebrow, onBackClick = onBackClick) {
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
-        ) {
-            Column(
-                modifier = Modifier.padding(TemplateSpacing.medium),
-                verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-            ) {
-                Text(text = cardEyebrow, style = MaterialTheme.typography.labelMedium)
-                Text(text = cardTitle, style = MaterialTheme.typography.titleLarge)
-                Text(text = cardText, style = MaterialTheme.typography.bodyLarge)
-                Button(onClick = onButtonClick, modifier = Modifier.fillMaxWidth()) { Text(buttonLabel) }
-            }
+        Text(
+            text = cardEyebrow,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        ParoquiaCard {
+            Text(text = cardTitle, style = MaterialTheme.typography.titleMedium)
+            Text(
+                text = cardText,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            TemplateButton(onClick = onButtonClick, modifier = Modifier.fillMaxWidth()) { Text(buttonLabel) }
         }
         Callout(text = note)
     }

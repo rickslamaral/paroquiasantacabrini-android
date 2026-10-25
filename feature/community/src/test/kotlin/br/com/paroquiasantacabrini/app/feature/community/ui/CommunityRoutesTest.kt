@@ -127,7 +127,7 @@ public class CommunityRoutesTest {
         setContent { CalendarRoute(today = LocalDate.of(2026, 10, 25), onAllMassTimesClick = {}) }
 
         composeTestRule.onNodeWithText("October 2026").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Sunday, 25 October").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Sunday, October 25").assertIsDisplayed()
         assertThat(composeTestRule.onAllNodesWithText("Holy Mass").fetchSemanticsNodes()).hasSize(3)
         composeTestRule.onNodeWithText("After the 08h and 10h30 Masses").assertIsDisplayed()
     }
@@ -147,7 +147,7 @@ public class CommunityRoutesTest {
 
         composeTestRule.onNodeWithContentDescription("Next month").performClick()
         composeTestRule.onNodeWithText("November 2026").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Sunday, 1 November").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Sunday, November 1").assertIsDisplayed()
 
         composeTestRule.onNodeWithContentDescription("Previous month").performClick()
         composeTestRule.onNodeWithText("October 2026").assertIsDisplayed()

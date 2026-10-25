@@ -16,14 +16,8 @@
 
 package br.com.paroquiasantacabrini.app.feature.prayer.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,11 +28,16 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
+import br.com.paroquiasantacabrini.app.core.designsystem.component.FeatureCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.PageBanner
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaImages
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaProgress
+import br.com.paroquiasantacabrini.app.core.designsystem.component.Pill
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.extraColors
 import br.com.paroquiasantacabrini.app.feature.prayer.R
 import br.com.paroquiasantacabrini.app.feature.prayer.ui.model.NovenaProgress
 
@@ -60,47 +59,27 @@ internal fun NovenasScreen(
             imageRes = ParoquiaImages.CabriniMission,
             contentDescription = stringResource(R.string.feature_prayer_novena_banner_description),
         )
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+        FeatureCard(
+            eyebrow = stringResource(R.string.feature_prayer_novena_card_eyebrow),
+            title = stringResource(R.string.feature_prayer_novena_card_title),
+            text = stringResource(R.string.feature_prayer_novena_card_text),
+            containerColor = MaterialTheme.extraColors.rose,
         ) {
-            Column(
-                modifier = Modifier.padding(TemplateSpacing.medium),
-                verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-            ) {
+            Pill(
+                text = stringResource(R.string.feature_prayer_novena_day, day, NovenaProgress.LAST_DAY),
+                modifier = Modifier.padding(top = TemplateSpacing.small),
+            )
+            ParoquiaProgress(progress = day / NovenaProgress.LAST_DAY.toFloat())
+            TemplateButton(onClick = onContinueClick, modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = stringResource(R.string.feature_prayer_novena_card_eyebrow),
-                    style = MaterialTheme.typography.labelMedium,
+                    stringResource(
+                        if (day < NovenaProgress.LAST_DAY) {
+                            R.string.feature_prayer_novena_continue
+                        } else {
+                            R.string.feature_prayer_novena_restart
+                        },
+                    ),
                 )
-                Text(
-                    text = stringResource(R.string.feature_prayer_novena_card_title),
-                    style = MaterialTheme.typography.titleLarge,
-                )
-                Text(
-                    text = stringResource(R.string.feature_prayer_novena_card_text),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                Text(
-                    text = stringResource(R.string.feature_prayer_novena_day, day, NovenaProgress.LAST_DAY),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                LinearProgressIndicator(
-                    progress = { day / NovenaProgress.LAST_DAY.toFloat() },
-                    modifier = Modifier.fillMaxWidth(),
-                    color = MaterialTheme.colorScheme.secondary,
-                    trackColor = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = TRACK_ALPHA),
-                )
-                Button(onClick = onContinueClick, modifier = Modifier.fillMaxWidth()) {
-                    Text(
-                        stringResource(
-                            if (day < NovenaProgress.LAST_DAY) {
-                                R.string.feature_prayer_novena_continue
-                            } else {
-                                R.string.feature_prayer_novena_restart
-                            },
-                        ),
-                    )
-                }
             }
         }
         // Always composed so screen readers announce the message when it appears.
@@ -121,5 +100,3 @@ private fun NovenasScreenPreview() {
         NovenasScreen(day = 3, feedbackRes = null, onContinueClick = {}, onBackClick = {})
     }
 }
-
-private const val TRACK_ALPHA = 0.2f

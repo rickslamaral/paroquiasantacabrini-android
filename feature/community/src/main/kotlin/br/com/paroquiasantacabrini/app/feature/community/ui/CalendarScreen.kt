@@ -29,16 +29,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.IconButton
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -46,12 +44,17 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ScheduleRow
 import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHeading
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateOutlinedButton
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.community.R
@@ -86,7 +89,8 @@ internal fun CalendarScreen(
     ) {
         Text(
             text = stringResource(R.string.feature_community_calendar_intro),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         MonthCard(
             month = month,
@@ -99,7 +103,7 @@ internal fun CalendarScreen(
         )
         SectionHeading(text = selectedDateLabel(selected, locale))
         DayEvents(events = ParishCalendar.eventsFor(selected))
-        Button(onClick = onAllMassTimesClick, modifier = Modifier.fillMaxWidth()) {
+        TemplateOutlinedButton(onClick = onAllMassTimesClick, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.feature_community_calendar_all_times))
         }
         Callout(text = stringResource(R.string.feature_community_calendar_note))
@@ -116,43 +120,25 @@ private fun MonthCard(
     onPreviousMonthClick: () -> Unit,
     onNextMonthClick: () -> Unit,
 ) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
-    ) {
-        Column(
-            modifier = Modifier.padding(TemplateSpacing.small),
-            verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-        ) {
+    ParoquiaCard {
+        Column(verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                val previousDescription = stringResource(R.string.feature_community_calendar_previous_month)
-                IconButton(
+                MonthButton(
+                    glyph = stringResource(R.string.feature_community_calendar_previous_glyph),
+                    description = stringResource(R.string.feature_community_calendar_previous_month),
                     onClick = onPreviousMonthClick,
-                    modifier = Modifier.semantics { contentDescription = previousDescription },
-                ) {
-                    Text(
-                        text = stringResource(R.string.feature_community_calendar_previous_glyph),
-                        modifier = Modifier.clearAndSetSemantics {},
-                        style = MaterialTheme.typography.headlineMedium,
-                    )
-                }
+                )
                 Text(
                     text = monthTitle(month, locale),
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleSmall,
                 )
-                val nextDescription = stringResource(R.string.feature_community_calendar_next_month)
-                IconButton(
+                MonthButton(
+                    glyph = stringResource(R.string.feature_community_calendar_next_glyph),
+                    description = stringResource(R.string.feature_community_calendar_next_month),
                     onClick = onNextMonthClick,
-                    modifier = Modifier.semantics { contentDescription = nextDescription },
-                ) {
-                    Text(
-                        text = stringResource(R.string.feature_community_calendar_next_glyph),
-                        modifier = Modifier.clearAndSetSemantics {},
-                        style = MaterialTheme.typography.headlineMedium,
-                    )
-                }
+                )
             }
             WeekdayHeader(locale)
             ParishCalendar.monthCells(month).chunked(DAYS_IN_WEEK).forEach { week ->
@@ -173,11 +159,13 @@ private fun MonthCard(
             Row(horizontalArrangement = Arrangement.spacedBy(TemplateSpacing.medium)) {
                 Text(
                     text = stringResource(R.string.feature_community_calendar_legend_events),
-                    style = MaterialTheme.typography.labelMedium,
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.sp, fontWeight = FontWeight.Normal),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Text(
                     text = stringResource(R.string.feature_community_calendar_legend_today),
-                    style = MaterialTheme.typography.labelMedium,
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.sp, fontWeight = FontWeight.Normal),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -194,7 +182,7 @@ private fun WeekdayHeader(locale: Locale) {
                     .weight(1f)
                     .clearAndSetSemantics {},
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.labelMedium,
+                style = MaterialTheme.typography.labelSmall.copy(letterSpacing = 0.sp),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
@@ -225,9 +213,9 @@ private fun DayCell(
         modifier = modifier
             .aspectRatio(1f)
             .padding(DAY_PADDING)
-            .clip(CircleShape)
-            .background(if (isSelected) scheme.primary else scheme.surfaceContainerHigh)
-            .then(if (isToday && !isSelected) Modifier.border(BorderStroke(1.dp, scheme.primary), CircleShape) else Modifier)
+            .clip(DaySelectionShape)
+            .background(if (isSelected) scheme.primary else Color.Transparent)
+            .then(if (isToday && !isSelected) Modifier.border(BorderStroke(1.dp, scheme.primary), DaySelectionShape) else Modifier)
             .clickable(role = Role.Button) { onClick(date) }
             .semantics {
                 contentDescription = description
@@ -238,7 +226,7 @@ private fun DayCell(
         Text(
             text = date.dayOfMonth.toString(),
             modifier = Modifier.clearAndSetSemantics {},
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 12.sp),
             color = if (isSelected) scheme.onPrimary else scheme.onSurface,
         )
         if (ParishCalendar.hasEvents(date)) {
@@ -248,7 +236,7 @@ private fun DayCell(
                     .padding(bottom = DOT_BOTTOM_PADDING)
                     .size(DOT_SIZE)
                     .clip(CircleShape)
-                    .background(if (isSelected) scheme.onPrimary else scheme.tertiary),
+                    .background(if (isSelected) scheme.surfaceContainer else scheme.tertiary),
             )
         }
     }
@@ -256,41 +244,65 @@ private fun DayCell(
 
 @Composable
 private fun DayEvents(events: List<CalendarEvent>) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
-    ) {
-        Column(
-            modifier = Modifier.padding(TemplateSpacing.medium),
-            verticalArrangement = Arrangement.spacedBy(TemplateSpacing.medium),
-        ) {
+    ParoquiaCard {
+        Column {
             if (events.isEmpty()) {
                 Text(
                     text = stringResource(R.string.feature_community_calendar_no_events),
-                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(vertical = TemplateSpacing.small),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
-            events.forEach { event ->
-                Column(modifier = Modifier.semantics(mergeDescendants = true) {}) {
-                    Text(
-                        text = event.timeRes?.let { stringResource(it) } ?: event.time.orEmpty(),
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-                    Text(text = stringResource(event.titleRes), style = MaterialTheme.typography.titleMedium)
-                }
+            events.forEachIndexed { index, event ->
+                ScheduleRow(
+                    time = event.timeRes?.let { stringResource(it) } ?: event.time.orEmpty(),
+                    title = stringResource(event.titleRes),
+                    subtitle = stringResource(R.string.feature_community_calendar_event_place),
+                    showDivider = index < events.lastIndex,
+                    timeMinWidth = EVENT_TIME_WIDTH,
+                )
             }
         }
     }
 }
 
-private fun monthTitle(month: YearMonth, locale: Locale): String {
-    val name = month.month.getDisplayName(TextStyle.FULL_STANDALONE, locale)
-    return "${name.replaceFirstChar { it.titlecase(locale) }} ${month.year}"
+@Composable
+private fun MonthButton(
+    glyph: String,
+    description: String,
+    onClick: () -> Unit,
+) {
+    Box(
+        modifier = Modifier
+            .size(MONTH_BUTTON_SIZE)
+            .border(BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant), CircleShape)
+            .clip(CircleShape)
+            .clickable(role = Role.Button, onClick = onClick)
+            .semantics { contentDescription = description },
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = glyph,
+            modifier = Modifier.clearAndSetSemantics {},
+            style = MaterialTheme.typography.titleLarge,
+        )
+    }
 }
 
+@Composable
+private fun monthTitle(month: YearMonth, locale: Locale): String {
+    val name = month.month.getDisplayName(TextStyle.FULL_STANDALONE, locale)
+    return stringResource(
+        R.string.feature_community_calendar_month_format,
+        name.replaceFirstChar { it.titlecase(locale) },
+        month.year,
+    )
+}
+
+@Composable
 private fun selectedDateLabel(date: LocalDate, locale: Locale): String =
-    DateTimeFormatter.ofPattern("EEEE, d MMMM", locale).format(date).replaceFirstChar { it.titlecase(locale) }
+    DateTimeFormatter.ofPattern(stringResource(R.string.feature_community_calendar_date_pattern), locale).format(date)
 
 private val SUNDAY_FIRST = listOf(
     DayOfWeek.SUNDAY,
@@ -302,6 +314,9 @@ private val SUNDAY_FIRST = listOf(
     DayOfWeek.SATURDAY,
 )
 private val DAY_PADDING = 2.dp
+private val DaySelectionShape = RoundedCornerShape(12.dp)
+private val MONTH_BUTTON_SIZE = 36.dp
+private val EVENT_TIME_WIDTH = 104.dp
 private val DOT_BOTTOM_PADDING = 4.dp
 private val DOT_SIZE = 4.dp
 

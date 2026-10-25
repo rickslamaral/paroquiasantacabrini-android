@@ -16,12 +16,11 @@
 
 package br.com.paroquiasantacabrini.app.feature.community.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,24 +28,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.RoundIcon
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.extraColors
 import br.com.paroquiasantacabrini.app.feature.community.R
 
+private data class Notice(
+    internal val glyph: String,
+    @get:StringRes internal val eyebrow: Int,
+    @get:StringRes internal val title: Int,
+    @get:StringRes internal val text: Int,
+)
+
 private val Notices = listOf(
-    Triple(
+    Notice(
+        "☼",
         R.string.feature_community_notice_1_eyebrow,
         R.string.feature_community_notice_1_title,
         R.string.feature_community_notice_1_text,
     ),
-    Triple(
+    Notice(
+        "⌂",
         R.string.feature_community_notice_2_eyebrow,
         R.string.feature_community_notice_2_title,
         R.string.feature_community_notice_2_text,
     ),
-    Triple(
+    Notice(
+        "☩",
         R.string.feature_community_notice_3_eyebrow,
         R.string.feature_community_notice_3_title,
         R.string.feature_community_notice_3_text,
@@ -64,25 +78,29 @@ internal fun NoticesScreen(
         eyebrow = stringResource(R.string.feature_community_notices_eyebrow),
         onBackClick = onBackClick,
     ) {
-        Text(text = stringResource(R.string.feature_community_notices_intro), style = MaterialTheme.typography.bodyLarge)
-        Notices.forEach { (eyebrowRes, titleRes, textRes) ->
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .semantics(mergeDescendants = true) {},
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
-            ) {
-                Column(
-                    modifier = Modifier.padding(TemplateSpacing.medium),
-                    verticalArrangement = Arrangement.spacedBy(TemplateSpacing.extraSmall),
-                ) {
-                    Text(
-                        text = stringResource(eyebrowRes),
-                        style = MaterialTheme.typography.labelMedium,
-                        color = MaterialTheme.colorScheme.secondary,
-                    )
-                    Text(text = stringResource(titleRes), style = MaterialTheme.typography.titleMedium)
-                    Text(text = stringResource(textRes), style = MaterialTheme.typography.bodyLarge)
+        Text(
+            text = stringResource(R.string.feature_community_notices_intro),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Notices.forEach { (glyph, eyebrowRes, titleRes, textRes) ->
+            ParoquiaCard(modifier = Modifier.semantics(mergeDescendants = true) {}) {
+                Row(horizontalArrangement = Arrangement.spacedBy(TemplateSpacing.medium - 3.dp)) {
+                    RoundIcon(glyph = glyph, background = MaterialTheme.extraColors.sand)
+                    Column {
+                        Text(
+                            text = stringResource(eyebrowRes).uppercase(),
+                            style = MaterialTheme.typography.labelMedium.copy(fontSize = 10.sp),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        Text(text = stringResource(titleRes), style = MaterialTheme.typography.titleSmall)
+                        Text(
+                            text = stringResource(textRes),
+                            modifier = Modifier.padding(top = 4.dp),
+                            style = MaterialTheme.typography.bodyMedium.copy(fontSize = 12.sp),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                 }
             }
         }

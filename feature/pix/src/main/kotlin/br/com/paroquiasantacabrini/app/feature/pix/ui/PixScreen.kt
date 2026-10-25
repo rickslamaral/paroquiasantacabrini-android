@@ -16,35 +16,39 @@
 
 package br.com.paroquiasantacabrini.app.feature.pix.ui
 
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
-import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateBackground
+import androidx.compose.ui.unit.sp
+import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
+import br.com.paroquiasantacabrini.app.core.designsystem.component.InfoRow
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHeading
 import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateOutlinedButton
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
-import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.pix.R
-import br.com.paroquiasantacabrini.app.feature.pix.ui.components.PixDetails
 import br.com.paroquiasantacabrini.app.feature.pix.ui.components.QrCode
 import br.com.paroquiasantacabrini.app.feature.pix.ui.model.PixCopyTarget
 import br.com.paroquiasantacabrini.app.feature.pix.ui.model.PixUiState
@@ -56,66 +60,115 @@ internal fun PixScreen(
     onCopyKeyClick: () -> Unit,
     onCopyPayloadClick: () -> Unit,
     modifier: Modifier = Modifier,
+    onBackClick: (() -> Unit)? = null,
 ) {
-    TemplateBackground(modifier = modifier) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .safeDrawingPadding(),
-            contentAlignment = Alignment.TopCenter,
-        ) {
+    ParoquiaPage(
+        title = stringResource(R.string.feature_pix_title),
+        modifier = modifier,
+        eyebrow = stringResource(R.string.feature_pix_eyebrow),
+        onBackClick = onBackClick,
+    ) {
+        Text(
+            text = stringResource(R.string.feature_pix_intro),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        KeyCard(
+            state = state,
+            onCopyKeyClick = onCopyKeyClick,
+            onCopyPayloadClick = onCopyPayloadClick,
+        )
+        CopyFeedback(copiedTarget = copiedTarget)
+        ParoquiaCard {
+            Column {
+                InfoRow(
+                    glyph = "✓",
+                    title = stringResource(R.string.feature_pix_receiver_label),
+                    text = state.receiverName,
+                )
+                InfoRow(
+                    glyph = "▣",
+                    title = stringResource(R.string.feature_pix_institution_label),
+                    text = state.institution,
+                    showDivider = false,
+                )
+            }
+        }
+        SectionHeading(text = stringResource(R.string.feature_pix_qr_title))
+        ParoquiaCard {
             Column(
-                modifier = Modifier
-                    .widthIn(max = MAX_CONTENT_WIDTH)
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-                    .padding(TemplateSpacing.medium),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(TemplateSpacing.medium),
             ) {
-                Text(
-                    text = stringResource(R.string.feature_pix_title),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .semantics { heading() },
-                    style = MaterialTheme.typography.headlineMedium,
-                )
-                Text(
-                    text = stringResource(R.string.feature_pix_intro),
-                    modifier = Modifier.fillMaxWidth(),
-                    style = MaterialTheme.typography.bodyLarge,
-                )
                 QrCode(
                     matrix = state.qrCode,
                     description = stringResource(R.string.feature_pix_qr_description),
+                    modifier = Modifier.clip(RoundedCornerShape(12.dp)),
                 )
                 Text(
                     text = stringResource(R.string.feature_pix_amount_hint),
-                    modifier = Modifier.fillMaxWidth(),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-                Text(
-                    text = stringResource(R.string.feature_pix_disclaimer),
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.padding(top = 12.dp),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                PixDetails(state = state)
-                TemplateButton(
-                    onClick = onCopyKeyClick,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text(stringResource(R.string.feature_pix_copy_key))
-                }
-                OutlinedButton(
-                    onClick = onCopyPayloadClick,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text(stringResource(R.string.feature_pix_copy_code))
-                }
-                CopyFeedback(copiedTarget = copiedTarget)
             }
         }
+        Callout(text = stringResource(R.string.feature_pix_disclaimer))
+    }
+}
+
+/** The sage card with the key in a dashed box and the copy actions (`copy-key`). */
+@Composable
+private fun KeyCard(
+    state: PixUiState,
+    onCopyKeyClick: () -> Unit,
+    onCopyPayloadClick: () -> Unit,
+) {
+    ParoquiaCard(
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
+        bordered = false,
+    ) {
+        Text(
+            text = stringResource(R.string.feature_pix_key_eyebrow).uppercase(),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.secondary,
+        )
+        DashedKeyBox(text = state.pixKeyFormatted)
+        TemplateButton(onClick = onCopyKeyClick, modifier = Modifier.fillMaxWidth()) {
+            Text(stringResource(R.string.feature_pix_copy_key))
+        }
+        TemplateOutlinedButton(onClick = onCopyPayloadClick, modifier = Modifier.fillMaxWidth()) {
+            Text(stringResource(R.string.feature_pix_copy_code))
+        }
+    }
+}
+
+@Composable
+private fun DashedKeyBox(text: String) {
+    val stroke = MaterialTheme.colorScheme.outline
+    val fill = MaterialTheme.colorScheme.surfaceContainer
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(KEY_CORNER))
+            .padding(1.dp),
+    ) {
+        Canvas(modifier = Modifier.matchParentSize()) {
+            drawRoundRect(color = fill, cornerRadius = CornerRadius(KEY_CORNER.toPx()))
+            drawRoundRect(
+                color = stroke,
+                cornerRadius = CornerRadius(KEY_CORNER.toPx()),
+                style = Stroke(width = 1.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(DASH, DASH))),
+            )
+        }
+        Text(
+            text = text,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
+            fontFamily = FontFamily.Monospace,
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            letterSpacing = 0.5.sp,
+        )
     }
 }
 
@@ -147,8 +200,10 @@ private fun PixScreenPreview() {
             copiedTarget = null,
             onCopyKeyClick = {},
             onCopyPayloadClick = {},
+            onBackClick = {},
         )
     }
 }
 
-private val MAX_CONTENT_WIDTH = 560.dp
+private val KEY_CORNER = 14.dp
+private const val DASH = 10f

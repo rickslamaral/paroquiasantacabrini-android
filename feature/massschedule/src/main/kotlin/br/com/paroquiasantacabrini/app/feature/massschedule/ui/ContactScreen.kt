@@ -83,7 +83,7 @@ internal fun ContactScreen(
                     ),
                 )
                 InfoRow(
-                    glyph = "☎",
+                    glyph = "☎\uFE0E",
                     title = contact.phone,
                     text = stringResource(R.string.feature_massschedule_phone_note),
                 )

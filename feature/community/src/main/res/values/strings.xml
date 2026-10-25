@@ -77,4 +77,7 @@
     <string name="feature_community_notice_3_title">Scheduling and times</string>
     <string name="feature_community_notice_3_text">Schedule during the week at the parish office. On Sundays, look for a priest after the 08h and 10h30 Masses.</string>
     <string name="feature_community_notices_note">This version does not publish announcements in real time. Check the official channels for news.</string>
+    <string name="feature_community_calendar_month_format">%1$s %2$s</string>
+    <string name="feature_community_calendar_date_pattern">EEEE, MMMM d</string>
+    <string name="feature_community_calendar_event_place" translatable="false">Paróquia Santa Cabrini</string>
 </resources>

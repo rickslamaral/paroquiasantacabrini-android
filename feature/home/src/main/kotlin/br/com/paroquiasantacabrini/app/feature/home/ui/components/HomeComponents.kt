@@ -19,7 +19,6 @@ package br.com.paroquiasantacabrini.app.feature.home.ui.components
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,7 +28,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,13 +40,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.paroquiasantacabrini.app.core.designsystem.component.FeatureBanner
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaImages
 import br.com.paroquiasantacabrini.app.core.designsystem.component.QuickTile
@@ -153,62 +151,20 @@ internal fun MassCard(
     }
 }
 
-/** An illustrated banner that opens the guided Mass Mode (`feature-banner`). */
+/** An illustrated banner that opens the guided Mass Mode. */
 @Composable
 internal fun MassModeBanner(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(BANNER_HEIGHT)
-            .clip(RoundedBanner)
-            .clickable(role = Role.Button, onClick = onClick)
-            .semantics(mergeDescendants = true) {},
-    ) {
-        Image(
-            painter = painterResource(ParoquiaImages.MassBanner),
-            contentDescription = null,
-            modifier = Modifier.matchParentSize(),
-            contentScale = ContentScale.Crop,
-        )
-        Box(modifier = Modifier.matchParentSize().background(Color.Black.copy(alpha = BANNER_DIM)))
-        Box(
-            modifier = Modifier
-                .matchParentSize()
-                .background(
-                    Brush.horizontalGradient(
-                        0f to BANNER_SCRIM,
-                        BANNER_GRADIENT_END to Color.Transparent,
-                    ),
-                ),
-        )
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(start = 16.dp, end = 16.dp, bottom = 14.dp),
-        ) {
-            Text(
-                text = stringResource(R.string.feature_home_massmode_banner_eyebrow).uppercase(),
-                style = MaterialTheme.typography.labelSmall,
-                color = HERO_EYEBROW,
-            )
-            Text(
-                text = stringResource(R.string.feature_home_massmode_banner_title),
-                modifier = Modifier.padding(top = 5.dp, bottom = 3.dp),
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-            )
-            Text(
-                text = stringResource(R.string.feature_home_massmode_banner_text),
-                style = MaterialTheme.typography.labelMedium,
-                fontWeight = FontWeight.Normal,
-                color = HERO_TEXT,
-            )
-        }
-    }
+    FeatureBanner(
+        imageRes = ParoquiaImages.MassBanner,
+        eyebrow = stringResource(R.string.feature_home_massmode_banner_eyebrow),
+        title = stringResource(R.string.feature_home_massmode_banner_title),
+        text = stringResource(R.string.feature_home_massmode_banner_text),
+        onClick = onClick,
+        modifier = modifier,
+    )
 }
 
 internal data class QuickAccessItem(
@@ -313,16 +269,11 @@ private fun Chevron() {
 }
 
 private val HERO_HEIGHT = 190.dp
-private val BANNER_HEIGHT = 154.dp
 private val PORTRAIT_SIZE = 72.dp
-private val RoundedBanner = RoundedCornerShape(20.dp)
 private const val HERO_FOCUS = 0.12f
 private const val HERO_DIM = 0.24f
 private const val HERO_GRADIENT_START = 0.22f
-private const val BANNER_DIM = 0.23f
-private const val BANNER_GRADIENT_END = 0.95f
 private const val ICON_WHITE = 0.7f
 private val HERO_SCRIM = Color(0xDB15281E)
-private val BANNER_SCRIM = Color(0xC91D3027)
 private val HERO_EYEBROW = Color(0xFFF1E6CE)
 private val HERO_TEXT = Color(0xFFF6F4ED)

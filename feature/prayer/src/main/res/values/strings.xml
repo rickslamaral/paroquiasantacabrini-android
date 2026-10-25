@@ -17,16 +17,15 @@
 <resources>
     <string name="feature_prayer_hub_title">A moment of prayer</string>
     <string name="feature_prayer_hub_eyebrow">Spirituality</string>
-    <string name="feature_prayer_hub_intro">Choose a way to pray or write down an intention.</string>
+    <string name="feature_prayer_hub_intro">Choose a way to pray or share an intention with the community.</string>
     <string name="feature_prayer_hub_rosary_title">Holy Rosary</string>
     <string name="feature_prayer_hub_rosary_text">Pray the rosary step by step.</string>
     <string name="feature_prayer_hub_novenas_title">Novenas</string>
     <string name="feature_prayer_hub_novenas_text">Continue your path of prayer.</string>
     <string name="feature_prayer_hub_requests_title">Prayer requests</string>
-    <string name="feature_prayer_hub_requests_text">Write down your intention with privacy.</string>
+    <string name="feature_prayer_hub_requests_text">Present your intention with privacy.</string>
     <string name="feature_prayer_hub_liturgy_title">Daily liturgy</string>
     <string name="feature_prayer_hub_liturgy_text">A space to follow the Word.</string>
-    <string name="feature_prayer_hub_banner_description">Rosary and prayer book lit by soft light</string>
     <string name="feature_prayer_hub_exam_title">Examination of conscience</string>
     <string name="feature_prayer_hub_exam_text">A simple outline for personal reflection and preparation for confession.</string>
     <string name="feature_prayer_hub_exam_button">Start reflection</string>
@@ -102,4 +101,7 @@ Offering: place this moment of prayer in God\'s hands.</string>
     <string name="feature_prayer_request_saved_note">Your intention was saved only on this device. It was not sent to the parish.</string>
     <string name="feature_prayer_request_delete">Delete saved intention</string>
     <string name="feature_prayer_request_deleted">Saved intention deleted.</string>
+    <string name="feature_prayer_hub_banner_eyebrow">A moment of recollection</string>
+    <string name="feature_prayer_hub_banner_title">Pray the Holy Rosary</string>
+    <string name="feature_prayer_hub_banner_text">Follow each step at your own pace ›</string>
 </resources>

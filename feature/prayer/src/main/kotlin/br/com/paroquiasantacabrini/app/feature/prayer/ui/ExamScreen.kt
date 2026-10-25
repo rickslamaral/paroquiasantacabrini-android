@@ -16,13 +16,7 @@
 
 package br.com.paroquiasantacabrini.app.feature.prayer.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,10 +27,12 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
+import br.com.paroquiasantacabrini.app.core.designsystem.component.InfoRow
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
 import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHeading
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
-import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.prayer.R
 
 private val ExamItems = listOf(
@@ -60,29 +56,22 @@ internal fun ExamScreen(
     ) {
         Text(
             text = stringResource(R.string.feature_prayer_exam_intro),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        SectionHeading(text = stringResource(R.string.feature_prayer_exam_reflect_title))
-        ExamItems.forEachIndexed { index, (titleRes, textRes) ->
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
-            ) {
-                Column(
-                    modifier = Modifier.padding(TemplateSpacing.medium),
-                    verticalArrangement = Arrangement.spacedBy(TemplateSpacing.extraSmall),
-                ) {
-                    Text(
-                        text = stringResource(R.string.feature_prayer_exam_item, index + 1, stringResource(titleRes)),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.primary,
-                    )
-                    Text(text = stringResource(textRes), style = MaterialTheme.typography.bodyLarge)
-                }
+        ParoquiaCard {
+            SectionHeading(text = stringResource(R.string.feature_prayer_exam_reflect_title))
+            ExamItems.forEachIndexed { index, (titleRes, textRes) ->
+                InfoRow(
+                    glyph = (index + 1).toString(),
+                    title = stringResource(titleRes),
+                    text = stringResource(textRes),
+                    showDivider = index < ExamItems.lastIndex,
+                )
             }
         }
         Callout(text = stringResource(R.string.feature_prayer_exam_note))
-        Button(onClick = onFinishClick, modifier = Modifier.fillMaxWidth()) {
+        TemplateButton(onClick = onFinishClick, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.feature_prayer_exam_finish))
         }
         // Always composed so screen readers announce the message when it appears.

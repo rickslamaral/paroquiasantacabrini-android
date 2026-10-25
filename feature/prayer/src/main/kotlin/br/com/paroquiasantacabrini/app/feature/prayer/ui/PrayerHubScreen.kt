@@ -16,25 +16,21 @@
 
 package br.com.paroquiasantacabrini.app.feature.prayer.ui
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import br.com.paroquiasantacabrini.app.core.designsystem.component.FeatureBanner
 import br.com.paroquiasantacabrini.app.core.designsystem.component.NavCard
-import br.com.paroquiasantacabrini.app.core.designsystem.component.PageBanner
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaImages
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaTonalButton
 import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHeading
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
-import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.prayer.R
 
 @Composable
@@ -53,7 +49,8 @@ internal fun PrayerHubScreen(
     ) {
         Text(
             text = stringResource(R.string.feature_prayer_hub_intro),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         NavCard(
             title = stringResource(R.string.feature_prayer_hub_rosary_title),
@@ -79,26 +76,22 @@ internal fun PrayerHubScreen(
             emoji = "▤",
             onClick = onDailyLiturgyClick,
         )
-        PageBanner(
+        FeatureBanner(
             imageRes = ParoquiaImages.RosaryBanner,
-            contentDescription = stringResource(R.string.feature_prayer_hub_banner_description),
+            eyebrow = stringResource(R.string.feature_prayer_hub_banner_eyebrow),
+            title = stringResource(R.string.feature_prayer_hub_banner_title),
+            text = stringResource(R.string.feature_prayer_hub_banner_text),
+            onClick = onRosaryClick,
         )
         SectionHeading(text = stringResource(R.string.feature_prayer_hub_exam_title))
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
-        ) {
-            Column(modifier = Modifier.padding(TemplateSpacing.medium)) {
-                Text(
-                    text = stringResource(R.string.feature_prayer_hub_exam_text),
-                    style = MaterialTheme.typography.bodyLarge,
-                )
-                Button(
-                    onClick = onExamClick,
-                    modifier = Modifier.fillMaxWidth().padding(top = TemplateSpacing.medium),
-                ) {
-                    Text(stringResource(R.string.feature_prayer_hub_exam_button))
-                }
+        ParoquiaCard {
+            Text(
+                text = stringResource(R.string.feature_prayer_hub_exam_text),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+            ParoquiaTonalButton(onClick = onExamClick, modifier = Modifier.fillMaxWidth()) {
+                Text(stringResource(R.string.feature_prayer_hub_exam_button))
             }
         }
     }

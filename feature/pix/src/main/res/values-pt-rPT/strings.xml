@@ -15,16 +15,18 @@
      limitations under the License.
 -->
 <resources>
-    <string name="feature_pix_title">Dízimo e Oferta (PIX)</string>
-    <string name="feature_pix_intro">Leia o código QR na aplicação do seu banco ou copie a chave Pix para apoiar a paróquia.</string>
+    <string name="feature_pix_title">Dízimo e ofertas</string>
+    <string name="feature_pix_eyebrow">Partilha e missão</string>
+    <string name="feature_pix_intro">A sua contribuição ajuda a comunidade a manter a sua missão. Contribua se desejar.</string>
+    <string name="feature_pix_key_eyebrow">Chave Pix · CNPJ</string>
     <string name="feature_pix_qr_description">Código QR Pix para donativos à paróquia</string>
+    <string name="feature_pix_qr_title">Ou leia o código QR</string>
     <string name="feature_pix_amount_hint">O valor é escolhido na aplicação do seu banco.</string>
     <string name="feature_pix_receiver_label">Beneficiário</string>
     <string name="feature_pix_institution_label">Banco</string>
-    <string name="feature_pix_key_label">Chave Pix (CNPJ)</string>
     <string name="feature_pix_copy_key">Copiar chave Pix</string>
     <string name="feature_pix_copy_code">Copiar código Pix copia e cola</string>
     <string name="feature_pix_copied_key">Chave Pix copiada.</string>
     <string name="feature_pix_copied_code">Código Pix copiado.</string>
-    <string name="feature_pix_disclaimer">Este ecrã não efetua pagamentos. A transferência é feita na aplicação do seu banco, e a aplicação não confirma nem regista a sua contribuição.</string>
+    <string name="feature_pix_disclaimer">Confira antes de confirmar: verifique o nome do beneficiário e os dados na aplicação do seu banco. Este ecrã não efetua pagamentos: a transferência é feita na aplicação do seu banco, e a aplicação não confirma nem regista a sua contribuição.</string>
 </resources>

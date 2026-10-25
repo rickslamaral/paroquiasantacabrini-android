@@ -15,16 +15,18 @@
      limitations under the License.
 -->
 <resources>
-    <string name="feature_pix_title">Tithes and Offerings (PIX)</string>
-    <string name="feature_pix_intro">Scan the QR code in your bank app or copy the Pix key to support the parish.</string>
+    <string name="feature_pix_title">Tithes and offerings</string>
+    <string name="feature_pix_eyebrow">Sharing and mission</string>
+    <string name="feature_pix_intro">Your contribution helps the community keep its mission going. Give if you wish.</string>
+    <string name="feature_pix_key_eyebrow">Pix key · CNPJ</string>
     <string name="feature_pix_qr_description">Pix QR code for donations to the parish</string>
+    <string name="feature_pix_qr_title">Or scan the QR code</string>
     <string name="feature_pix_amount_hint">You choose the amount in your bank app.</string>
     <string name="feature_pix_receiver_label">Receiver</string>
     <string name="feature_pix_institution_label">Bank</string>
-    <string name="feature_pix_key_label">Pix key (CNPJ)</string>
     <string name="feature_pix_copy_key">Copy Pix key</string>
     <string name="feature_pix_copy_code">Copy Pix copy-and-paste code</string>
     <string name="feature_pix_copied_key">Pix key copied.</string>
     <string name="feature_pix_copied_code">Pix code copied.</string>
-    <string name="feature_pix_disclaimer">This screen does not make a payment. The transfer happens in your bank app, and this app does not confirm or record your contribution.</string>
+    <string name="feature_pix_disclaimer">Check before you confirm: verify the receiver\'s name and the details in your bank app. This screen does not make a payment: the transfer happens in your bank app, and this app does not confirm or record your contribution.</string>
 </resources>

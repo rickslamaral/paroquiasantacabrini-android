@@ -119,7 +119,7 @@ internal fun EntryProviderScope<NavKey>.prayerEntries(backStack: NavBackStack<Na
 
 internal fun EntryProviderScope<NavKey>.parishEntries(backStack: NavBackStack<NavKey>) {
     entry<Screen.Pix> {
-        PixRoute(modifier = Modifier.fillMaxSize())
+        PixRoute(onBackClick = { backStack.removeLastOrNull() }, modifier = Modifier.fillMaxSize())
     }
     entry<Screen.MassSchedule> {
         MassScheduleRoute(

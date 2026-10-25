@@ -17,16 +17,15 @@
 <resources>
     <string name="feature_prayer_hub_title">Um momento de oração</string>
     <string name="feature_prayer_hub_eyebrow">Espiritualidade</string>
-    <string name="feature_prayer_hub_intro">Escolha uma forma de rezar ou registe uma intenção.</string>
+    <string name="feature_prayer_hub_intro">Escolha uma forma de rezar ou partilhe uma intenção com a comunidade.</string>
     <string name="feature_prayer_hub_rosary_title">Santo Rosário</string>
     <string name="feature_prayer_hub_rosary_text">Reze o terço passo a passo.</string>
     <string name="feature_prayer_hub_novenas_title">Novenas</string>
     <string name="feature_prayer_hub_novenas_text">Continue a sua caminhada de oração.</string>
     <string name="feature_prayer_hub_requests_title">Pedidos de oração</string>
-    <string name="feature_prayer_hub_requests_text">Registe a sua intenção com privacidade.</string>
+    <string name="feature_prayer_hub_requests_text">Apresente a sua intenção com privacidade.</string>
     <string name="feature_prayer_hub_liturgy_title">Liturgia diária</string>
     <string name="feature_prayer_hub_liturgy_text">Um espaço para acompanhar a Palavra.</string>
-    <string name="feature_prayer_hub_banner_description">Terço e livro de oração iluminados por luz suave</string>
     <string name="feature_prayer_hub_exam_title">Exame de consciência</string>
     <string name="feature_prayer_hub_exam_text">Um roteiro simples para reflexão pessoal e preparação para a confissão.</string>
     <string name="feature_prayer_hub_exam_button">Começar reflexão</string>
@@ -102,4 +101,7 @@ Oferecimento: coloque este momento de oração nas mãos de Deus.</string>
     <string name="feature_prayer_request_saved_note">A sua intenção foi guardada somente neste dispositivo. Não foi enviada à paróquia.</string>
     <string name="feature_prayer_request_delete">Apagar intenção guardada</string>
     <string name="feature_prayer_request_deleted">Intenção guardada apagada.</string>
+    <string name="feature_prayer_hub_banner_eyebrow">Um momento de recolhimento</string>
+    <string name="feature_prayer_hub_banner_title">Reze o Santo Rosário</string>
+    <string name="feature_prayer_hub_banner_text">Acompanhe cada etapa ao seu ritmo ›</string>
 </resources>

@@ -18,6 +18,7 @@ package br.com.paroquiasantacabrini.app.feature.saint.ui
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -76,10 +77,10 @@ public class SaintScreensTest {
             MaterialTheme { SaintsRoute(onSeeCabriniClick = {}, onBackClick = {}) }
         }
 
-        composeTestRule.onNodeWithText("Search by name").performTextInput("antonio")
+        composeTestRule.onNode(hasSetTextAction()).performTextInput("antonio")
         composeTestRule.onNodeWithText("Santo Antônio de Pádua").assertIsDisplayed()
 
-        composeTestRule.onNodeWithText("Search by name").performTextInput("zzz")
+        composeTestRule.onNode(hasSetTextAction()).performTextInput("zzz")
         composeTestRule.onNodeWithText("No saint found in this sample.").assertIsDisplayed()
     }
 
@@ -93,7 +94,7 @@ public class SaintScreensTest {
         }
 
         composeTestRule.onNodeWithText("São José").performScrollTo().performClick()
-        composeTestRule.onNodeWithText("Demonstration profile").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithText("DEMONSTRATION PROFILE").performScrollTo().assertIsDisplayed()
 
         composeTestRule.onNodeWithText("Santa Francisca Xavier Cabrini").performScrollTo().performClick()
         assertThat(cabriniClicks).isEqualTo(1)

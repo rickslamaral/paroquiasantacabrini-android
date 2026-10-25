@@ -16,30 +16,35 @@
 
 package br.com.paroquiasantacabrini.app.feature.saint.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
-import br.com.paroquiasantacabrini.app.core.designsystem.component.NavCard
+import br.com.paroquiasantacabrini.app.core.designsystem.component.InfoRow
 import br.com.paroquiasantacabrini.app.core.designsystem.component.PageBanner
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaImages
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.Pill
 import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHeading
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
-import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.extraColors
 import br.com.paroquiasantacabrini.app.feature.saint.R
 import br.com.paroquiasantacabrini.app.feature.saint.ui.model.CabriniFact
 import br.com.paroquiasantacabrini.app.feature.saint.ui.model.CabriniFacts
@@ -60,6 +65,29 @@ internal fun SaintCabriniScreen(
         onBackClick = onBackClick,
     ) {
         PageBanner(
+            imageRes = ParoquiaImages.CabriniMission,
+            contentDescription = stringResource(R.string.feature_saint_mission_banner_description),
+            height = HERO_HEIGHT,
+        )
+        Pill(text = stringResource(R.string.feature_saint_memorial))
+        SectionHeading(text = stringResource(R.string.feature_saint_cabrini_name))
+        Text(
+            text = stringResource(R.string.feature_saint_cabrini_intro),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        FactsGrid()
+        SectionHeading(text = stringResource(R.string.feature_saint_timeline_title))
+        Column {
+            CabriniTimeline.forEachIndexed { index, entry ->
+                TimelineItem(
+                    title = stringResource(entry.titleRes),
+                    text = stringResource(entry.textRes),
+                    isLast = index == CabriniTimeline.lastIndex,
+                )
+            }
+        }
+        PageBanner(
             imageRes = ParoquiaImages.SantaCabrini,
             contentDescription = stringResource(R.string.feature_saint_cabrini_banner_description),
             height = HERO_HEIGHT,
@@ -69,49 +97,22 @@ internal fun SaintCabriniScreen(
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
-        Surface(
-            shape = MaterialTheme.shapes.extraLarge,
-            color = MaterialTheme.colorScheme.secondaryContainer,
-            contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
-        ) {
-            Text(
-                text = stringResource(R.string.feature_saint_memorial),
-                modifier = Modifier.padding(horizontal = TemplateSpacing.medium, vertical = TemplateSpacing.small),
-                style = MaterialTheme.typography.labelLarge,
-            )
-        }
-        SectionHeading(text = stringResource(R.string.feature_saint_cabrini_name))
-        Text(
-            text = stringResource(R.string.feature_saint_cabrini_intro),
-            style = MaterialTheme.typography.bodyLarge,
-        )
-        FactsGrid()
-        SectionHeading(text = stringResource(R.string.feature_saint_timeline_title))
-        PageBanner(
-            imageRes = ParoquiaImages.CabriniMission,
-            contentDescription = stringResource(R.string.feature_saint_mission_banner_description),
-        )
-        CabriniTimeline.forEach { entry ->
-            Column(verticalArrangement = Arrangement.spacedBy(TemplateSpacing.extraSmall)) {
-                Text(
-                    text = stringResource(entry.titleRes),
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                Text(text = stringResource(entry.textRes), style = MaterialTheme.typography.bodyLarge)
-            }
-        }
         LegacyCard()
         SectionHeading(text = stringResource(R.string.feature_saint_more_title))
-        CabriniSources.forEach { source ->
-            NavCard(
-                title = stringResource(source.titleRes),
-                description = stringResource(source.descriptionRes),
-                emoji = "↗",
-                onClick = { onLinkClick(source.url) },
-            )
+        ParoquiaCard {
+            Column {
+                CabriniSources.forEachIndexed { index, source ->
+                    InfoRow(
+                        glyph = "↗",
+                        title = stringResource(source.titleRes),
+                        text = stringResource(source.descriptionRes),
+                        modifier = Modifier.clickable(role = Role.Button) { onLinkClick(source.url) },
+                        showDivider = index < CabriniSources.lastIndex,
+                    )
+                }
+            }
         }
-        Button(onClick = onVisitCommunityClick, modifier = Modifier.fillMaxWidth()) {
+        TemplateButton(onClick = onVisitCommunityClick, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.feature_saint_visit_community))
         }
         Callout(text = stringResource(R.string.feature_saint_demo_note))
@@ -120,9 +121,9 @@ internal fun SaintCabriniScreen(
 
 @Composable
 private fun FactsGrid() {
-    Column(verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small)) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         CabriniFacts.chunked(2).forEach { row ->
-            Row(horizontalArrangement = Arrangement.spacedBy(TemplateSpacing.small)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 row.forEach { fact -> FactCard(fact = fact, modifier = Modifier.weight(1f)) }
             }
         }
@@ -134,36 +135,73 @@ private fun FactCard(
     fact: CabriniFact,
     modifier: Modifier = Modifier,
 ) {
-    Card(
+    ParoquiaCard(
         modifier = modifier,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+        shape = MaterialTheme.shapes.medium,
+        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 12.dp),
     ) {
-        Column(modifier = Modifier.padding(TemplateSpacing.medium)) {
-            Text(text = stringResource(fact.valueRes), style = MaterialTheme.typography.titleLarge)
-            Text(text = stringResource(fact.labelRes), style = MaterialTheme.typography.bodyMedium)
+        Column(modifier = Modifier.fillMaxWidth()) {
+            Text(
+                text = stringResource(fact.valueRes),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            Text(
+                text = stringResource(fact.labelRes),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
+    }
+}
+
+/** A dot on a vertical line with a title and text (`timeline-item`). */
+@Composable
+private fun TimelineItem(
+    title: String,
+    text: String,
+    isLast: Boolean,
+) {
+    val line = MaterialTheme.colorScheme.outlineVariant
+    val dot = MaterialTheme.colorScheme.primary
+    val halo = MaterialTheme.colorScheme.primaryContainer
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .semantics(mergeDescendants = true) {}
+            .drawBehind {
+                val x = DOT_RADIUS.toPx() + 1.dp.toPx()
+                val top = DOT_TOP.toPx()
+                if (!isLast) {
+                    drawLine(line, Offset(x, top), Offset(x, size.height), strokeWidth = 2.dp.toPx())
+                }
+                drawCircle(halo, radius = DOT_RADIUS.toPx() + 3.dp.toPx(), center = Offset(x, top))
+                drawCircle(dot, radius = DOT_RADIUS.toPx(), center = Offset(x, top))
+            }
+            .padding(start = TIMELINE_INDENT, bottom = 14.dp),
+    ) {
+        Text(text = title, style = MaterialTheme.typography.titleSmall)
+        Text(
+            text = text,
+            modifier = Modifier.padding(top = 3.dp),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 
 @Composable
 private fun LegacyCard() {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-    ) {
-        Column(
-            modifier = Modifier.padding(TemplateSpacing.medium),
-            verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-        ) {
-            Text(
-                text = stringResource(R.string.feature_saint_legacy_eyebrow),
-                style = MaterialTheme.typography.labelMedium,
-            )
-            Text(
-                text = stringResource(R.string.feature_saint_legacy_text),
-                style = MaterialTheme.typography.titleMedium,
-            )
-        }
+    ParoquiaCard(containerColor = MaterialTheme.extraColors.cream, bordered = false) {
+        Text(
+            text = stringResource(R.string.feature_saint_legacy_eyebrow).uppercase(),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.secondary,
+        )
+        Text(
+            text = stringResource(R.string.feature_saint_legacy_text),
+            style = MaterialTheme.typography.bodyMedium,
+        )
     }
 }
 
@@ -175,4 +213,7 @@ private fun SaintCabriniScreenPreview() {
     }
 }
 
-private val HERO_HEIGHT = 200.dp
+private val HERO_HEIGHT = 192.dp
+private val DOT_RADIUS = 6.dp
+private val DOT_TOP = 10.dp
+private val TIMELINE_INDENT = 28.dp

@@ -32,6 +32,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 public fun PixRoute(
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val state = remember { PixUiState.forDonation() }
@@ -52,6 +53,7 @@ public fun PixRoute(
         onCopyKeyClick = { copy(PixCopyTarget.Key, state.pixKey) },
         onCopyPayloadClick = { copy(PixCopyTarget.Payload, state.payload) },
         modifier = modifier,
+        onBackClick = onBackClick,
     )
 }
 

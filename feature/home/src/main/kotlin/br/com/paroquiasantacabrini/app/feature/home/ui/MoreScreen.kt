@@ -147,7 +147,7 @@ private fun SecretaryCard(onContactsClick: () -> Unit) {
                 text = stringResource(R.string.feature_home_more_secretary_hours),
             )
             InfoRow(
-                glyph = "☎",
+                glyph = "☎\uFE0E",
                 title = stringResource(R.string.feature_home_more_secretary_phone),
                 text = stringResource(R.string.feature_home_more_secretary_phone_label),
             )

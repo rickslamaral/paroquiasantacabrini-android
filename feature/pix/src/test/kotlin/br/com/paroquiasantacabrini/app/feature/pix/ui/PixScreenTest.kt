@@ -41,7 +41,7 @@ public class PixScreenTest {
     public fun showsReceiverBankAndFormattedCnpjKey() {
         setPixContent()
 
-        composeTestRule.onNodeWithText("Tithes and Offerings (PIX)").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Tithes and offerings").assertIsDisplayed()
         composeTestRule.onNodeWithText("PAROQUIA SANTA FRANCISCA").assertIsDisplayed()
         composeTestRule.onNodeWithText("Itaú Unibanco S.A.").assertIsDisplayed()
         composeTestRule.onNodeWithText("60.909.843/0082-00").assertIsDisplayed()
@@ -52,7 +52,8 @@ public class PixScreenTest {
         setPixContent()
 
         composeTestRule.onNodeWithText(
-            "This screen does not make a payment. The transfer happens in your bank app, " +
+            "Check before you confirm: verify the receiver's name and the details in your bank " +
+                "app. This screen does not make a payment: the transfer happens in your bank app, " +
                 "and this app does not confirm or record your contribution.",
         ).assertIsDisplayed()
     }

@@ -17,24 +17,27 @@
 package br.com.paroquiasantacabrini.app.feature.prayer.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaProgress
 import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHeading
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateOutlinedButton
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaSerifFontFamily
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.prayer.R
@@ -56,37 +59,44 @@ internal fun RosaryScreen(
         eyebrow = stringResource(R.string.feature_prayer_rosary_eyebrow),
         onBackClick = onBackClick,
     ) {
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-        ) {
-            Column(
-                modifier = Modifier.padding(TemplateSpacing.medium),
-                verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-            ) {
-                Text(text = stringResource(step.titleRes), style = MaterialTheme.typography.titleLarge)
+        ParoquiaCard {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = stringResource(step.titleRes),
+                    modifier = Modifier.weight(1f),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
                 Text(
                     text = stringResource(R.string.feature_prayer_rosary_progress, stepIndex + 1, RosarySteps.size),
-                    style = MaterialTheme.typography.labelMedium,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
-                LinearProgressIndicator(
-                    progress = { (stepIndex + 1) / RosarySteps.size.toFloat() },
-                    modifier = Modifier.fillMaxWidth(),
-                    color = MaterialTheme.colorScheme.primary,
-                    trackColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = TRACK_ALPHA),
-                )
-                Text(text = stringResource(step.textRes), style = MaterialTheme.typography.bodyLarge)
             }
+            ParoquiaProgress(progress = (stepIndex + 1) / RosarySteps.size.toFloat())
+        }
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            shape = MaterialTheme.shapes.extraLarge,
+            color = MaterialTheme.colorScheme.surfaceContainer,
+        ) {
+            Text(
+                text = stringResource(step.textRes),
+                modifier = Modifier.padding(PRAYER_PADDING),
+                fontFamily = ParoquiaSerifFontFamily,
+                fontSize = PRAYER_TEXT_SIZE,
+                lineHeight = PRAYER_LINE_HEIGHT,
+            )
         }
         Row(horizontalArrangement = Arrangement.spacedBy(TemplateSpacing.small)) {
-            OutlinedButton(
+            TemplateOutlinedButton(
                 onClick = onPreviousClick,
                 enabled = stepIndex > 0,
                 modifier = Modifier.weight(1f),
             ) {
                 Text(stringResource(R.string.feature_prayer_rosary_back))
             }
-            Button(
+            TemplateButton(
                 onClick = onNextClick,
                 enabled = stepIndex < RosarySteps.lastIndex,
                 modifier = Modifier.weight(1f),
@@ -94,10 +104,16 @@ internal fun RosaryScreen(
                 Text(stringResource(R.string.feature_prayer_rosary_next))
             }
         }
-        Text(text = stringResource(R.string.feature_prayer_rosary_hint), style = MaterialTheme.typography.bodyMedium)
+        Text(
+            text = stringResource(R.string.feature_prayer_rosary_hint),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
         SectionHeading(text = stringResource(R.string.feature_prayer_rosary_mysteries_title))
-        GloriousMysteries.forEach { mystery ->
-            Text(text = stringResource(mystery), style = MaterialTheme.typography.bodyLarge)
+        ParoquiaCard {
+            GloriousMysteries.forEach { mystery ->
+                Text(text = stringResource(mystery), style = MaterialTheme.typography.bodyMedium)
+            }
         }
         Callout(text = stringResource(R.string.feature_prayer_rosary_disclaimer))
     }
@@ -111,4 +127,6 @@ private fun RosaryScreenPreview() {
     }
 }
 
-private const val TRACK_ALPHA = 0.2f
+private val PRAYER_PADDING = 20.dp
+private val PRAYER_TEXT_SIZE = 15.sp
+private val PRAYER_LINE_HEIGHT = 23.sp

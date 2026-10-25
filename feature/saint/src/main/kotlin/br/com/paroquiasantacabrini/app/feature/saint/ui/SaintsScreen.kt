@@ -16,26 +16,34 @@
 
 package br.com.paroquiasantacabrini.app.feature.saint.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
-import br.com.paroquiasantacabrini.app.core.designsystem.component.NavCard
+import br.com.paroquiasantacabrini.app.core.designsystem.component.FeatureCard
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaTonalButton
+import br.com.paroquiasantacabrini.app.core.designsystem.component.RoundIcon
 import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHeading
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
-import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.extraColors
 import br.com.paroquiasantacabrini.app.feature.saint.R
 import br.com.paroquiasantacabrini.app.feature.saint.ui.model.SaintEntry
 import br.com.paroquiasantacabrini.app.feature.saint.ui.model.searchSaints
@@ -59,29 +67,40 @@ internal fun SaintsScreen(
     ) {
         TodayCard(onSeeCabriniClick = onSeeCabriniClick)
         SectionHeading(text = stringResource(R.string.feature_saint_directory_title))
+        Text(
+            text = stringResource(R.string.feature_saint_search_label),
+            style = MaterialTheme.typography.titleSmall,
+        )
         OutlinedTextField(
             value = query,
             onValueChange = onQueryChange,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(stringResource(R.string.feature_saint_search_label)) },
+            shape = MaterialTheme.shapes.small,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+            ),
             placeholder = { Text(stringResource(R.string.feature_saint_search_hint)) },
             singleLine = true,
         )
         if (results.isEmpty()) {
             Text(
                 text = stringResource(R.string.feature_saint_empty),
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.bodyMedium,
             )
         } else {
-            results.forEach { saint ->
-                NavCard(
-                    title = saint.name,
-                    description = stringResource(
-                        if (saint.isPatroness) R.string.feature_saint_result_patroness else R.string.feature_saint_result_demo,
-                    ),
-                    emoji = if (saint.isPatroness) "✧" else "✝",
-                    onClick = { onSaintClick(saint) },
-                )
+            ParoquiaCard(contentPadding = PaddingValues(vertical = 6.dp, horizontal = 12.dp)) {
+                results.forEach { saint ->
+                    SaintResultRow(
+                        name = saint.name,
+                        description = stringResource(
+                            if (saint.isPatroness) R.string.feature_saint_result_patroness else R.string.feature_saint_result_demo,
+                        ),
+                        glyph = if (saint.isPatroness) "✧" else "✝",
+                        onClick = { onSaintClick(saint) },
+                    )
+                }
             }
         }
         if (selectedSaint != null && !selectedSaint.isPatroness) {
@@ -93,50 +112,66 @@ internal fun SaintsScreen(
 
 @Composable
 private fun TodayCard(onSeeCabriniClick: () -> Unit) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+    FeatureCard(
+        eyebrow = stringResource(R.string.feature_saint_today_eyebrow),
+        title = stringResource(R.string.feature_saint_today_title),
+        text = stringResource(R.string.feature_saint_today_text),
+        containerColor = MaterialTheme.extraColors.cream,
     ) {
-        Column(
-            modifier = Modifier.padding(TemplateSpacing.medium),
-            verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-        ) {
-            Text(
-                text = stringResource(R.string.feature_saint_today_eyebrow),
-                style = MaterialTheme.typography.labelMedium,
-            )
-            Text(
-                text = stringResource(R.string.feature_saint_today_title),
-                style = MaterialTheme.typography.titleLarge,
-            )
-            Text(
-                text = stringResource(R.string.feature_saint_today_text),
-                style = MaterialTheme.typography.bodyMedium,
-            )
-            Button(onClick = onSeeCabriniClick) {
-                Text(stringResource(R.string.feature_saint_see_cabrini))
-            }
+        ParoquiaTonalButton(onClick = onSeeCabriniClick, modifier = Modifier.fillMaxWidth()) {
+            Text(stringResource(R.string.feature_saint_see_cabrini))
         }
+    }
+}
+
+/** A saint in the directory: round icon, name, short description and a chevron (`saint-result`). */
+@Composable
+private fun SaintResultRow(
+    name: String,
+    description: String,
+    glyph: String,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(role = Role.Button, onClick = onClick)
+            .padding(vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        RoundIcon(glyph = glyph)
+        Column(modifier = Modifier.weight(1f)) {
+            Text(text = name, style = MaterialTheme.typography.titleSmall)
+            Text(
+                text = description,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
+        Text(
+            text = "›",
+            modifier = Modifier.clearAndSetSemantics {},
+            style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.primary,
+        )
     }
 }
 
 @Composable
 private fun DemoDetail(name: String) {
-    Card(modifier = Modifier.fillMaxWidth()) {
-        Column(
-            modifier = Modifier.padding(TemplateSpacing.medium),
-            verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-        ) {
-            Text(
-                text = stringResource(R.string.feature_saint_detail_eyebrow),
-                style = MaterialTheme.typography.labelMedium,
-            )
-            Text(text = name, style = MaterialTheme.typography.titleMedium)
-            Text(
-                text = stringResource(R.string.feature_saint_detail_text),
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        }
+    ParoquiaCard {
+        Text(
+            text = stringResource(R.string.feature_saint_detail_eyebrow).uppercase(),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.secondary,
+        )
+        Text(text = name, style = MaterialTheme.typography.titleMedium)
+        Text(
+            text = stringResource(R.string.feature_saint_detail_text),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 

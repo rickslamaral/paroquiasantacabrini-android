@@ -17,18 +17,14 @@
 package br.com.paroquiasantacabrini.app.feature.prayer.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,7 +36,11 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ChoiceChip
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateOutlinedButton
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.prayer.R
@@ -73,13 +73,23 @@ internal fun PrayerRequestScreen(
     ) {
         Text(
             text = stringResource(R.string.feature_prayer_request_intro),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+        Text(
+            text = stringResource(R.string.feature_prayer_request_field),
+            style = MaterialTheme.typography.titleSmall,
         )
         OutlinedTextField(
             value = text,
             onValueChange = onTextChange,
             modifier = Modifier.fillMaxWidth(),
-            label = { Text(stringResource(R.string.feature_prayer_request_field)) },
+            shape = MaterialTheme.shapes.small,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+            ),
             placeholder = { Text(stringResource(R.string.feature_prayer_request_placeholder)) },
             supportingText = {
                 Text(
@@ -98,18 +108,20 @@ internal fun PrayerRequestScreen(
         )
         Text(
             text = stringResource(R.string.feature_prayer_request_privacy_label),
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleSmall,
         )
         Row(horizontalArrangement = Arrangement.spacedBy(TemplateSpacing.small)) {
-            FilterChip(
+            ChoiceChip(
+                label = stringResource(R.string.feature_prayer_request_private),
                 selected = privacy == PrivacyChoice.Private,
                 onClick = { onPrivacyChange(PrivacyChoice.Private) },
-                label = { Text(stringResource(R.string.feature_prayer_request_private)) },
+                modifier = Modifier.weight(1f),
             )
-            FilterChip(
+            ChoiceChip(
+                label = stringResource(R.string.feature_prayer_request_community),
                 selected = privacy == PrivacyChoice.Community,
                 onClick = { onPrivacyChange(PrivacyChoice.Community) },
-                label = { Text(stringResource(R.string.feature_prayer_request_community)) },
+                modifier = Modifier.weight(1f),
             )
         }
         Text(
@@ -127,7 +139,8 @@ internal fun PrayerRequestScreen(
             Text(
                 text = stringResource(R.string.feature_prayer_request_ack),
                 modifier = Modifier.padding(start = TemplateSpacing.small),
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
         if (error == RequestError.NotAcknowledged) {
@@ -137,7 +150,7 @@ internal fun PrayerRequestScreen(
                 color = MaterialTheme.colorScheme.error,
             )
         }
-        Button(onClick = onSaveClick, modifier = Modifier.fillMaxWidth()) {
+        TemplateButton(onClick = onSaveClick, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.feature_prayer_request_save))
         }
         // Always composed so screen readers announce the message when it appears.
@@ -159,20 +172,15 @@ private fun SavedCard(
     saved: SavedRequest,
     onDeleteClick: () -> Unit,
 ) {
-    Card(modifier = Modifier.fillMaxWidth()) {
-        Column(
-            modifier = Modifier.padding(TemplateSpacing.medium),
-            verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-        ) {
-            Text(
-                text = stringResource(R.string.feature_prayer_request_saved_title),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary,
-            )
-            Text(text = saved.text, style = MaterialTheme.typography.bodyLarge)
-            OutlinedButton(onClick = onDeleteClick) {
-                Text(stringResource(R.string.feature_prayer_request_delete))
-            }
+    ParoquiaCard {
+        Text(
+            text = stringResource(R.string.feature_prayer_request_saved_title),
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary,
+        )
+        Text(text = saved.text, style = MaterialTheme.typography.bodyMedium)
+        TemplateOutlinedButton(onClick = onDeleteClick) {
+            Text(stringResource(R.string.feature_prayer_request_delete))
         }
     }
 }

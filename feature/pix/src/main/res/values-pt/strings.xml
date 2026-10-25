@@ -15,16 +15,18 @@
      limitations under the License.
 -->
 <resources>
-    <string name="feature_pix_title">Dízimo e Oferta (PIX)</string>
-    <string name="feature_pix_intro">Escaneie o QR code no aplicativo do seu banco ou copie a chave Pix para contribuir com a paróquia.</string>
+    <string name="feature_pix_title">Dízimo e ofertas</string>
+    <string name="feature_pix_eyebrow">Partilha e missão</string>
+    <string name="feature_pix_intro">Sua contribuição ajuda a comunidade a manter sua missão. Contribua se desejar.</string>
+    <string name="feature_pix_key_eyebrow">Chave Pix · CNPJ</string>
     <string name="feature_pix_qr_description">QR code Pix para doações à paróquia</string>
+    <string name="feature_pix_qr_title">Ou escaneie o QR code</string>
     <string name="feature_pix_amount_hint">O valor você escolhe no aplicativo do seu banco.</string>
     <string name="feature_pix_receiver_label">Favorecido</string>
     <string name="feature_pix_institution_label">Banco</string>
-    <string name="feature_pix_key_label">Chave Pix (CNPJ)</string>
     <string name="feature_pix_copy_key">Copiar chave Pix</string>
     <string name="feature_pix_copy_code">Copiar Pix copia e cola</string>
     <string name="feature_pix_copied_key">Chave Pix copiada.</string>
     <string name="feature_pix_copied_code">Código Pix copiado.</string>
-    <string name="feature_pix_disclaimer">Esta tela não realiza pagamento. A transferência acontece no aplicativo do seu banco, e o aplicativo não confirma nem registra a sua contribuição.</string>
+    <string name="feature_pix_disclaimer">Confira antes de confirmar: verifique o nome do favorecido e os dados no aplicativo do seu banco. Esta tela não realiza pagamento: a transferência acontece no aplicativo do seu banco, e o aplicativo não confirma nem registra a sua contribuição.</string>
 </resources>

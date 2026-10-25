@@ -55,7 +55,7 @@
     <string name="feature_community_calendar_day_with_events">%1$s, com horários paroquiais</string>
     <string name="feature_community_calendar_no_events">Não há horários regulares informados para esta data.</string>
     <string name="feature_community_calendar_all_times">Ver todos os horários de missa</string>
-    <string name="feature_community_calendar_note">A agenda mostra horários regulares informados pela paróquia. Os eventos especiais serão adicionados quando houver programação oficial.</string>
+    <string name="feature_community_calendar_note">A agenda mostra horários regulares informados pela paróquia. Os eventos especiais serão acrescentados quando houver programação oficial.</string>
     <string name="feature_community_event_mass">Santa Missa</string>
     <string name="feature_community_event_secretariat">Secretaria paroquial</string>
     <string name="feature_community_event_adoration">Adoração ao Santíssimo</string>
@@ -74,4 +74,6 @@
     <string name="feature_community_notice_3_title">Marcação e horários</string>
     <string name="feature_community_notice_3_text">Marque durante a semana na secretaria. Aos domingos, procure um sacerdote após as missas das 08h e das 10h30.</string>
     <string name="feature_community_notices_note">Esta versão não publica comunicados em tempo real. Consulte os canais oficiais para novidades.</string>
+    <string name="feature_community_calendar_month_format">%1$s de %2$s</string>
+    <string name="feature_community_calendar_date_pattern">EEEE, d \'de\' MMMM</string>
 </resources>

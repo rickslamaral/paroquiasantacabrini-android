@@ -74,4 +74,6 @@
     <string name="feature_community_notice_3_title">Agendamento e horários</string>
     <string name="feature_community_notice_3_text">Agende durante a semana na secretaria. Aos domingos, procure após as missas das 08h e das 10h30.</string>
     <string name="feature_community_notices_note">Esta versão não publica comunicados em tempo real. Consulte os canais oficiais para novidades.</string>
+    <string name="feature_community_calendar_month_format">%1$s de %2$s</string>
+    <string name="feature_community_calendar_date_pattern">EEEE, d \'de\' MMMM</string>
 </resources>

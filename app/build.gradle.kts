@@ -121,8 +121,8 @@ android {
 
     defaultConfig {
         applicationId = "br.com.paroquiasantacabrini.app"
-        versionCode = 23
-        versionName = "0.18.0"
+        versionCode = 24
+        versionName = "0.19.0"
         testInstrumentationRunner = "br.com.paroquiasantacabrini.app.HiltTestRunner"
     }
 

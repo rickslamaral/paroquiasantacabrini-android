@@ -17,6 +17,7 @@
 package br.com.paroquiasantacabrini.app.core.designsystem.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
@@ -27,6 +28,7 @@ import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 /**
@@ -52,8 +54,9 @@ fun ChoiceChip(
     ) {
         Text(
             text = label,
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp),
             style = MaterialTheme.typography.labelMedium,
+            textAlign = TextAlign.Center,
         )
     }
 }

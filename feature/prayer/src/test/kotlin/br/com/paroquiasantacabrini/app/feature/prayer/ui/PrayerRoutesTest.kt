@@ -19,6 +19,7 @@ package br.com.paroquiasantacabrini.app.feature.prayer.ui
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -132,7 +133,7 @@ public class PrayerRoutesTest {
         val store = FakePrayerStore()
         composeTestRule.setContent { MaterialTheme { PrayerRequestRoute(store = store, onBackClick = {}) } }
 
-        composeTestRule.onNodeWithText("Your intention").performTextInput("For peace")
+        composeTestRule.onNode(hasSetTextAction()).performTextInput("For peace")
         composeTestRule.onNodeWithText("Save intention on this device").performScrollTo().performClick()
 
         composeTestRule.onNodeWithText("Confirm that you understand to save.").assertIsDisplayed()
@@ -144,7 +145,7 @@ public class PrayerRoutesTest {
         val store = FakePrayerStore()
         composeTestRule.setContent { MaterialTheme { PrayerRequestRoute(store = store, onBackClick = {}) } }
 
-        composeTestRule.onNodeWithText("Your intention").performTextInput("For peace")
+        composeTestRule.onNode(hasSetTextAction()).performTextInput("For peace")
         composeTestRule.onNodeWithText(
             "I understand this version does not send my request to the parish.",
         ).performScrollTo().performClick()

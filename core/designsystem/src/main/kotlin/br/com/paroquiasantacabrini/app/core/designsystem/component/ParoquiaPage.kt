@@ -427,6 +427,7 @@ fun ScheduleRow(
     subtitle: String?,
     modifier: Modifier = Modifier,
     showDivider: Boolean = true,
+    timeMinWidth: Dp = TIME_MIN_WIDTH,
 ) {
     Column(modifier = modifier.fillMaxWidth().semantics(mergeDescendants = true) {}) {
         Row(
@@ -436,7 +437,7 @@ fun ScheduleRow(
         ) {
             Text(
                 text = time,
-                modifier = Modifier.widthIn(min = TIME_MIN_WIDTH),
+                modifier = Modifier.widthIn(min = timeMinWidth),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.primary,
             )
