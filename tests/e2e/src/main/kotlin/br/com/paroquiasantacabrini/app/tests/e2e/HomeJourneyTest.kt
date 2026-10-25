@@ -36,12 +36,13 @@ public class HomeJourneyTest {
     @Test
     public fun userSeesDashboardAndOpensQuickAccessDestination() {
         composeRule.onNodeWithText("Paróquia Santa Cabrini").assertIsDisplayed()
-        composeRule.onNodeWithText("Mass Times").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText("Prayer Requests").performScrollTo().assertIsDisplayed()
-        composeRule.onNodeWithText("Tithes and Offerings (PIX)").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Times").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Liturgy").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Prayer").performScrollTo().assertIsDisplayed()
+        composeRule.onNodeWithText("Tithes").performScrollTo().assertIsDisplayed()
 
-        composeRule.onNodeWithText("Switch parish").performScrollTo().performClick()
+        composeRule.onNodeWithText("Times").performScrollTo().performClick()
 
-        composeRule.onNodeWithText("Choosing another parish is not available yet.", substring = true).assertIsDisplayed()
+        composeRule.onNodeWithText("Join the Masses and moments of prayer of the community.").assertIsDisplayed()
     }
 }
