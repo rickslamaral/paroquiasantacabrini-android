@@ -106,7 +106,7 @@ GitHub Actions workflow.
 
 Use `bash scripts/add-module.sh` with explicit flags for repeatable, non-interactive module creation. Follow [the module skill](../skills/add-android-module/SKILL.md) and inspect all generated files before keeping them.
 
-`make template-check` runs the setup-wizard unit and loopback-security tests; creates a minimal
+`make template-check` (template maintenance only; `make verify` runs `make rename-validate` instead because this project is already renamed) runs the setup-wizard unit and loopback-security tests; creates a minimal
 configured project from a JSON-replayable preview; copies the tracked repository into a temporary
 fixture; proves that a rename dry-run is non-mutating; performs a real rename with
 XML/Kotlin-sensitive characters; checks package and screenshot-reference moves; verifies

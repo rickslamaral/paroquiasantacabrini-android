@@ -93,14 +93,12 @@ app/src/main/kotlin/br/com/paroquiasantacabrini/app/App.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/Greeting.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/MainActivity.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/MainScreens.kt
+app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/navigation/MainChrome.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/navigation/MainNavigation.kt
+app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/navigation/MainTabs.kt
+app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/navigation/NavigationEntries.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/home/navigation/Screen.kt
 app/src/main/kotlin/br/com/paroquiasantacabrini/app/ui/EdgeToEdgeCompat.kt
-app/src/main/kotlin/br/com/paroquiasantacabrini/app/ui/theme/Color.kt
-app/src/main/kotlin/br/com/paroquiasantacabrini/app/ui/theme/Shape.kt
-app/src/main/kotlin/br/com/paroquiasantacabrini/app/ui/theme/Theme.kt
-app/src/main/kotlin/br/com/paroquiasantacabrini/app/ui/theme/Type.kt
-app/src/main/kotlin/br/com/paroquiasantacabrini/app/ui/theme/Typography.kt
 app/src/main/res/drawable/ic_launcher_background.xml
 app/src/main/res/drawable-v24/ic_launcher_foreground.xml
 app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
@@ -121,14 +119,34 @@ app/src/main/res/values/font_certs.xml
 app/src/main/res/values/strings.xml
 app/src/main/res/values/themes.xml
 app/src/main/res/values-night/themes.xml
+app/src/main/res/values-pt/strings.xml
 app/src/main/res/values-pt-rPT/strings.xml
+app/src/main/res/xml/backup_rules.xml
+app/src/main/res/xml/data_extraction_rules.xml
 app/src/main/res/xml/network_security_config.xml
 app/src/prod/AndroidManifest.xml
-benchmarks/AGENTS.md
-benchmarks/build.gradle.kts
-benchmarks/src/main/java/br/com/paroquiasantacabrini/app/benchmarks/BaselineProfileGenerator.kt
-benchmarks/src/main/java/br/com/paroquiasantacabrini/app/benchmarks/BenchmarkConfig.kt
-benchmarks/src/main/java/br/com/paroquiasantacabrini/app/benchmarks/ExampleStartupBenchmark.kt
+app/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/AppScreenshotTest.kt
+app/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTest.kt
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppScreenshotTestKt/AppCalendarPreview_calendar_b20a9294_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppScreenshotTestKt/AppHomePreview_home_7122fa56_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppScreenshotTestKt/AppMassModePreview_mass-mode_ca563ea0_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppScreenshotTestKt/AppMassTimesPreview_mass-times_732de3ea_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppScreenshotTestKt/AppMorePreview_more_a81f3967_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppScreenshotTestKt/AppPixPreview_pix_b75ff08d_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppScreenshotTestKt/AppPrayPreview_pray_6eaca708_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppScreenshotTestKt/AppSaintPreview_saint_94497cf1_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppCatechesisPreview_catechesis_0b654c99_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppCommunityPreview_community_07970db7_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppConfirmationPreview_confirmation_bef4a74b_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppContactPreview_contact_df289903_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppExamPreview_exam_6f75af0c_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppGroupsPreview_groups_e638358f_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppLiturgyPreview_liturgy_39b8a8e8_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppNoticesPreview_notices_e1e94546_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppNovenasPreview_novenas_bf6a22f9_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppPrayerRequestPreview_prayer-request_dc260ba5_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppRosaryPreview_rosary_ce3a2c53_0.png
+app/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/AppSecondaryScreensScreenshotTestKt/AppSaintsPreview_saints_7f02cb04_0.png
 build-logic/AGENTS.md
 build-logic/convention/build.gradle.kts
 build-logic/convention/src/main/kotlin/br/com/paroquiasantacabrini/app/buildlogic/AndroidCompose.kt
@@ -175,20 +193,46 @@ config/detekt/detekt.yml
 core/database/build.gradle.kts
 core/database/consumer-rules.pro
 core/database/proguard-rules.pro
-core/database/schemas/br.com.paroquiasantacabrini.app.core.database.TemplateDatabase/1.json
-core/database/src/androidTest/kotlin/br/com/paroquiasantacabrini/app/core/database/TemplateDatabaseTest.kt
+core/database/schemas/br.com.paroquiasantacabrini.app.core.database.ParoquiaDatabase/1.json
+core/database/src/androidTest/kotlin/br/com/paroquiasantacabrini/app/core/database/ParoquiaDatabaseTest.kt
 core/database/src/main/AndroidManifest.xml
-core/database/src/main/kotlin/br/com/paroquiasantacabrini/app/core/database/Database.kt
+core/database/src/main/kotlin/br/com/paroquiasantacabrini/app/core/database/ParoquiaDatabase.kt
+core/database/src/main/kotlin/br/com/paroquiasantacabrini/app/core/database/dao/DailyLiturgyDao.kt
+core/database/src/main/kotlin/br/com/paroquiasantacabrini/app/core/database/dao/ParishDao.kt
+core/database/src/main/kotlin/br/com/paroquiasantacabrini/app/core/database/di/DatabaseModule.kt
+core/database/src/main/kotlin/br/com/paroquiasantacabrini/app/core/database/model/DailyLiturgyEntity.kt
+core/database/src/main/kotlin/br/com/paroquiasantacabrini/app/core/database/model/ParishEntity.kt
 core/designsystem/build.gradle.kts
 core/designsystem/consumer-rules.pro
 core/designsystem/proguard-rules.pro
 core/designsystem/src/main/AndroidManifest.xml
 core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/Background.kt
 core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/Button.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/ChoiceChip.kt
 core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/ComponentsPreview.kt
 core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/EmptyState.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/FeatureBanner.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/FeatureCard.kt
 core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/LoadingIndicator.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/ParoquiaImages.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/ParoquiaPage.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/QuickTile.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/theme/Color.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/theme/ExtraColors.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/theme/Shape.kt
 core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/theme/TemplateSpacing.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/theme/Theme.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/theme/Type.kt
+core/designsystem/src/main/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/theme/Typography.kt
+core/designsystem/src/main/res/drawable-nodpi/core_designsystem_img_cabrini_mission.jpg
+core/designsystem/src/main/res/drawable-nodpi/core_designsystem_img_facade.jpg
+core/designsystem/src/main/res/drawable-nodpi/core_designsystem_img_missa_banner.jpg
+core/designsystem/src/main/res/drawable-nodpi/core_designsystem_img_rosario_banner.jpg
+core/designsystem/src/main/res/drawable-nodpi/core_designsystem_img_santa_cabrini.jpg
+core/designsystem/src/main/res/values/strings.xml
+core/designsystem/src/main/res/values-pt/strings.xml
+core/designsystem/src/main/res/values-pt-rPT/strings.xml
+core/designsystem/src/test/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/ParoquiaPageTest.kt
 core/designsystem/src/test/kotlin/br/com/paroquiasantacabrini/app/core/designsystem/component/TemplateComponentsTest.kt
 core/navigation/build.gradle.kts
 core/navigation/src/main/kotlin/br/com/paroquiasantacabrini/app/core/navigation/NavigationState.kt
@@ -200,16 +244,43 @@ core/testing/proguard-rules.pro
 core/testing/src/main/AndroidManifest.xml
 core/testing/src/main/kotlin/br/com/paroquiasantacabrini/app/core/testing/screenshot/ScreenPreviews.kt
 docs/project-setup-wizard.md
+feature/community/build.gradle.kts
+feature/community/consumer-rules.pro
+feature/community/proguard-rules.pro
+feature/community/src/main/AndroidManifest.xml
+feature/community/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/CalendarRoute.kt
+feature/community/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/CalendarScreen.kt
+feature/community/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/CommunityRoutes.kt
+feature/community/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/CommunityScreens.kt
+feature/community/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/NoticesRoute.kt
+feature/community/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/NoticesScreen.kt
+feature/community/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/model/ParishCalendar.kt
+feature/community/src/main/res/values/strings.xml
+feature/community/src/main/res/values-pt/strings.xml
+feature/community/src/main/res/values-pt-rPT/strings.xml
+feature/community/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/feature/community/CommunityScreenshotTest.kt
+feature/community/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/community/CommunityScreenshotTestKt/CalendarVariantPreview_compact dark_925f5bde_0.png
+feature/community/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/community/CommunityScreenshotTestKt/CalendarVariantPreview_compact large font_ae8032e7_0.png
+feature/community/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/community/CommunityScreenshotTestKt/CommunityHubVariantPreview_compact dark_925f5bde_0.png
+feature/community/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/community/CommunityScreenshotTestKt/CommunityHubVariantPreview_compact large font_ae8032e7_0.png
+feature/community/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/community/CommunityScreenshotTestKt/NoticesVariantPreview_compact dark_925f5bde_0.png
+feature/community/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/community/CommunityScreenshotTestKt/NoticesVariantPreview_compact large font_ae8032e7_0.png
+feature/community/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/CommunityRoutesTest.kt
+feature/community/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/community/ui/model/ParishCalendarTest.kt
 feature/home/build.gradle.kts
 feature/home/consumer-rules.pro
 feature/home/proguard-rules.pro
 feature/home/src/main/AndroidManifest.xml
 feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/HomeRoute.kt
 feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/HomeScreen.kt
-feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/HomeViewModel.kt
-feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/components/HomeContent.kt
+feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/MoreRoute.kt
+feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/MoreScreen.kt
+feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/components/HomeComponents.kt
+feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/model/HomeDestination.kt
 feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/model/HomeUiState.kt
+feature/home/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/model/MoreDestination.kt
 feature/home/src/main/res/values/strings.xml
+feature/home/src/main/res/values-pt/strings.xml
 feature/home/src/main/res/values-pt-rPT/strings.xml
 feature/home/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/feature/home/HomeScreenScreenshotTest.kt
 feature/home/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/home/HomeScreenScreenshotTestKt/HomeScreenSizePreview_compact 400x1000_599d9bcc_0.png
@@ -223,8 +294,68 @@ feature/home/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/f
 feature/home/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/home/HomeScreenScreenshotTestKt/HomeScreenSizePreview_medium 610x500_9457e102_0.png
 feature/home/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/home/HomeScreenScreenshotTestKt/HomeScreenVariantPreview_compact dark_925f5bde_0.png
 feature/home/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/home/HomeScreenScreenshotTestKt/HomeScreenVariantPreview_compact large font_ae8032e7_0.png
+feature/home/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/home/HomeScreenScreenshotTestKt/MoreScreenVariantPreview_compact dark_925f5bde_0.png
+feature/home/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/home/HomeScreenScreenshotTestKt/MoreScreenVariantPreview_compact large font_ae8032e7_0.png
 feature/home/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/HomeScreenTest.kt
-feature/home/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/HomeViewModelTest.kt
+feature/home/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/home/ui/MoreScreenTest.kt
+feature/liturgy/build.gradle.kts
+feature/liturgy/consumer-rules.pro
+feature/liturgy/proguard-rules.pro
+feature/liturgy/src/main/AndroidManifest.xml
+feature/liturgy/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/ui/DailyLiturgyRoute.kt
+feature/liturgy/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/ui/DailyLiturgyScreen.kt
+feature/liturgy/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/ui/MassModeRoute.kt
+feature/liturgy/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/ui/MassModeScreen.kt
+feature/liturgy/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/ui/model/MassModeState.kt
+feature/liturgy/src/main/res/values/strings.xml
+feature/liturgy/src/main/res/values-pt/strings.xml
+feature/liturgy/src/main/res/values-pt-rPT/strings.xml
+feature/liturgy/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/LiturgyScreenshotTest.kt
+feature/liturgy/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/liturgy/LiturgyScreenshotTestKt/DailyLiturgyVariantPreview_compact dark_925f5bde_0.png
+feature/liturgy/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/liturgy/LiturgyScreenshotTestKt/DailyLiturgyVariantPreview_compact large font_ae8032e7_0.png
+feature/liturgy/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/liturgy/LiturgyScreenshotTestKt/MassModeVariantPreview_compact dark_925f5bde_0.png
+feature/liturgy/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/liturgy/LiturgyScreenshotTestKt/MassModeVariantPreview_compact large font_ae8032e7_0.png
+feature/liturgy/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/ui/DailyLiturgyScreenTest.kt
+feature/liturgy/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/ui/MassModeRouteTest.kt
+feature/liturgy/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/liturgy/ui/model/MassModeStateTest.kt
+feature/massschedule/build.gradle.kts
+feature/massschedule/consumer-rules.pro
+feature/massschedule/proguard-rules.pro
+feature/massschedule/src/main/AndroidManifest.xml
+feature/massschedule/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/ContactRoute.kt
+feature/massschedule/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/ContactScreen.kt
+feature/massschedule/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/MassScheduleRoute.kt
+feature/massschedule/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/MassScheduleScreen.kt
+feature/massschedule/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/components/ChurchGallery.kt
+feature/massschedule/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/model/MassScheduleUiState.kt
+feature/massschedule/src/main/res/drawable-nodpi/feature_massschedule_church_altar.jpg
+feature/massschedule/src/main/res/drawable-nodpi/feature_massschedule_church_celebration.jpg
+feature/massschedule/src/main/res/values/strings.xml
+feature/massschedule/src/main/res/values-pt/strings.xml
+feature/massschedule/src/main/res/values-pt-rPT/strings.xml
+feature/massschedule/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/MassScheduleScreenScreenshotTest.kt
+feature/massschedule/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/massschedule/MassScheduleScreenScreenshotTestKt/ContactScreenVariantPreview_compact dark_925f5bde_0.png
+feature/massschedule/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/massschedule/MassScheduleScreenScreenshotTestKt/ContactScreenVariantPreview_compact large font_ae8032e7_0.png
+feature/massschedule/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/massschedule/MassScheduleScreenScreenshotTestKt/MassScheduleScreenVariantPreview_compact dark_925f5bde_0.png
+feature/massschedule/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/massschedule/MassScheduleScreenScreenshotTestKt/MassScheduleScreenVariantPreview_compact large font_ae8032e7_0.png
+feature/massschedule/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/ContactScreenTest.kt
+feature/massschedule/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/MassScheduleScreenTest.kt
+feature/massschedule/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/massschedule/ui/model/MassScheduleUiStateTest.kt
+feature/pix/build.gradle.kts
+feature/pix/consumer-rules.pro
+feature/pix/proguard-rules.pro
+feature/pix/src/main/AndroidManifest.xml
+feature/pix/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/pix/ui/PixRoute.kt
+feature/pix/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/pix/ui/PixScreen.kt
+feature/pix/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/pix/ui/components/QrCode.kt
+feature/pix/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/pix/ui/model/PixUiState.kt
+feature/pix/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/pix/ui/model/QrCodeEncoder.kt
+feature/pix/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/pix/ui/model/QrCodeMatrix.kt
+feature/pix/src/main/res/values/strings.xml
+feature/pix/src/main/res/values-pt/strings.xml
+feature/pix/src/main/res/values-pt-rPT/strings.xml
+feature/pix/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/pix/ui/PixScreenTest.kt
+feature/pix/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/pix/ui/model/QrCodeEncoderTest.kt
 feature/posts/data/build.gradle.kts
 feature/posts/data/src/integrationTest/kotlin/br/com/paroquiasantacabrini/app/feature/posts/data/remote/RetrofitPostsRemoteDataSourceIntegrationTest.kt
 feature/posts/data/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/posts/data/di/PostsDataModule.kt
@@ -260,6 +391,7 @@ feature/posts/presentation/src/main/kotlin/br/com/paroquiasantacabrini/app/featu
 feature/posts/presentation/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/posts/presentation/ui/components/PostsList.kt
 feature/posts/presentation/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/posts/presentation/ui/model/PostUiModel.kt
 feature/posts/presentation/src/main/res/values/strings.xml
+feature/posts/presentation/src/main/res/values-pt/strings.xml
 feature/posts/presentation/src/main/res/values-pt-rPT/strings.xml
 feature/posts/presentation/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/feature/posts/presentation/PostsScreenScreenshotTest.kt
 feature/posts/presentation/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/posts/presentation/PostsScreenScreenshotTestKt/PostsScreenEmptyPreview_empty_499e95d6_0.png
@@ -278,6 +410,54 @@ feature/posts/presentation/src/screenshotTestDebug/reference/br/com/paroquiasant
 feature/posts/presentation/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/posts/presentation/PostsScreenScreenshotTestKt/PostsScreenVariantPreview_compact large font_ae8032e7_0.png
 feature/posts/presentation/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/posts/presentation/ui/PostsScreenTest.kt
 feature/posts/presentation/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/posts/presentation/ui/PostsViewModelTest.kt
+feature/prayer/build.gradle.kts
+feature/prayer/consumer-rules.pro
+feature/prayer/proguard-rules.pro
+feature/prayer/src/main/AndroidManifest.xml
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/ExamRoute.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/ExamScreen.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/NovenasRoute.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/NovenasScreen.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/PrayerHubRoute.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/PrayerHubScreen.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/PrayerRequestRoute.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/PrayerRequestScreen.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/RosaryRoute.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/RosaryScreen.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/data/PrayerStore.kt
+feature/prayer/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/model/PrayerModel.kt
+feature/prayer/src/main/res/values/strings.xml
+feature/prayer/src/main/res/values-pt/strings.xml
+feature/prayer/src/main/res/values-pt-rPT/strings.xml
+feature/prayer/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/PrayerScreenshotTest.kt
+feature/prayer/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/prayer/PrayerScreenshotTestKt/ExamVariantPreview_compact dark_925f5bde_0.png
+feature/prayer/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/prayer/PrayerScreenshotTestKt/ExamVariantPreview_compact large font_ae8032e7_0.png
+feature/prayer/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/prayer/PrayerScreenshotTestKt/PrayerHubVariantPreview_compact dark_925f5bde_0.png
+feature/prayer/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/prayer/PrayerScreenshotTestKt/PrayerHubVariantPreview_compact large font_ae8032e7_0.png
+feature/prayer/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/prayer/PrayerScreenshotTestKt/RosaryVariantPreview_compact dark_925f5bde_0.png
+feature/prayer/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/prayer/PrayerScreenshotTestKt/RosaryVariantPreview_compact large font_ae8032e7_0.png
+feature/prayer/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/PrayerRoutesTest.kt
+feature/prayer/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/data/SharedPreferencesPrayerStoreTest.kt
+feature/prayer/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/prayer/ui/model/PrayerModelTest.kt
+feature/saint/build.gradle.kts
+feature/saint/consumer-rules.pro
+feature/saint/proguard-rules.pro
+feature/saint/src/main/AndroidManifest.xml
+feature/saint/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/saint/ui/SaintCabriniRoute.kt
+feature/saint/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/saint/ui/SaintCabriniScreen.kt
+feature/saint/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/saint/ui/SaintsRoute.kt
+feature/saint/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/saint/ui/SaintsScreen.kt
+feature/saint/src/main/kotlin/br/com/paroquiasantacabrini/app/feature/saint/ui/model/SaintContent.kt
+feature/saint/src/main/res/values/strings.xml
+feature/saint/src/main/res/values-pt/strings.xml
+feature/saint/src/main/res/values-pt-rPT/strings.xml
+feature/saint/src/screenshotTest/kotlin/br/com/paroquiasantacabrini/app/feature/saint/SaintScreenshotTest.kt
+feature/saint/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/saint/SaintScreenshotTestKt/SaintCabriniVariantPreview_compact dark_925f5bde_0.png
+feature/saint/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/saint/SaintScreenshotTestKt/SaintCabriniVariantPreview_compact large font_ae8032e7_0.png
+feature/saint/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/saint/SaintScreenshotTestKt/SaintsVariantPreview_compact dark_925f5bde_0.png
+feature/saint/src/screenshotTestDebug/reference/br/com/paroquiasantacabrini/app/feature/saint/SaintScreenshotTestKt/SaintsVariantPreview_compact large font_ae8032e7_0.png
+feature/saint/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/saint/ui/SaintScreensTest.kt
+feature/saint/src/test/kotlin/br/com/paroquiasantacabrini/app/feature/saint/ui/model/SaintSearchTest.kt
 gradle/gradle-daemon-jvm.properties
 gradle/init.gradle.kts
 gradle/libs.versions.toml
@@ -298,7 +478,9 @@ library-android/src/test/kotlin/br/com/paroquiasantacabrini/app/library/android/
 library-android/src/test/kotlin/br/com/paroquiasantacabrini/app/library/android/SumTest.kt
 library-kotlin/build.gradle.kts
 library-kotlin/src/main/java/br/com/paroquiasantacabrini/app/library/FactorialCalculator.kt
+library-kotlin/src/main/java/br/com/paroquiasantacabrini/app/library/pix/PixBrCode.kt
 library-kotlin/src/test/java/br/com/paroquiasantacabrini/app/library/FactorialCalculatorTest.kt
+library-kotlin/src/test/java/br/com/paroquiasantacabrini/app/library/pix/PixBrCodeTest.kt
 release/app-debug.jks
 renovate.json
 scripts/add-module.sh

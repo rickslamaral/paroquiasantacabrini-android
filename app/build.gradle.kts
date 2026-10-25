@@ -121,8 +121,8 @@ android {
 
     defaultConfig {
         applicationId = "br.com.paroquiasantacabrini.app"
-        versionCode = 24
-        versionName = "0.19.0"
+        versionCode = 25
+        versionName = "0.19.1"
         testInstrumentationRunner = "br.com.paroquiasantacabrini.app.HiltTestRunner"
     }
 
@@ -301,6 +301,13 @@ dependencies {
     testImplementation(libs.androidx.activity.compose)
 
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+
+// Tracks the dependency surface that ships in the release build. Update the baseline with
+// `make dependency-guard-baseline` only for an intentional dependency change.
+dependencyGuard {
+    configuration("releaseRuntimeClasspath")
 }
 
 

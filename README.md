@@ -348,7 +348,7 @@ The `Makefile` wraps common Gradle invocations:
 - `make verify` — run the canonical non-mutating host checks used by pull requests.
 - `make lint` / `make detekt` / `make detekt-compose` / `make detekt-fix` — run Android lint, Detekt,
   the Compose-specific rules, or safe Detekt auto-corrections.
-- `make template-check` — validate the rename dry run and generated module structure.
+- `make template-check` — validate the rename dry run and generated module structure (template maintenance only; not part of `make verify` in this renamed app).
 - `make rename-validate` — verify this project was fully renamed away from the template.
 - `make format-check` / `make format` — check or apply formatting.
 - `make device-test` — run debug instrumentation tests on connected devices.

@@ -104,6 +104,8 @@ setup-ui:
 docs-check:
 	bash scripts/check-docs.sh
 
+# Maintains the original template: its fixtures assume an un-renamed project, so it is not part of
+# `make verify` in a renamed app such as this one. Run it only when changing the setup tooling.
 template-check:
 	bash scripts/check-template-tools.sh
 
@@ -151,7 +153,7 @@ integration-test:
 check: localization-check secrets-check
 	$(GRADLE) lint detekt spotlessCheck dependencyGuard $(GRADLE_ARGS)
 
-verify: docs-check template-check localization-check secrets-check
+verify: docs-check rename-validate localization-check secrets-check
 	$(GRADLE) :build-logic:convention:check assembleDebug test integrationTest coverageVerification coverageReport lint detekt spotlessCheck dependencyGuard validateDebugScreenshotTest $(GRADLE_ARGS)
 
 lint:
