@@ -26,6 +26,12 @@ android {
     namespace = "br.com.paroquiasantacabrini.app.core.database"
 }
 
+// Room behavior is covered by instrumented tests against the real SQLite engine (androidTest);
+// the JVM unit-test source set has no tests to discover.
+tasks.withType<Test>().configureEach {
+    failOnNoDiscoveredTests = false
+}
+
 dependencies {
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.ext)
