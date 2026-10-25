@@ -24,7 +24,7 @@ import androidx.compose.runtime.Composable
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenSizePreviews
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenVariantPreviews
 import br.com.paroquiasantacabrini.app.feature.home.ui.HomeScreen
-import br.com.paroquiasantacabrini.app.feature.home.ui.model.FactorialResult
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 import com.android.tools.screenshot.PreviewTest
 
@@ -32,28 +32,33 @@ import com.android.tools.screenshot.PreviewTest
 @ScreenSizePreviews
 @Composable
 public fun HomeScreenSizePreview() {
-    HomeScreenCalculatedResult()
+    HomeScreenWithAnnouncement()
 }
 
 @PreviewTest
 @ScreenVariantPreviews
 @Composable
 public fun HomeScreenVariantPreview() {
-    HomeScreenCalculatedResult()
+    HomeScreenWithAnnouncement()
 }
 
 @Composable
-private fun HomeScreenCalculatedResult() {
+private fun HomeScreenWithAnnouncement() {
     val colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
     MaterialTheme(colorScheme = colorScheme) {
         HomeScreen(
             state = HomeUiState(
-                input = "5",
-                result = FactorialResult(input = 5, value = 120),
+                announcements = listOf(
+                    AnnouncementUiModel(
+                        id = "1",
+                        title = "Festa da padroeira",
+                        message = "Missa solene às 19h seguida de confraternização.",
+                        dateLabel = "13 de novembro",
+                    ),
+                ),
             ),
-            onInputChanged = {},
-            onCalculateClick = {},
-            onExploreNavigationClick = {},
+            onQuickAccessClick = {},
+            onSwitchParishClick = {},
         )
     }
 }

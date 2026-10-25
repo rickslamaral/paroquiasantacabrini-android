@@ -17,13 +17,10 @@
 package br.com.paroquiasantacabrini.app.feature.home.ui
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,36 +28,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateBackground
-import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.home.ui.components.HomeContent
-import br.com.paroquiasantacabrini.app.feature.home.ui.model.FactorialResult
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 
 @Composable
 internal fun HomeScreen(
     state: HomeUiState,
-    onInputChanged: (String) -> Unit,
-    onCalculateClick: () -> Unit,
-    onExploreNavigationClick: () -> Unit,
+    onQuickAccessClick: (HomeDestination) -> Unit,
+    onSwitchParishClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     TemplateBackground(modifier = modifier) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .safeDrawingPadding()
-                .padding(TemplateSpacing.large),
-            contentAlignment = Alignment.Center,
+                .safeDrawingPadding(),
+            contentAlignment = Alignment.TopCenter,
         ) {
             HomeContent(
                 state = state,
-                onInputChanged = onInputChanged,
-                onCalculateClick = onCalculateClick,
-                onExploreNavigationClick = onExploreNavigationClick,
+                onQuickAccessClick = onQuickAccessClick,
+                onSwitchParishClick = onSwitchParishClick,
                 modifier = Modifier
-                    .fillMaxWidth()
                     .widthIn(max = MAX_CONTENT_WIDTH)
-                    .verticalScroll(rememberScrollState()),
+                    .fillMaxHeight(),
             )
         }
     }
@@ -72,14 +65,19 @@ private fun HomeScreenPreview() {
     MaterialTheme {
         HomeScreen(
             state = HomeUiState(
-                input = "5",
-                result = FactorialResult(input = 5, value = 120),
+                announcements = listOf(
+                    AnnouncementUiModel(
+                        id = "1",
+                        title = "Festa da padroeira",
+                        message = "Missa solene às 19h seguida de confraternização.",
+                        dateLabel = "13 de novembro",
+                    ),
+                ),
             ),
-            onInputChanged = {},
-            onCalculateClick = {},
-            onExploreNavigationClick = {},
+            onQuickAccessClick = {},
+            onSwitchParishClick = {},
         )
     }
 }
 
-private val MAX_CONTENT_WIDTH = 560.dp
+private val MAX_CONTENT_WIDTH = 720.dp

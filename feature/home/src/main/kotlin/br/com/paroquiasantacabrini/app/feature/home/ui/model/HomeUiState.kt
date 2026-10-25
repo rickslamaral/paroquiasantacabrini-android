@@ -17,18 +17,14 @@
 package br.com.paroquiasantacabrini.app.feature.home.ui.model
 
 internal data class HomeUiState(
-    internal val input: String = "",
-    internal val result: FactorialResult? = null,
-    internal val inputError: HomeInputError? = null,
+    /** Active parish name, or `null` to fall back to the default parish name. */
+    internal val parishName: String? = null,
+    internal val announcements: List<AnnouncementUiModel> = emptyList(),
 )
 
-internal data class FactorialResult(
-    internal val input: Int,
-    internal val value: Long,
+internal data class AnnouncementUiModel(
+    internal val id: String,
+    internal val title: String,
+    internal val message: String,
+    internal val dateLabel: String,
 )
-
-internal enum class HomeInputError {
-    Required,
-    InvalidNumber,
-    OutOfRange,
-}

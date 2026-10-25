@@ -65,7 +65,9 @@ private fun mainEntryProvider(
 ) = entryProvider {
     entry<Screen.ScreenA> {
         HomeRoute(
-            onExploreNavigationClick = { backStack.add(Screen.ScreenB) },
+            // Feature destinations land with their modules; until then they open a placeholder.
+            onQuickAccessClick = { backStack.add(Screen.ScreenC) },
+            onSwitchParishClick = { backStack.add(Screen.ScreenC) },
             modifier = Modifier.fillMaxSize(),
         )
     }

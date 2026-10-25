@@ -17,39 +17,25 @@
 package br.com.paroquiasantacabrini.app.feature.home.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.createSavedStateHandle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 
 @Composable
 public fun HomeRoute(
-    onExploreNavigationClick: () -> Unit,
+    onQuickAccessClick: (HomeDestination) -> Unit,
+    onSwitchParishClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    HomeRoute(
-        onExploreNavigationClick = onExploreNavigationClick,
-        viewModel = viewModel {
-            HomeViewModel(createSavedStateHandle())
-        },
-        modifier = modifier,
-    )
-}
-
-@Composable
-internal fun HomeRoute(
-    onExploreNavigationClick: () -> Unit,
-    viewModel: HomeViewModel,
-    modifier: Modifier = Modifier,
-) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    // Parish and announcements will be collected from the offline-first data layer once a
+    // repository exists; until then the dashboard shows the default parish and no announcements.
+    val state = remember { HomeUiState() }
 
     HomeScreen(
         state = state,
-        onInputChanged = viewModel::onInputChanged,
-        onCalculateClick = viewModel::onCalculateClick,
-        onExploreNavigationClick = onExploreNavigationClick,
+        onQuickAccessClick = onQuickAccessClick,
+        onSwitchParishClick = onSwitchParishClick,
         modifier = modifier,
     )
 }

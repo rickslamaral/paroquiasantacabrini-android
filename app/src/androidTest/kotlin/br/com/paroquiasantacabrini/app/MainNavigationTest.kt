@@ -33,21 +33,20 @@ class MainNavigationTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun testNavigationFlow_FromHomeToPosts() {
+    fun testNavigationFlow_FromHomeToPlaceholder() {
         // Start the app
         composeTestRule.setContent {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        // 1. Verify we start on the home feature
-        composeTestRule.onNodeWithText("Paroquia Santa Cabrini").assertIsDisplayed()
+        // 1. Verify we start on the home dashboard
+        composeTestRule.onNodeWithText("Paróquia Santa Cabrini").assertIsDisplayed()
 
-        // 2. Navigate to the posts demo
-        composeTestRule.onNodeWithText("Explore navigation").performClick()
+        // 2. Open a quick-access destination (placeholder until its feature module exists)
+        composeTestRule.onNodeWithText("Daily Liturgy").performClick()
 
-        // Wait for transition and verify the posts destination
-        composeTestRule.onNodeWithText("Posts").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Paroquia Santa Cabrini").assertDoesNotExist()
+        // Wait for transition and verify the placeholder destination
+        composeTestRule.onNodeWithText("This is Screen C").assertIsDisplayed()
     }
 
     @Test
@@ -56,16 +55,16 @@ class MainNavigationTest {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        // Navigate to posts
-        composeTestRule.onNodeWithText("Explore navigation").performClick()
-        composeTestRule.onNodeWithText("Posts").assertIsDisplayed()
+        // Navigate to the placeholder
+        composeTestRule.onNodeWithText("Daily Liturgy").performClick()
+        composeTestRule.onNodeWithText("This is Screen C").assertIsDisplayed()
 
         // Trigger system back (Navigation3 handles this via the onBack lambda)
         Espresso.pressBack()
 
-        // Verify we are back on the home feature
-        composeTestRule.onNodeWithText("Paroquia Santa Cabrini").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Posts").assertDoesNotExist()
+        // Verify we are back on the home dashboard
+        composeTestRule.onNodeWithText("Paróquia Santa Cabrini").assertIsDisplayed()
+        composeTestRule.onNodeWithText("This is Screen C").assertDoesNotExist()
     }
 
     @Test

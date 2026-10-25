@@ -17,120 +17,86 @@
 package br.com.paroquiasantacabrini.app.feature.home.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
-import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateOutlinedButton
+import androidx.compose.ui.unit.dp
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
 import br.com.paroquiasantacabrini.app.feature.home.R
-import br.com.paroquiasantacabrini.app.feature.home.ui.MAX_FACTORIAL_INPUT
-import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeInputError
+import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 
 @Composable
 internal fun HomeContent(
     state: HomeUiState,
-    onInputChanged: (String) -> Unit,
-    onCalculateClick: () -> Unit,
-    onExploreNavigationClick: () -> Unit,
+    onQuickAccessClick: (HomeDestination) -> Unit,
+    onSwitchParishClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val keyboardController = LocalSoftwareKeyboardController.current
-    val inputError = state.inputError.toMessage()
-
-    Column(
+    // Adaptive columns collapse to a single column on narrow screens or with large font scales.
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(minSize = QUICK_ACCESS_MIN_WIDTH),
         modifier = modifier,
+        contentPadding = PaddingValues(TemplateSpacing.medium),
+        horizontalArrangement = Arrangement.spacedBy(TemplateSpacing.medium),
         verticalArrangement = Arrangement.spacedBy(TemplateSpacing.medium),
     ) {
-        Text(
-            text = stringResource(R.string.feature_home_title),
-            modifier = Modifier.semantics { heading() },
-            style = MaterialTheme.typography.headlineMedium,
-        )
-        Text(
-            text = stringResource(R.string.feature_home_subtitle),
-            style = MaterialTheme.typography.bodyLarge,
-        )
-        OutlinedTextField(
-            value = state.input,
-            onValueChange = onInputChanged,
-            modifier = Modifier
-                .fillMaxWidth()
-                .then(
-                    if (inputError != null) {
-                        Modifier.semantics { error(inputError) }
-                    } else {
-                        Modifier
-                    },
-                ),
-            label = { Text(stringResource(R.string.feature_home_input_label)) },
-            supportingText = {
-                Text(
-                    inputError ?: stringResource(
-                        R.string.feature_home_input_supporting_text,
-                        MAX_FACTORIAL_INPUT,
-                    ),
-                )
-            },
-            isError = inputError != null,
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Done,
-            ),
-            keyboardActions = KeyboardActions(
-                onDone = {
-                    onCalculateClick()
-                    keyboardController?.hide()
-                },
-            ),
-        )
-        TemplateButton(
-            onClick = onCalculateClick,
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text(stringResource(R.string.feature_home_calculate))
-        }
-        state.result?.let { result ->
-            Text(
-                text = stringResource(
-                    R.string.feature_home_result,
-                    result.input,
-                    result.value,
-                ),
-                style = MaterialTheme.typography.titleLarge,
+        item(key = "header", span = { GridItemSpan(maxLineSpan) }) {
+            ParishHeader(
+                parishName = state.parishName ?: stringResource(R.string.feature_home_default_parish_name),
+                onSwitchParishClick = onSwitchParishClick,
             )
         }
-        TemplateOutlinedButton(
-            onClick = onExploreNavigationClick,
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Text(stringResource(R.string.feature_home_explore_navigation))
+        item(key = "quick_access_title", span = { GridItemSpan(maxLineSpan) }) {
+            SectionTitle(text = stringResource(R.string.feature_home_quick_access_title))
+        }
+        items(items = QuickAccessItems, key = { it.destination }) { item ->
+            QuickAccessCard(
+                item = item,
+                onClick = { onQuickAccessClick(item.destination) },
+            )
+        }
+        item(key = "announcements_title", span = { GridItemSpan(maxLineSpan) }) {
+            SectionTitle(text = stringResource(R.string.feature_home_announcements_title))
+        }
+        if (state.announcements.isEmpty()) {
+            item(key = "announcements_empty", span = { GridItemSpan(maxLineSpan) }) {
+                Text(
+                    text = stringResource(R.string.feature_home_announcements_empty),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+            }
+        } else {
+            items(
+                items = state.announcements,
+                key = { it.id },
+                span = { GridItemSpan(maxLineSpan) },
+            ) { announcement ->
+                AnnouncementCard(announcement = announcement)
+            }
         }
     }
 }
 
 @Composable
-private fun HomeInputError?.toMessage(): String? = when (this) {
-    HomeInputError.Required -> stringResource(R.string.feature_home_error_required)
-    HomeInputError.InvalidNumber -> stringResource(R.string.feature_home_error_invalid_number)
-    HomeInputError.OutOfRange -> stringResource(
-        R.string.feature_home_error_out_of_range,
-        MAX_FACTORIAL_INPUT,
+private fun SectionTitle(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        text = text,
+        modifier = modifier.semantics { heading() },
+        style = MaterialTheme.typography.titleLarge,
     )
-    null -> null
 }
+
+private val QUICK_ACCESS_MIN_WIDTH = 160.dp

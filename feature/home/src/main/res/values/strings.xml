@@ -15,14 +15,13 @@
      limitations under the License.
 -->
 <resources>
-    <string name="feature_home_title" translatable="false">Paroquia Santa Cabrini</string>
-    <string name="feature_home_subtitle">A small reference feature with state, validation, and layered tests.</string>
-    <string name="feature_home_input_label">Factorial input</string>
-    <string name="feature_home_input_supporting_text">Enter a whole number from 0 to %1$d.</string>
-    <string name="feature_home_error_required">Enter a number.</string>
-    <string name="feature_home_error_invalid_number">Enter a valid whole number.</string>
-    <string name="feature_home_error_out_of_range">Enter a number from 0 to %1$d.</string>
-    <string name="feature_home_calculate">Calculate factorial</string>
-    <string name="feature_home_result">%1$d! = %2$d</string>
-    <string name="feature_home_explore_navigation">Explore navigation</string>
+    <string name="feature_home_default_parish_name" translatable="false">Paróquia Santa Cabrini</string>
+    <string name="feature_home_switch_parish">Switch parish</string>
+    <string name="feature_home_quick_access_title">Quick access</string>
+    <string name="feature_home_daily_liturgy">Daily Liturgy</string>
+    <string name="feature_home_mass_schedule">Mass Times</string>
+    <string name="feature_home_prayer_requests">Prayer Requests</string>
+    <string name="feature_home_tithes_and_offerings">Tithes and Offerings (PIX)</string>
+    <string name="feature_home_announcements_title">Featured announcements</string>
+    <string name="feature_home_announcements_empty">No announcements right now.</string>
 </resources>
