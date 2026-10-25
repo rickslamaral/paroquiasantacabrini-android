@@ -52,15 +52,27 @@ AI_TOOLING_PATHS = (
     "skills-lock.json",
 )
 EXAMPLE_MODULES = (
+    "feature/community",
     "feature/home",
+    "feature/liturgy",
+    "feature/massschedule",
+    "feature/pix",
     "feature/posts",
+    "feature/prayer",
+    "feature/saint",
     "core/database",
     "library-android",
     "library-kotlin",
 )
 EXAMPLE_SETTINGS = (
     ':core:database',
+    ':feature:community',
     ':feature:home',
+    ':feature:liturgy',
+    ':feature:massschedule',
+    ':feature:pix',
+    ':feature:prayer',
+    ':feature:saint',
     ':feature:posts:domain',
     ':feature:posts:data',
     ':feature:posts:presentation',
