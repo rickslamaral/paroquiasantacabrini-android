@@ -14,14 +14,8 @@
  * limitations under the License.
  */
 
-package br.com.paroquiasantacabrini.app.ui.theme
+package br.com.paroquiasantacabrini.app.core.designsystem.theme
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Shapes
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontFamily
 
-val LabShapes = Shapes(
-    small = RoundedCornerShape(percent = 50),
-    medium = RoundedCornerShape(size = 8.dp),
-    large = RoundedCornerShape(size = 16.dp),
-)
+val LexendDecaFontFamily: FontFamily = FontFamily.SansSerif

@@ -21,13 +21,13 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateBackground
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.feature.home.ui.components.HomeContent
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
@@ -62,7 +62,7 @@ internal fun HomeScreen(
 @Preview(showBackground = true)
 @Composable
 private fun HomeScreenPreview() {
-    MaterialTheme {
+    ParoquiaTheme {
         HomeScreen(
             state = HomeUiState(
                 announcements = listOf(

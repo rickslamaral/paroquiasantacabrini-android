@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.com.paroquiasantacabrini.app.ui.theme
+package br.com.paroquiasantacabrini.app.core.designsystem.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -103,7 +103,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun TemplateTheme(
+fun ParoquiaTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit,

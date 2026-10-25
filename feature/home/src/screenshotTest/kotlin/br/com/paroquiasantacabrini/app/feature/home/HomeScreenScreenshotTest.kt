@@ -16,11 +16,8 @@
 
 package br.com.paroquiasantacabrini.app.feature.home
 
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenSizePreviews
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenVariantPreviews
 import br.com.paroquiasantacabrini.app.feature.home.ui.HomeScreen
@@ -44,8 +41,7 @@ public fun HomeScreenVariantPreview() {
 
 @Composable
 private fun HomeScreenWithAnnouncement() {
-    val colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()
-    MaterialTheme(colorScheme = colorScheme) {
+    ParoquiaTheme {
         HomeScreen(
             state = HomeUiState(
                 announcements = listOf(

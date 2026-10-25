@@ -16,7 +16,7 @@
 
 @file:Suppress("MagicNumber")
 
-package br.com.paroquiasantacabrini.app.ui.theme
+package br.com.paroquiasantacabrini.app.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 
