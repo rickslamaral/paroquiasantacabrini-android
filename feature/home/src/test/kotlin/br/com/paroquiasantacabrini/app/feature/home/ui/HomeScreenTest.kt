@@ -19,6 +19,7 @@ package br.com.paroquiasantacabrini.app.feature.home.ui
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.v2.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
@@ -99,6 +100,16 @@ public class HomeScreenTest {
         composeTestRule.onNodeWithText("Festa da padroeira").assertIsDisplayed()
         composeTestRule.onNodeWithText("Missa solene às 19h.").assertIsDisplayed()
         composeTestRule.onNodeWithText("No announcements right now.").assertDoesNotExist()
+    }
+
+    @Test
+    public fun churchPhotosAreDescribedForScreenReaders() {
+        setHomeContent()
+
+        composeTestRule.onNodeWithText("Our church").assertIsDisplayed()
+        composeTestRule.onNodeWithContentDescription(
+            "Front of the parish church, with a cross on the bell tower",
+        ).assertIsDisplayed()
     }
 
     @Test

@@ -31,4 +31,8 @@
     <string name="feature_home_link_facebook_description">Like the page for broadcasts and events.</string>
     <string name="feature_home_link_diocese_title">Diocese of Santo Amaro</string>
     <string name="feature_home_link_diocese_description">Learn more on the parish page of the diocese portal.</string>
+    <string name="feature_home_gallery_title">Our church</string>
+    <string name="feature_home_photo_facade">Front of the parish church, with a cross on the bell tower</string>
+    <string name="feature_home_photo_celebration">Celebration before the crucifix, with the priest and altar servers at the altar</string>
+    <string name="feature_home_photo_altar">Altar with a crucifix and the Blessed Sacrament exposed</string>
 </resources>

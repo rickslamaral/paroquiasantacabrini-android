@@ -85,6 +85,12 @@ internal fun HomeContent(
                 AnnouncementCard(announcement = announcement)
             }
         }
+        item(key = "gallery_title", span = { GridItemSpan(maxLineSpan) }) {
+            SectionTitle(text = stringResource(R.string.feature_home_gallery_title))
+        }
+        item(key = "gallery", span = { GridItemSpan(maxLineSpan) }) {
+            ChurchGallery()
+        }
         item(key = "links_title", span = { GridItemSpan(maxLineSpan) }) {
             SectionTitle(text = stringResource(R.string.feature_home_links_title))
         }
