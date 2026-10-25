@@ -34,4 +34,10 @@ sealed interface Screen {
 
     @Serializable
     public data object MassSchedule : NavKey
+
+    @Serializable
+    public data object MassMode : NavKey
+
+    @Serializable
+    public data object DailyLiturgy : NavKey
 }

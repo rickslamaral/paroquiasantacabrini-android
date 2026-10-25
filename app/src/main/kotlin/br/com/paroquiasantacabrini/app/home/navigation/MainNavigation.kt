@@ -35,6 +35,8 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import br.com.paroquiasantacabrini.app.feature.home.ui.HomeRoute
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
+import br.com.paroquiasantacabrini.app.feature.liturgy.ui.DailyLiturgyRoute
+import br.com.paroquiasantacabrini.app.feature.liturgy.ui.MassModeRoute
 import br.com.paroquiasantacabrini.app.feature.massschedule.ui.MassScheduleRoute
 import br.com.paroquiasantacabrini.app.feature.pix.ui.PixRoute
 import br.com.paroquiasantacabrini.app.feature.posts.presentation.ui.PostsRoute
@@ -74,6 +76,7 @@ private fun mainEntryProvider(
                     when (destination) {
                         HomeDestination.TithesAndOfferings -> Screen.Pix
                         HomeDestination.MassSchedule -> Screen.MassSchedule
+                        HomeDestination.DailyLiturgy -> Screen.DailyLiturgy
                         else -> Screen.ScreenC
                     },
                 )
@@ -87,6 +90,19 @@ private fun mainEntryProvider(
     }
     entry<Screen.Pix> {
         PixRoute(modifier = Modifier.fillMaxSize())
+    }
+    entry<Screen.MassMode> {
+        MassModeRoute(
+            onBackClick = { backStack.removeLastOrNull() },
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+    entry<Screen.DailyLiturgy> {
+        DailyLiturgyRoute(
+            onPrayerRequestClick = { backStack.add(Screen.ScreenC) },
+            onBackClick = { backStack.removeLastOrNull() },
+            modifier = Modifier.fillMaxSize(),
+        )
     }
     entry<Screen.MassSchedule> {
         MassScheduleRoute(modifier = Modifier.fillMaxSize())
