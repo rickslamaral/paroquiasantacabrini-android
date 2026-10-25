@@ -18,6 +18,7 @@ plugins {
     alias(libs.plugins.app.android.library.jacoco)
     alias(libs.plugins.app.android.junit5)
     alias(libs.plugins.app.android.room)
+    alias(libs.plugins.app.hilt)
     alias(libs.plugins.app.kotlin.explicit.visibility)
 }
 

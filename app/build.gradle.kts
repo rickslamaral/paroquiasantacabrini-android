@@ -121,8 +121,8 @@ android {
 
     defaultConfig {
         applicationId = "br.com.paroquiasantacabrini.app"
-        versionCode = 5
-        versionName = "0.4.1"
+        versionCode = 6
+        versionName = "0.5.0"
         testInstrumentationRunner = "br.com.paroquiasantacabrini.app.HiltTestRunner"
     }
 
@@ -211,6 +211,7 @@ tasks {
 }
 
 dependencies {
+    implementation(project(":core:database"))
     implementation(project(":core:designsystem"))
     implementation(project(":feature:home"))
     implementation(project(":feature:posts:data"))
