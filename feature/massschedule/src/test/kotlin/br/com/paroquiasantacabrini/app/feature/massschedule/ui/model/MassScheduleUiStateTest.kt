@@ -18,10 +18,12 @@ package br.com.paroquiasantacabrini.app.feature.massschedule.ui.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.time.DayOfWeek
 
 internal class MassScheduleUiStateTest {
 
-    private val contact = MassScheduleUiState.forParish().contact
+    private val state = MassScheduleUiState.forParish()
+    private val contact = state.contact
 
     @Test
     internal fun `phone uri is an international tel link`() {
@@ -29,7 +31,12 @@ internal class MassScheduleUiStateTest {
     }
 
     @Test
-    internal fun `map uri encodes the street address and postal code`() {
+    internal fun `whatsapp uri uses the same number`() {
+        assertThat(contact.whatsappUri).isEqualTo("https://wa.me/551159289576")
+    }
+
+    @Test
+    internal fun `map uri encodes the street address`() {
         assertThat(contact.mapUri).startsWith("https://www.google.com/maps/search/?api=1&query=")
         assertThat(contact.mapUri).contains("Rua+Eur%C3%ADdice+de+Caccine%2C+286")
         assertThat(contact.mapUri).doesNotContain(" ")
@@ -37,8 +44,22 @@ internal class MassScheduleUiStateTest {
 
     @Test
     internal fun `sunday has three masses in chronological order`() {
-        val sunday = MassScheduleUiState.forParish().celebrations.last()
+        val sunday = state.celebrations.last()
 
-        assertThat(sunday.times).containsExactly("08h", "10h30", "18h")
+        assertThat(sunday.masses.map { it.time }).containsExactly("08h", "10h30", "18h")
+    }
+
+    @Test
+    internal fun `tuesday to friday lists four evening masses`() {
+        assertThat(state.celebrations.first().masses.map { it.time })
+            .containsExactly("19h", "19h", "19h", "19h")
+    }
+
+    @Test
+    internal fun `the day tab follows the day of the week`() {
+        assertThat(state.initialCelebrationIndex(DayOfWeek.SUNDAY)).isEqualTo(2)
+        assertThat(state.initialCelebrationIndex(DayOfWeek.SATURDAY)).isEqualTo(1)
+        assertThat(state.initialCelebrationIndex(DayOfWeek.WEDNESDAY)).isEqualTo(0)
+        assertThat(state.initialCelebrationIndex(DayOfWeek.MONDAY)).isEqualTo(0)
     }
 }

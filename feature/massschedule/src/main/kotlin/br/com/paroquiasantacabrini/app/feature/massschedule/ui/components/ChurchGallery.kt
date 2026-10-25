@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.com.paroquiasantacabrini.app.feature.home.ui.components
+package br.com.paroquiasantacabrini.app.feature.massschedule.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -24,49 +24,49 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
-import br.com.paroquiasantacabrini.app.feature.home.R
+import br.com.paroquiasantacabrini.app.feature.massschedule.R
 
 internal data class ChurchPhoto(
     @get:DrawableRes internal val imageRes: Int,
     @get:StringRes internal val descriptionRes: Int,
 )
 
-/** Photos of the parish church, in display order. */
+/** More photos of the parish church, in display order. The facade is shown at the top of the screen. */
 internal val ChurchPhotos: List<ChurchPhoto> = listOf(
-    ChurchPhoto(R.drawable.feature_home_church_facade, R.string.feature_home_photo_facade),
-    ChurchPhoto(R.drawable.feature_home_church_celebration, R.string.feature_home_photo_celebration),
-    ChurchPhoto(R.drawable.feature_home_church_altar, R.string.feature_home_photo_altar),
+    ChurchPhoto(R.drawable.feature_massschedule_church_celebration, R.string.feature_massschedule_photo_celebration),
+    ChurchPhoto(R.drawable.feature_massschedule_church_altar, R.string.feature_massschedule_photo_altar),
 )
 
 @Composable
 internal fun ChurchGallery(
     modifier: Modifier = Modifier,
 ) {
-    // Horizontal row inside the dashboard grid: photos scroll sideways, the page scrolls down.
+    // Photos scroll sideways while the page scrolls down.
     LazyRow(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         items(items = ChurchPhotos, key = { it.imageRes }) { photo ->
-            Card(modifier = Modifier.width(PHOTO_WIDTH).height(PHOTO_HEIGHT)) {
-                Image(
-                    painter = painterResource(photo.imageRes),
-                    contentDescription = stringResource(photo.descriptionRes),
-                    modifier = Modifier.width(PHOTO_WIDTH).height(PHOTO_HEIGHT),
-                    contentScale = ContentScale.Crop,
-                )
-            }
+            Image(
+                painter = painterResource(photo.imageRes),
+                contentDescription = stringResource(photo.descriptionRes),
+                modifier = Modifier
+                    .width(PHOTO_WIDTH)
+                    .height(PHOTO_HEIGHT)
+                    .clip(RoundedCornerShape(18.dp)),
+                contentScale = ContentScale.Crop,
+            )
         }
     }
 }
 
-private val PHOTO_WIDTH = 160.dp
-private val PHOTO_HEIGHT = 200.dp
+private val PHOTO_WIDTH = 220.dp
+private val PHOTO_HEIGHT = 150.dp

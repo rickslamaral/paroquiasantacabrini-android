@@ -43,10 +43,10 @@ internal data class MassModeState(
     internal val canGrowText: Boolean get() = textSizeSp < MAX_TEXT_SIZE_SP
 
     internal companion object {
-        internal const val DEFAULT_TEXT_SIZE_SP: Int = 18
+        internal const val DEFAULT_TEXT_SIZE_SP: Int = 15
         internal const val MIN_TEXT_SIZE_SP: Int = 14
-        internal const val MAX_TEXT_SIZE_SP: Int = 28
-        internal const val TEXT_SIZE_STEP_SP: Int = 2
+        internal const val MAX_TEXT_SIZE_SP: Int = 21
+        internal const val TEXT_SIZE_STEP_SP: Int = 1
     }
 }
 

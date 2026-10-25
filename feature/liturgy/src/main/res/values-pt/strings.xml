@@ -23,7 +23,6 @@
     <string name="feature_liturgy_mass_part_progress">Parte %1$d de %2$d</string>
     <string name="feature_liturgy_mass_parts_title">Partes da celebração</string>
     <string name="feature_liturgy_mass_parts_hint">Toque para acompanhar</string>
-    <string name="feature_liturgy_mass_part_row">%1$d · %2$s</string>
     <string name="feature_liturgy_mass_part_current">Agora nesta parte</string>
     <string name="feature_liturgy_mass_part_open">Abrir esta parte</string>
     <string name="feature_liturgy_mass_previous">‹ Anterior</string>

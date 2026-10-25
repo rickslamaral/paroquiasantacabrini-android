@@ -15,27 +15,9 @@
      limitations under the License.
 -->
 <resources>
-    <string name="feature_home_default_parish_name" translatable="false">Paróquia Santa Cabrini</string>
-    <string name="feature_home_switch_parish">Switch parish</string>
     <string name="feature_home_quick_access_title">Quick access</string>
-    <string name="feature_home_daily_liturgy">Daily Liturgy</string>
-    <string name="feature_home_mass_schedule">Mass Times</string>
-    <string name="feature_home_prayer_requests">Prayer Requests</string>
-    <string name="feature_home_tithes_and_offerings">Tithes and Offerings (PIX)</string>
-    <string name="feature_home_announcements_title">Featured announcements</string>
-    <string name="feature_home_announcements_empty">No announcements right now.</string>
-    <string name="feature_home_links_title">Get to know the parish</string>
-    <string name="feature_home_link_instagram_title">Instagram</string>
-    <string name="feature_home_link_instagram_description">Follow announcements, broadcasts and community life on @stacabrini.</string>
-    <string name="feature_home_link_facebook_title">Facebook</string>
-    <string name="feature_home_link_facebook_description">Like the page for broadcasts and events.</string>
-    <string name="feature_home_link_diocese_title">Diocese of Santo Amaro</string>
-    <string name="feature_home_link_diocese_description">Learn more on the parish page of the diocese portal.</string>
-    <string name="feature_home_gallery_title">Our church</string>
-    <string name="feature_home_photo_facade">Front of the parish church at dusk, with the lit cross on the bell tower and a stained-glass window of the Sacred Heart and Saint Frances Cabrini</string>
-    <string name="feature_home_photo_celebration">Celebration before the crucifix, with the priest and altar servers at the altar</string>
-    <string name="feature_home_photo_altar">Altar with a crucifix and the Blessed Sacrament exposed</string>
-    <string name="feature_home_mass_card_eyebrow">HOLY MASS</string>
+    <string name="feature_home_announcements_title">Parish notices</string>
+    <string name="feature_home_mass_card_eyebrow">MASSES</string>
     <string name="feature_home_mass_card_title">Come celebrate with us</string>
     <string name="feature_home_mass_card_text">Today and during the week · see the times</string>
     <string name="feature_home_massmode_banner_eyebrow">Follow the celebration</string>
@@ -49,7 +31,7 @@
     <string name="feature_home_patroness_title">Meet our patroness</string>
     <string name="feature_home_patroness_more">Learn more</string>
     <string name="feature_home_patroness_name">Saint Frances Xavier Cabrini</string>
-    <string name="feature_home_patroness_text">Patroness of migrants · memorial on December 22</string>
+    <string name="feature_home_patroness_text">Patroness of immigrants · memorial on December 22</string>
     <string name="feature_home_patroness_image">Illustration of Saint Frances Xavier Cabrini</string>
     <string name="feature_home_more_title">Explore</string>
     <string name="feature_home_more_eyebrow" translatable="false">Paróquia Santa Cabrini</string>
@@ -75,4 +57,18 @@
     <string name="feature_home_more_secretary_phone" translatable="false">(11) 5928-9576</string>
     <string name="feature_home_more_secretary_phone_label">Phone and WhatsApp</string>
     <string name="feature_home_more_contacts_button">See contacts and address</string>
+    <string name="feature_home_hero_eyebrow">Diocese of Santo Amaro</string>
+    <string name="feature_home_hero_title">A community that welcomes.</string>
+    <string name="feature_home_hero_subtitle" translatable="false">Vila Natal · São Paulo</string>
+    <string name="feature_home_hero_image">Front of the Paróquia Santa Cabrini church</string>
+    <string name="feature_home_welcome_eyebrow">Welcome to the community</string>
+    <string name="feature_home_welcome_title">So good to have you here.</string>
+    <string name="feature_home_welcome_text">Find the times, follow parish life and set aside a moment for prayer.</string>
+    <string name="feature_home_quick_times">Times</string>
+    <string name="feature_home_quick_liturgy">Liturgy</string>
+    <string name="feature_home_quick_prayer">Prayer</string>
+    <string name="feature_home_quick_tithes">Tithes</string>
+    <string name="feature_home_announcements_empty">No notices right now.</string>
+    <string name="feature_home_footer_note">Paróquia Santa Francisca Xavier Cabrini · Diocese of Santo Amaro</string>
+    <string name="feature_home_mass_card_glyph" translatable="false">✝</string>
 </resources>

@@ -19,20 +19,24 @@ package br.com.paroquiasantacabrini.app.feature.massschedule.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
 import br.com.paroquiasantacabrini.app.feature.massschedule.ui.model.MassScheduleUiState
+import br.com.paroquiasantacabrini.app.feature.massschedule.ui.model.initialCelebrationIndex
+import java.time.LocalDate
 
 @Composable
 public fun MassScheduleRoute(
+    onBackClick: () -> Unit,
+    onDirectionsClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val state = remember { MassScheduleUiState.forParish() }
-    val uriHandler = LocalUriHandler.current
+    val initialDayIndex = remember { state.initialCelebrationIndex(LocalDate.now().dayOfWeek) }
 
     MassScheduleScreen(
         state = state,
-        // A device without a dialer, mail app or browser cannot open the link; ignore it.
-        onActionClick = { uri -> runCatching { uriHandler.openUri(uri) } },
+        initialDayIndex = initialDayIndex,
+        onDirectionsClick = onDirectionsClick,
         modifier = modifier,
+        onBackClick = onBackClick,
     )
 }

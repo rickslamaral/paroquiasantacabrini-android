@@ -25,7 +25,6 @@
     <string name="feature_liturgy_mass_part_progress">Part %1$d of %2$d</string>
     <string name="feature_liturgy_mass_parts_title">Parts of the celebration</string>
     <string name="feature_liturgy_mass_parts_hint">Tap to follow along</string>
-    <string name="feature_liturgy_mass_part_row">%1$d · %2$s</string>
     <string name="feature_liturgy_mass_part_current">Now in this part</string>
     <string name="feature_liturgy_mass_part_open">Open this part</string>
     <string name="feature_liturgy_mass_previous">‹ Previous</string>

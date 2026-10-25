@@ -15,23 +15,39 @@
      limitations under the License.
 -->
 <resources>
-    <string name="feature_massschedule_title">Horários de Missas</string>
-    <string name="feature_massschedule_celebrations_title">Missas e celebrações</string>
-    <string name="feature_massschedule_day_tuesday_friday">Terça a sexta-feira</string>
+    <string name="feature_massschedule_eyebrow">Celebrações</string>
+    <string name="feature_massschedule_title">Horários</string>
+    <string name="feature_massschedule_intro">Participe nas missas e nos momentos de oração da comunidade.</string>
+    <string name="feature_massschedule_day_tuesday_friday">Terça a sexta</string>
     <string name="feature_massschedule_day_saturday">Sábado</string>
     <string name="feature_massschedule_day_sunday">Domingo</string>
-    <string name="feature_massschedule_adoration_label">Adoração ao Santíssimo Sacramento (quinta-feira)</string>
+    <string name="feature_massschedule_day_tuesday">Terça-feira</string>
+    <string name="feature_massschedule_day_wednesday">Quarta-feira</string>
+    <string name="feature_massschedule_day_thursday">Quinta-feira</string>
+    <string name="feature_massschedule_day_friday">Sexta-feira</string>
+    <string name="feature_massschedule_holy_mass">Santa Missa</string>
+    <string name="feature_massschedule_mass_subtitle">%1$s · Igreja paroquial</string>
+    <string name="feature_massschedule_other_services">Outros atendimentos</string>
+    <string name="feature_massschedule_adoration_title">Adoração ao Santíssimo</string>
+    <string name="feature_massschedule_adoration_text">Quinta-feira, às 18h</string>
     <string name="feature_massschedule_confessions_title">Confissões</string>
-    <string name="feature_massschedule_confessions_text">Agendadas na secretaria durante a semana ou aos domingos após as missas das 08h e das 10h30.</string>
-    <string name="feature_massschedule_office_title">Atendimento da secretaria</string>
-    <string name="feature_massschedule_time_range">%1$s às %2$s</string>
-    <string name="feature_massschedule_contact_title">Contato</string>
-    <string name="feature_massschedule_address_label">Endereço</string>
-    <string name="feature_massschedule_phone_label">Telefone / WhatsApp</string>
+    <string name="feature_massschedule_confessions_text">Marque na secretaria durante a semana ou procure o sacerdote após as missas de domingo, às 08h e 10h30.</string>
+    <string name="feature_massschedule_office_title">Secretaria paroquial</string>
+    <string name="feature_massschedule_office_text">Terça a sexta, das 14h às 18h · sábado, das 08h às 12h.</string>
+    <string name="feature_massschedule_directions_button">Como chegar à paróquia</string>
+    <string name="feature_massschedule_contact_eyebrow">Estamos aqui</string>
+    <string name="feature_massschedule_contact_title">Contacto e morada</string>
+    <string name="feature_massschedule_contact_address_format">%1$s\n%2$s\nCEP %3$s</string>
+    <string name="feature_massschedule_phone_note">Telefone e WhatsApp</string>
     <string name="feature_massschedule_email_label">E-mail</string>
     <string name="feature_massschedule_pastor_label">Pároco</string>
-    <string name="feature_massschedule_secretary_label">Secretária</string>
-    <string name="feature_massschedule_action_call">Ligar para a paróquia</string>
+    <string name="feature_massschedule_secretary_label">Secretaria</string>
+    <string name="feature_massschedule_action_map">Abrir morada no mapa</string>
+    <string name="feature_massschedule_action_call">Ligar</string>
     <string name="feature_massschedule_action_email">Enviar e-mail</string>
-    <string name="feature_massschedule_action_map">Abrir no mapa</string>
+    <string name="feature_massschedule_gallery_title">A nossa igreja</string>
+    <string name="feature_massschedule_photo_facade">Fachada da igreja da paróquia ao entardecer, com a cruz iluminada na torre e um vitral do Sagrado Coração e de Santa Francisca Cabrini</string>
+    <string name="feature_massschedule_photo_celebration">Celebração diante do crucifixo, com o padre e os acólitos no altar</string>
+    <string name="feature_massschedule_photo_altar">Altar com o crucifixo e o Santíssimo Sacramento exposto</string>
+    <string name="feature_massschedule_hero_facade">Fachada da igreja da paróquia</string>
 </resources>

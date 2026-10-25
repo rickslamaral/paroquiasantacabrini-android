@@ -17,8 +17,6 @@
 package br.com.paroquiasantacabrini.app.feature.home.ui.model
 
 internal data class HomeUiState(
-    /** Active parish name, or `null` to fall back to the default parish name. */
-    internal val parishName: String? = null,
     internal val announcements: List<AnnouncementUiModel> = emptyList(),
 )
 

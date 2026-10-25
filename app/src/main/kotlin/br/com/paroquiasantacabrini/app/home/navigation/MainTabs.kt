@@ -17,14 +17,6 @@
 package br.com.paroquiasantacabrini.app.home.navigation
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import br.com.paroquiasantacabrini.app.R
@@ -48,7 +40,7 @@ internal fun NavKey?.toTab(): MainTab = when (this) {
     Screen.PrayerHub, Screen.Rosary, Screen.Novenas, Screen.Exam, Screen.PrayerRequest, Screen.DailyLiturgy ->
         MainTab.Pray
     Screen.More, Screen.Pix, Screen.SaintCabrini, Screen.Saints, Screen.Community, Screen.Groups,
-    Screen.Catechesis, Screen.Confirmation, Screen.Notices,
+    Screen.Catechesis, Screen.Confirmation, Screen.Notices, Screen.Contact,
     -> MainTab.More
     else -> MainTab.Home
 }
@@ -61,7 +53,8 @@ internal fun NavBackStack<NavKey>.openTab(tab: MainTab) {
 }
 
 internal fun MoreDestination.toScreen(): NavKey = when (this) {
-    MoreDestination.MassTimes, MoreDestination.Contact -> Screen.MassSchedule
+    MoreDestination.MassTimes -> Screen.MassSchedule
+    MoreDestination.Contact -> Screen.Contact
     MoreDestination.MassMode -> Screen.MassMode
     MoreDestination.DailyLiturgy -> Screen.DailyLiturgy
     MoreDestination.Saints -> Screen.Saints
@@ -75,22 +68,4 @@ internal fun MoreDestination.toScreen(): NavKey = when (this) {
     MoreDestination.Novenas -> Screen.Novenas
     MoreDestination.Rosary -> Screen.Rosary
     MoreDestination.Exam -> Screen.Exam
-}
-
-@Composable
-internal fun MainNavigationBar(
-    selected: MainTab,
-    onTabClick: (MainTab) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    NavigationBar(modifier = modifier.fillMaxWidth()) {
-        MainTab.entries.forEach { tab ->
-            NavigationBarItem(
-                selected = tab == selected,
-                onClick = { onTabClick(tab) },
-                icon = { Text(text = tab.glyph, modifier = Modifier.clearAndSetSemantics {}) },
-                label = { Text(stringResource(tab.labelRes)) },
-            )
-        }
-    }
 }

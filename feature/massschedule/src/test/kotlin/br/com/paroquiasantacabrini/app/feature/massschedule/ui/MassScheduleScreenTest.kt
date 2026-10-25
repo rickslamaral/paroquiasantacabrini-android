@@ -18,6 +18,9 @@ package br.com.paroquiasantacabrini.app.feature.massschedule.ui
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.isSelectable
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
@@ -38,49 +41,62 @@ public class MassScheduleScreenTest {
     public val composeTestRule = createComposeRule()
 
     @Test
-    public fun showsMassTimesAdorationAndOfficeHours() {
-        setScheduleContent()
+    public fun opensOnTheRequestedDayAndListsItsMasses() {
+        setScheduleContent(initialDayIndex = 2)
 
-        composeTestRule.onNodeWithText("Mass Times").assertIsDisplayed()
-        composeTestRule.onNodeWithText("08h, 10h30, 18h").performScrollTo().assertIsDisplayed()
-        composeTestRule.onNodeWithText("Adoration of the Blessed Sacrament (Thursday)")
-            .performScrollTo()
-            .assertIsDisplayed()
-        composeTestRule.onNodeWithText("14h to 18h").performScrollTo().assertIsDisplayed()
-        composeTestRule.onNodeWithText("08h to 12h").performScrollTo().assertIsDisplayed()
+        dayTab("Sunday").assertIsSelected()
+        composeTestRule.onNodeWithText("08h").assertIsDisplayed()
+        composeTestRule.onNodeWithText("10h30").assertIsDisplayed()
+        composeTestRule.onNodeWithText("18h").assertIsDisplayed()
     }
 
     @Test
-    public fun showsContactDetails() {
+    public fun choosingADayTabShowsItsMasses() {
+        setScheduleContent(initialDayIndex = 2)
+
+        dayTab("Tuesday to Friday").performClick()
+
+        dayTab("Tuesday to Friday").assertIsSelected()
+        composeTestRule.onNodeWithText("Wednesday · Parish church").assertIsDisplayed()
+        composeTestRule.onNodeWithText("10h30").assertDoesNotExist()
+    }
+
+    @Test
+    public fun showsAdorationConfessionsAndTheParishOffice() {
         setScheduleContent()
 
-        composeTestRule.onNodeWithText("(11) 5928-9576").performScrollTo().assertIsDisplayed()
-        composeTestRule.onNodeWithText("Pe. Vinícius Henrique Maciel")
+        composeTestRule.onNodeWithText("Adoration of the Blessed Sacrament")
+            .performScrollTo()
+            .assertIsDisplayed()
+        composeTestRule.onNodeWithText("Thursday, at 18h").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithText("Confessions").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithText("Tuesday to Friday, 14h–18h · Saturday, 08h–12h")
             .performScrollTo()
             .assertIsDisplayed()
     }
 
     @Test
-    public fun contactActionsForwardPhoneEmailAndMapUris() {
-        val opened = mutableListOf<String>()
-        setScheduleContent(onActionClick = { opened += it })
+    public fun directionsButtonAsksToOpenTheContactScreen() {
+        var clicks = 0
+        setScheduleContent(onDirectionsClick = { clicks += 1 })
 
-        composeTestRule.onNodeWithText("Call the parish").performScrollTo().performClick()
-        composeTestRule.onNodeWithText("Send an e-mail").performScrollTo().performClick()
-        composeTestRule.onNodeWithText("Open in maps").performScrollTo().performClick()
+        composeTestRule.onNodeWithText("How to get to the parish").performScrollTo().performClick()
 
-        assertThat(opened).hasSize(3)
-        assertThat(opened[0]).isEqualTo("tel:+551159289576")
-        assertThat(opened[1]).isEqualTo("mailto:santafranciscaxaviercabrini@santoamaro.org.br")
-        assertThat(opened[2]).startsWith("https://www.google.com/maps/search/?api=1&query=")
+        assertThat(clicks).isEqualTo(1)
     }
 
-    private fun setScheduleContent(onActionClick: (String) -> Unit = {}) {
+    private fun dayTab(label: String) = composeTestRule.onNode(hasText(label) and isSelectable())
+
+    private fun setScheduleContent(
+        initialDayIndex: Int = 0,
+        onDirectionsClick: () -> Unit = {},
+    ) {
         composeTestRule.setContent {
             MaterialTheme {
                 MassScheduleScreen(
                     state = MassScheduleUiState.forParish(),
-                    onActionClick = onActionClick,
+                    initialDayIndex = initialDayIndex,
+                    onDirectionsClick = onDirectionsClick,
                 )
             }
         }

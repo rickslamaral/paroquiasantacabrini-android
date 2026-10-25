@@ -33,6 +33,7 @@ import br.com.paroquiasantacabrini.app.feature.home.ui.MoreRoute
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
 import br.com.paroquiasantacabrini.app.feature.liturgy.ui.DailyLiturgyRoute
 import br.com.paroquiasantacabrini.app.feature.liturgy.ui.MassModeRoute
+import br.com.paroquiasantacabrini.app.feature.massschedule.ui.ContactRoute
 import br.com.paroquiasantacabrini.app.feature.massschedule.ui.MassScheduleRoute
 import br.com.paroquiasantacabrini.app.feature.pix.ui.PixRoute
 import br.com.paroquiasantacabrini.app.feature.prayer.ui.ExamRoute
@@ -43,7 +44,6 @@ import br.com.paroquiasantacabrini.app.feature.prayer.ui.RosaryRoute
 import br.com.paroquiasantacabrini.app.feature.saint.ui.SaintCabriniRoute
 import br.com.paroquiasantacabrini.app.feature.saint.ui.SaintsRoute
 import br.com.paroquiasantacabrini.app.home.ContentGreen
-import br.com.paroquiasantacabrini.app.home.SwitchParishScreen
 
 internal fun EntryProviderScope<NavKey>.homeEntries(backStack: NavBackStack<NavKey>) {
     entry<Screen.ScreenA> {
@@ -62,14 +62,6 @@ internal fun EntryProviderScope<NavKey>.homeEntries(backStack: NavBackStack<NavK
                     },
                 )
             },
-            // Choosing another parish needs a parish catalog; the screen says so honestly for now.
-            onSwitchParishClick = { backStack.add(Screen.SwitchParish) },
-            modifier = Modifier.fillMaxSize(),
-        )
-    }
-    entry<Screen.SwitchParish> {
-        SwitchParishScreen(
-            onBackClick = { backStack.removeLastOrNull() },
             modifier = Modifier.fillMaxSize(),
         )
     }
@@ -130,7 +122,14 @@ internal fun EntryProviderScope<NavKey>.parishEntries(backStack: NavBackStack<Na
         PixRoute(modifier = Modifier.fillMaxSize())
     }
     entry<Screen.MassSchedule> {
-        MassScheduleRoute(modifier = Modifier.fillMaxSize())
+        MassScheduleRoute(
+            onBackClick = { backStack.removeLastOrNull() },
+            onDirectionsClick = { backStack.add(Screen.Contact) },
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+    entry<Screen.Contact> {
+        ContactRoute(onBackClick = { backStack.removeLastOrNull() }, modifier = Modifier.fillMaxSize())
     }
     entry<Screen.SaintCabrini> {
         SaintCabriniRoute(

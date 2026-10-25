@@ -40,21 +40,13 @@ public class HomeScreenTest {
     public val composeTestRule = createComposeRule()
 
     @Test
-    public fun headerShowsDefaultParishNameAndForwardsSwitchParishIntent() {
-        var switchClicks = 0
-        setHomeContent(onSwitchParishClick = { switchClicks += 1 })
+    public fun heroAndWelcomeIntroduceTheParish() {
+        setHomeContent()
 
-        composeTestRule.onNodeWithText("Paróquia Santa Cabrini").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Switch parish").performClick()
-
-        assertThat(switchClicks).isEqualTo(1)
-    }
-
-    @Test
-    public fun headerShowsActiveParishName() {
-        setHomeContent(state = HomeUiState(parishName = "Paróquia São José"))
-
-        composeTestRule.onNodeWithText("Paróquia São José").assertIsDisplayed()
+        composeTestRule.onNodeWithText("A community that welcomes.").assertIsDisplayed()
+        composeTestRule.onNodeWithText("So good to have you here.").assertIsDisplayed()
+        composeTestRule.onNodeWithContentDescription("Front of the Paróquia Santa Cabrini church")
+            .assertIsDisplayed()
     }
 
     @Test
@@ -62,14 +54,14 @@ public class HomeScreenTest {
         val clicked = mutableListOf<HomeDestination>()
         setHomeContent(onQuickAccessClick = { clicked += it })
 
-        composeTestRule.onNodeWithText("Daily Liturgy").performClick()
-        composeTestRule.onNodeWithText("Mass Times").performClick()
-        composeTestRule.onNodeWithText("Prayer Requests").performClick()
-        composeTestRule.onNodeWithText("Tithes and Offerings (PIX)").performClick()
+        composeTestRule.onNodeWithText("Times").performClick()
+        composeTestRule.onNodeWithText("Liturgy").performClick()
+        composeTestRule.onNodeWithText("Prayer").performClick()
+        composeTestRule.onNodeWithText("Tithes").performClick()
 
         assertThat(clicked).containsExactly(
-            HomeDestination.DailyLiturgy,
             HomeDestination.MassSchedule,
+            HomeDestination.DailyLiturgy,
             HomeDestination.PrayerRequests,
             HomeDestination.TithesAndOfferings,
         ).inOrder()
@@ -79,7 +71,7 @@ public class HomeScreenTest {
     public fun emptyAnnouncementsShowPlaceholder() {
         setHomeContent()
 
-        composeTestRule.onNodeWithText("No announcements right now.").assertIsDisplayed()
+        composeTestRule.onNodeWithText("No notices right now.").assertIsDisplayed()
     }
 
     @Test
@@ -91,7 +83,7 @@ public class HomeScreenTest {
                         id = "1",
                         title = "Adoração ao Santíssimo",
                         message = "Quintas-feiras, às 18h, antes da missa.",
-                        dateLabel = "INFORMAÇÃO À COMUNIDADE",
+                        dateLabel = "Informação à comunidade",
                     ),
                 ),
             ),
@@ -99,18 +91,7 @@ public class HomeScreenTest {
 
         composeTestRule.onNodeWithText("Adoração ao Santíssimo").assertIsDisplayed()
         composeTestRule.onNodeWithText("Quintas-feiras, às 18h, antes da missa.").assertIsDisplayed()
-        composeTestRule.onNodeWithText("No announcements right now.").assertDoesNotExist()
-    }
-
-    @Test
-    public fun churchPhotosAreDescribedForScreenReaders() {
-        setHomeContent()
-
-        composeTestRule.onNodeWithText("Our church").assertIsDisplayed()
-        composeTestRule.onNodeWithContentDescription(
-            "Front of the parish church at dusk, with the lit cross on the bell tower and a " +
-                "stained-glass window of the Sacred Heart and Saint Frances Cabrini",
-        ).assertIsDisplayed()
+        composeTestRule.onNodeWithText("No notices right now.").assertDoesNotExist()
     }
 
     @Test
@@ -142,36 +123,15 @@ public class HomeScreenTest {
         ).inOrder()
     }
 
-    @Test
-    public fun parishLinksForwardTheirUrl() {
-        val opened = mutableListOf<String>()
-        setHomeContent(onLinkClick = { opened += it })
-
-        composeTestRule.onNodeWithText("Instagram").performClick()
-        composeTestRule.onNodeWithText("Facebook").performClick()
-        composeTestRule.onNodeWithText("Diocese of Santo Amaro").performClick()
-
-        assertThat(opened).containsExactly(
-            "https://www.instagram.com/stacabrini/",
-            "https://www.facebook.com/santafranciscaxaviercabrini",
-            "https://diocesedesantoamaro.org.br/paroquias-da-diocese-de-santo-amaro/" +
-                "paroquia-santa-francisca-xavier-cabrini/",
-        ).inOrder()
-    }
-
     private fun setHomeContent(
         state: HomeUiState = HomeUiState(),
         onQuickAccessClick: (HomeDestination) -> Unit = {},
-        onSwitchParishClick: () -> Unit = {},
-        onLinkClick: (String) -> Unit = {},
     ) {
         composeTestRule.setContent {
             MaterialTheme {
                 HomeScreen(
                     state = state,
                     onQuickAccessClick = onQuickAccessClick,
-                    onSwitchParishClick = onSwitchParishClick,
-                    onLinkClick = onLinkClick,
                 )
             }
         }

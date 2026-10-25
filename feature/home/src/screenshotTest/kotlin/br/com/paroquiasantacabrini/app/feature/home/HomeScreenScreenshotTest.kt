@@ -55,8 +55,6 @@ private fun HomeScreenWithAnnouncement() {
                 ),
             ),
             onQuickAccessClick = {},
-            onSwitchParishClick = {},
-            onLinkClick = {},
         )
     }
 }

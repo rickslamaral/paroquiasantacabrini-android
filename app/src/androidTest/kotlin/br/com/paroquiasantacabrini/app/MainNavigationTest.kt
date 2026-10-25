@@ -33,29 +33,12 @@ class MainNavigationTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun testNavigationFlow_FromHomeToSwitchParish() {
-        // Start the app
-        composeTestRule.setContent {
-            MainNavigation(postsContent = { Text("Posts") })
-        }
-
-        // 1. Verify we start on the home dashboard
-        composeTestRule.onNodeWithText("Paróquia Santa Cabrini").assertIsDisplayed()
-
-        // 2. Open a quick-access destination (placeholder until its feature module exists)
-        composeTestRule.onNodeWithText("Switch parish").performClick()
-
-        // Wait for transition and verify the placeholder destination
-        composeTestRule.onNodeWithText("Choosing another parish is not available yet.", substring = true).assertIsDisplayed()
-    }
-
-    @Test
     fun testNavigationFlow_FromHomeToDailyLiturgy() {
         composeTestRule.setContent {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        composeTestRule.onNodeWithText("Daily Liturgy").performClick()
+        composeTestRule.onNodeWithText("Liturgy").performClick()
 
         composeTestRule.onNodeWithText("Prayer guide").assertIsDisplayed()
     }
@@ -66,7 +49,7 @@ class MainNavigationTest {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        composeTestRule.onNodeWithText("Prayer Requests").performClick()
+        composeTestRule.onNodeWithText("Prayer").performClick()
 
         composeTestRule.onNodeWithText("Your intention").assertIsDisplayed()
     }
@@ -77,7 +60,7 @@ class MainNavigationTest {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        composeTestRule.onNodeWithText("Tithes and Offerings (PIX)").performClick()
+        composeTestRule.onNodeWithText("Tithes").performClick()
 
         composeTestRule.onNodeWithText("Copy Pix key").assertIsDisplayed()
     }
@@ -88,7 +71,7 @@ class MainNavigationTest {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        composeTestRule.onNodeWithText("Mass Times").performClick()
+        composeTestRule.onNodeWithText("Times").performClick()
 
         composeTestRule.onNodeWithText("Masses and celebrations").assertIsDisplayed()
     }
@@ -106,7 +89,7 @@ class MainNavigationTest {
         composeTestRule.onNodeWithText("Explore").assertIsDisplayed()
 
         composeTestRule.onNodeWithText("Home").performClick()
-        composeTestRule.onNodeWithText("Switch parish").assertIsDisplayed()
+        composeTestRule.onNodeWithText("So good to have you here.").assertIsDisplayed()
     }
 
     @Test
@@ -115,16 +98,16 @@ class MainNavigationTest {
             MainNavigation(postsContent = { Text("Posts") })
         }
 
-        // Navigate to the placeholder
-        composeTestRule.onNodeWithText("Switch parish").performClick()
-        composeTestRule.onNodeWithText("Choosing another parish is not available yet.", substring = true).assertIsDisplayed()
+        // Navigate to a destination
+        composeTestRule.onNodeWithText("Times").performClick()
+        composeTestRule.onNodeWithText("Masses and celebrations").assertIsDisplayed()
 
         // Trigger system back (Navigation3 handles this via the onBack lambda)
         Espresso.pressBack()
 
         // Verify we are back on the home dashboard
-        composeTestRule.onNodeWithText("Paróquia Santa Cabrini").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Choosing another parish is not available yet.", substring = true).assertDoesNotExist()
+        composeTestRule.onNodeWithText("So good to have you here.").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Masses and celebrations").assertDoesNotExist()
     }
 
     @Test

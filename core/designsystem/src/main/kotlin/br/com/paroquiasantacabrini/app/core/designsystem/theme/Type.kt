@@ -16,108 +16,42 @@
 
 package br.com.paroquiasantacabrini.app.core.designsystem.theme
 
+import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-val TemplateTypography = androidx.compose.material3.Typography(
-    displayLarge = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 57.sp,
-        fontWeight = FontWeight.W400,
-        lineHeight = 64.sp,
-        letterSpacing = (-0.25).sp,
-    ),
-    displayMedium = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 45.sp,
-        fontWeight = FontWeight.W400,
-        lineHeight = 52.sp,
-    ),
-    displaySmall = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 36.sp,
-        fontWeight = FontWeight.W400,
-        lineHeight = 44.sp,
-    ),
-    headlineLarge = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 32.sp,
-        fontWeight = FontWeight.W500,
-        lineHeight = 40.sp,
-    ),
-    headlineMedium = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 28.sp,
-        fontWeight = FontWeight.W500,
-        lineHeight = 36.sp,
-    ),
-    headlineSmall = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 24.sp,
-        fontWeight = FontWeight.W500,
-        lineHeight = 32.sp,
-    ),
-    titleLarge = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 22.sp,
-        fontWeight = FontWeight.W400,
-        lineHeight = 28.sp,
-    ),
-    titleMedium = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.W500,
-        lineHeight = 24.sp,
-        letterSpacing = 0.15.sp,
-    ),
-    titleSmall = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.W500,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.sp,
-    ),
-    labelLarge = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.W500,
-        lineHeight = 20.sp,
-        letterSpacing = 0.1.sp,
-    ),
-    labelMedium = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 13.sp,
-        fontWeight = FontWeight.W500,
-        lineHeight = 18.sp,
-        letterSpacing = 0.5.sp,
-    ),
-    labelSmall = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 12.sp,
-        fontWeight = FontWeight.W500,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp,
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.W400,
-        lineHeight = 28.sp,
-        letterSpacing = 0.5.sp,
-    ),
-    bodyMedium = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 16.sp,
-        fontWeight = FontWeight.W400,
-        lineHeight = 24.sp,
-        letterSpacing = 0.25.sp,
-    ),
-    bodySmall = TextStyle(
-        fontFamily = LexendDecaFontFamily,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.W400,
-        lineHeight = 20.sp,
-        letterSpacing = 0.4.sp,
-    ),
+private fun style(
+    size: Int,
+    lineHeight: Int,
+    weight: FontWeight,
+    letterSpacing: Double = 0.0,
+) = TextStyle(
+    fontFamily = ParoquiaSansFontFamily,
+    fontSize = size.sp,
+    lineHeight = lineHeight.sp,
+    fontWeight = weight,
+    letterSpacing = letterSpacing.sp,
+)
+
+/**
+ * Sizes follow the prototype's CSS (h1 27, page title 23, h2 19, card title 15, text 13-14, small 11,
+ * eyebrow 10). They are `sp`, so they still scale with the reader's font size setting.
+ */
+val TemplateTypography = Typography(
+    displayLarge = style(40, 44, FontWeight.ExtraBold, -1.5),
+    displayMedium = style(34, 38, FontWeight.ExtraBold, -1.3),
+    displaySmall = style(30, 34, FontWeight.ExtraBold, -1.2),
+    headlineLarge = style(27, 30, FontWeight.ExtraBold, -1.2),
+    headlineMedium = style(23, 26, FontWeight.ExtraBold, -1.0),
+    headlineSmall = style(20, 24, FontWeight.Bold, -0.6),
+    titleLarge = style(19, 24, FontWeight.Bold, -0.5),
+    titleMedium = style(15, 20, FontWeight.Bold),
+    titleSmall = style(14, 19, FontWeight.Bold),
+    bodyLarge = style(14, 22, FontWeight.Normal),
+    bodyMedium = style(13, 20, FontWeight.Normal),
+    bodySmall = style(11, 16, FontWeight.Normal),
+    labelLarge = style(13, 18, FontWeight.Bold),
+    labelMedium = style(11, 16, FontWeight.SemiBold),
+    labelSmall = style(10, 14, FontWeight.ExtraBold, 1.3),
 )

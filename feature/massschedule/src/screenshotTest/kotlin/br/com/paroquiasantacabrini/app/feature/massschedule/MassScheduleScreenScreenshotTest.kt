@@ -19,6 +19,7 @@ package br.com.paroquiasantacabrini.app.feature.massschedule
 import androidx.compose.runtime.Composable
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.testing.screenshot.ScreenVariantPreviews
+import br.com.paroquiasantacabrini.app.feature.massschedule.ui.ContactScreen
 import br.com.paroquiasantacabrini.app.feature.massschedule.ui.MassScheduleScreen
 import br.com.paroquiasantacabrini.app.feature.massschedule.ui.model.MassScheduleUiState
 import com.android.tools.screenshot.PreviewTest
@@ -30,7 +31,22 @@ public fun MassScheduleScreenVariantPreview() {
     ParoquiaTheme {
         MassScheduleScreen(
             state = MassScheduleUiState.forParish(),
+            initialDayIndex = 2,
+            onDirectionsClick = {},
+            onBackClick = {},
+        )
+    }
+}
+
+@PreviewTest
+@ScreenVariantPreviews
+@Composable
+public fun ContactScreenVariantPreview() {
+    ParoquiaTheme {
+        ContactScreen(
+            contact = MassScheduleUiState.forParish().contact,
             onActionClick = {},
+            onBackClick = {},
         )
     }
 }

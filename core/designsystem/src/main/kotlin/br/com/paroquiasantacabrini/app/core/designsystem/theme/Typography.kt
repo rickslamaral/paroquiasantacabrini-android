@@ -18,4 +18,8 @@ package br.com.paroquiasantacabrini.app.core.designsystem.theme
 
 import androidx.compose.ui.text.font.FontFamily
 
-val LexendDecaFontFamily: FontFamily = FontFamily.SansSerif
+/** The prototype uses Inter; the system sans keeps the same proportions without a font download. */
+val ParoquiaSansFontFamily: FontFamily = FontFamily.SansSerif
+
+/** Georgia in the prototype: hero headline and prayer text. */
+val ParoquiaSerifFontFamily: FontFamily = FontFamily.Serif

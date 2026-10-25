@@ -20,8 +20,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
 import androidx.compose.ui.unit.dp
 
+/** Corner radii taken from the prototype: cards 19, quick tiles 17, buttons 15, icon tiles 12. */
 val LabShapes = Shapes(
-    small = RoundedCornerShape(percent = 50),
-    medium = RoundedCornerShape(size = 8.dp),
-    large = RoundedCornerShape(size = 16.dp),
+    extraSmall = RoundedCornerShape(size = 12.dp),
+    small = RoundedCornerShape(size = 15.dp),
+    medium = RoundedCornerShape(size = 17.dp),
+    large = RoundedCornerShape(size = 19.dp),
+    extraLarge = RoundedCornerShape(size = 24.dp),
 )

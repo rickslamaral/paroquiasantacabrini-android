@@ -47,8 +47,9 @@ fun MainNavigation(
 ) {
     Scaffold(
         modifier = modifier,
+        topBar = { ParoquiaTopBar(onNoticesClick = { backStack.add(Screen.Notices) }) },
         bottomBar = {
-            MainNavigationBar(
+            ParoquiaBottomBar(
                 selected = backStack.lastOrNull().toTab(),
                 onTabClick = { tab -> backStack.openTab(tab) },
             )

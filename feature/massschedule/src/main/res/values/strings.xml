@@ -15,23 +15,41 @@
      limitations under the License.
 -->
 <resources>
-    <string name="feature_massschedule_title">Mass Times</string>
-    <string name="feature_massschedule_celebrations_title">Masses and celebrations</string>
+    <string name="feature_massschedule_eyebrow">Celebrations</string>
+    <string name="feature_massschedule_title">Times</string>
+    <string name="feature_massschedule_intro">Join the Masses and moments of prayer of the community.</string>
     <string name="feature_massschedule_day_tuesday_friday">Tuesday to Friday</string>
     <string name="feature_massschedule_day_saturday">Saturday</string>
     <string name="feature_massschedule_day_sunday">Sunday</string>
-    <string name="feature_massschedule_adoration_label">Adoration of the Blessed Sacrament (Thursday)</string>
+    <string name="feature_massschedule_day_tuesday">Tuesday</string>
+    <string name="feature_massschedule_day_wednesday">Wednesday</string>
+    <string name="feature_massschedule_day_thursday">Thursday</string>
+    <string name="feature_massschedule_day_friday">Friday</string>
+    <string name="feature_massschedule_holy_mass">Holy Mass</string>
+    <string name="feature_massschedule_mass_subtitle">%1$s · Parish church</string>
+    <string name="feature_massschedule_other_services">Other services</string>
+    <string name="feature_massschedule_adoration_title">Adoration of the Blessed Sacrament</string>
+    <string name="feature_massschedule_adoration_text">Thursday, at 18h</string>
     <string name="feature_massschedule_confessions_title">Confessions</string>
-    <string name="feature_massschedule_confessions_text">By appointment at the parish office during the week, or on Sundays after the 08h and 10h30 Masses.</string>
-    <string name="feature_massschedule_office_title">Parish office hours</string>
-    <string name="feature_massschedule_time_range">%1$s to %2$s</string>
-    <string name="feature_massschedule_contact_title">Contact</string>
-    <string name="feature_massschedule_address_label">Address</string>
-    <string name="feature_massschedule_phone_label">Phone / WhatsApp</string>
+    <string name="feature_massschedule_confessions_text">Book with the parish office during the week or find the priest after the Sunday Masses, at 08h and 10h30.</string>
+    <string name="feature_massschedule_office_title">Parish office</string>
+    <string name="feature_massschedule_office_text">Tuesday to Friday, 14h–18h · Saturday, 08h–12h</string>
+    <string name="feature_massschedule_directions_button">How to get to the parish</string>
+    <string name="feature_massschedule_contact_eyebrow">We are here</string>
+    <string name="feature_massschedule_contact_title">Contact and address</string>
+    <string name="feature_massschedule_contact_address_format">%1$s\n%2$s\nCEP %3$s</string>
+    <string name="feature_massschedule_parish_name" translatable="false">Paróquia Santa Francisca Xavier Cabrini</string>
+    <string name="feature_massschedule_phone_note">Phone and WhatsApp</string>
     <string name="feature_massschedule_email_label">E-mail</string>
     <string name="feature_massschedule_pastor_label">Pastor</string>
     <string name="feature_massschedule_secretary_label">Secretary</string>
-    <string name="feature_massschedule_action_call">Call the parish</string>
-    <string name="feature_massschedule_action_email">Send an e-mail</string>
-    <string name="feature_massschedule_action_map">Open in maps</string>
+    <string name="feature_massschedule_action_map">Open address on the map</string>
+    <string name="feature_massschedule_action_call">Call</string>
+    <string name="feature_massschedule_action_whatsapp" translatable="false">WhatsApp</string>
+    <string name="feature_massschedule_action_email">Send e-mail</string>
+    <string name="feature_massschedule_gallery_title">Our church</string>
+    <string name="feature_massschedule_photo_facade">Front of the parish church at dusk, with the lit cross on the bell tower and a stained-glass window of the Sacred Heart and Saint Frances Cabrini</string>
+    <string name="feature_massschedule_photo_celebration">Celebration before the crucifix, with the priest and altar servers at the altar</string>
+    <string name="feature_massschedule_photo_altar">Altar with a crucifix and the Blessed Sacrament exposed</string>
+    <string name="feature_massschedule_hero_facade">Front of the parish church</string>
 </resources>

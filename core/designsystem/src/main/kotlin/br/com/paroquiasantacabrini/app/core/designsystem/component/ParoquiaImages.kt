@@ -19,7 +19,7 @@ package br.com.paroquiasantacabrini.app.core.designsystem.component
 import androidx.annotation.DrawableRes
 import br.com.paroquiasantacabrini.app.core.designsystem.R
 
-/** Illustrations shared across features. The files are demonstration art, not photographs. */
+/** Images shared across features. The illustrations are demonstration art; the facade is a photograph. */
 object ParoquiaImages {
     @DrawableRes
     val MassBanner: Int = R.drawable.core_designsystem_img_missa_banner
@@ -32,4 +32,8 @@ object ParoquiaImages {
 
     @DrawableRes
     val SantaCabrini: Int = R.drawable.core_designsystem_img_santa_cabrini
+
+    /** Photograph of the parish church front, used by the home hero and the contact page. */
+    @DrawableRes
+    val Facade: Int = R.drawable.core_designsystem_img_facade
 }

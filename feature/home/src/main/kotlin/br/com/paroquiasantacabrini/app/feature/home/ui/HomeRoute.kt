@@ -19,7 +19,6 @@ package br.com.paroquiasantacabrini.app.feature.home.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import br.com.paroquiasantacabrini.app.feature.home.R
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
@@ -29,11 +28,10 @@ import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 @Composable
 public fun HomeRoute(
     onQuickAccessClick: (HomeDestination) -> Unit,
-    onSwitchParishClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // The parish and its notices will come from the offline-first data layer once a repository
-    // exists. Until then the dashboard shows the default parish and the regular Adoration notice.
+    // The notices will come from the offline-first data layer once a repository exists. Until then
+    // the dashboard shows the regular Adoration notice confirmed by the parish.
     val adoration = AnnouncementUiModel(
         id = "adoration",
         title = stringResource(R.string.feature_home_notice_adoration_title),
@@ -41,14 +39,10 @@ public fun HomeRoute(
         dateLabel = stringResource(R.string.feature_home_notice_label),
     )
     val state = remember(adoration) { HomeUiState(announcements = listOf(adoration)) }
-    val uriHandler = LocalUriHandler.current
 
     HomeScreen(
         state = state,
         onQuickAccessClick = onQuickAccessClick,
-        onSwitchParishClick = onSwitchParishClick,
-        // A device without a browser cannot open the link; ignore it.
-        onLinkClick = { url -> runCatching { uriHandler.openUri(url) } },
         modifier = modifier,
     )
 }

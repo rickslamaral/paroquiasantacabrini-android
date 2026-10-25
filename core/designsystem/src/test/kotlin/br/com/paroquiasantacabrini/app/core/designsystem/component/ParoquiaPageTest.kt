@@ -43,7 +43,7 @@ public class ParoquiaPageTest {
             }
         }
 
-        composeTestRule.onNodeWithText("Prayer").assertIsDisplayed()
+        composeTestRule.onNodeWithText("PRAYER").assertIsDisplayed()
         composeTestRule.onNodeWithText("Rosary").assertIsDisplayed()
         composeTestRule.onNodeWithText("Body").assertIsDisplayed()
     }

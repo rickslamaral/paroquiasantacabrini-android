@@ -16,22 +16,36 @@
 
 package br.com.paroquiasantacabrini.app.core.designsystem.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 
+/** Page background: the prototype's soft warm tint at the top fading into the paper color. */
 @Composable
 fun TemplateBackground(
     modifier: Modifier = Modifier,
     content: @Composable BoxScope.() -> Unit,
 ) {
+    val colors = MaterialTheme.colorScheme
     Surface(
         modifier = modifier,
-        color = MaterialTheme.colorScheme.background,
+        color = colors.background,
     ) {
-        Box(content = content)
+        Box(
+            modifier = Modifier.background(
+                Brush.verticalGradient(
+                    0f to colors.surfaceContainer,
+                    BACKGROUND_FADE_END to colors.background,
+                ),
+            ),
+            content = content,
+        )
     }
 }
+
+private const val BACKGROUND_FADE_END = 0.35f

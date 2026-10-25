@@ -36,6 +36,9 @@ sealed interface Screen {
     public data object MassSchedule : NavKey
 
     @Serializable
+    public data object Contact : NavKey
+
+    @Serializable
     public data object MassMode : NavKey
 
     @Serializable
@@ -82,7 +85,4 @@ sealed interface Screen {
 
     @Serializable
     public data object More : NavKey
-
-    @Serializable
-    public data object SwitchParish : NavKey
 }

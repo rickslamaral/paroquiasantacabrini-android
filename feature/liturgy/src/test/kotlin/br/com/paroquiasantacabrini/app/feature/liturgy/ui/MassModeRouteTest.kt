@@ -63,7 +63,7 @@ public class MassModeRouteTest {
     public fun tappingAPartJumpsToIt() {
         setContent()
 
-        composeTestRule.onNodeWithText("3 · Liturgy of the Eucharist").performScrollTo().performClick()
+        composeTestRule.onNodeWithText("Liturgy of the Eucharist").performScrollTo().performClick()
 
         composeTestRule.onNodeWithText("Part 3 of 4").assertIsDisplayed()
     }

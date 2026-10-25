@@ -18,24 +18,30 @@ package br.com.paroquiasantacabrini.app.feature.liturgy.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
 import br.com.paroquiasantacabrini.app.core.designsystem.component.PageBanner
+import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaCard
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaImages
 import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import br.com.paroquiasantacabrini.app.core.designsystem.component.Pill
 import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHeading
+import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateButton
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.TemplateSpacing
+import br.com.paroquiasantacabrini.app.core.designsystem.theme.extraColors
 import br.com.paroquiasantacabrini.app.feature.liturgy.R
 
 @Composable
@@ -54,46 +60,46 @@ internal fun DailyLiturgyScreen(
             imageRes = ParoquiaImages.MassBanner,
             contentDescription = stringResource(R.string.feature_liturgy_daily_banner_description),
         )
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
-        ) {
-            Column(
-                modifier = Modifier.padding(TemplateSpacing.medium),
-                verticalArrangement = Arrangement.spacedBy(TemplateSpacing.small),
-            ) {
-                Text(
-                    text = stringResource(R.string.feature_liturgy_daily_card_eyebrow),
-                    style = MaterialTheme.typography.labelMedium,
-                )
-                Text(
-                    text = stringResource(R.string.feature_liturgy_daily_card_title),
-                    style = MaterialTheme.typography.titleLarge,
-                )
-                Text(
-                    text = stringResource(R.string.feature_liturgy_daily_card_note),
-                    style = MaterialTheme.typography.bodyMedium,
-                )
-            }
+        ParoquiaCard(containerColor = MaterialTheme.extraColors.cream, bordered = false) {
+            Text(
+                text = stringResource(R.string.feature_liturgy_daily_card_eyebrow).uppercase(),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.secondary,
+            )
+            Text(
+                text = stringResource(R.string.feature_liturgy_daily_card_title),
+                modifier = Modifier.semantics { heading() },
+                style = MaterialTheme.typography.titleLarge,
+            )
+            Text(
+                text = stringResource(R.string.feature_liturgy_daily_card_note),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
-        SectionHeading(text = stringResource(R.string.feature_liturgy_daily_guide_title))
-        GuideStep(
-            title = stringResource(R.string.feature_liturgy_daily_step_1_title),
-            text = stringResource(R.string.feature_liturgy_daily_step_1_text),
-        )
-        GuideStep(
-            title = stringResource(R.string.feature_liturgy_daily_step_2_title),
-            text = null,
-        )
-        Callout(text = stringResource(R.string.feature_liturgy_daily_step_2_text))
-        GuideStep(
-            title = stringResource(R.string.feature_liturgy_daily_step_3_title),
-            text = stringResource(R.string.feature_liturgy_daily_step_3_text),
-        )
-        Button(
-            onClick = onPrayerRequestClick,
+        Row(
             modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
+            SectionHeading(
+                text = stringResource(R.string.feature_liturgy_daily_guide_title),
+                modifier = Modifier.weight(1f),
+            )
+            Pill(text = stringResource(R.string.feature_liturgy_daily_guide_badge))
+        }
+        ParoquiaCard {
+            GuideStep(
+                title = stringResource(R.string.feature_liturgy_daily_step_1_title),
+                text = stringResource(R.string.feature_liturgy_daily_step_1_text),
+            )
+            GuideStep(title = stringResource(R.string.feature_liturgy_daily_step_2_title), text = null)
+            Callout(text = stringResource(R.string.feature_liturgy_daily_step_2_text))
+            GuideStep(
+                title = stringResource(R.string.feature_liturgy_daily_step_3_title),
+                text = stringResource(R.string.feature_liturgy_daily_step_3_text),
+            )
+        }
+        TemplateButton(onClick = onPrayerRequestClick, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.feature_liturgy_daily_prayer_request))
         }
     }
@@ -104,10 +110,21 @@ private fun GuideStep(
     title: String,
     text: String?,
 ) {
-    Column(verticalArrangement = Arrangement.spacedBy(TemplateSpacing.extraSmall)) {
-        Text(text = title, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+    Column(
+        modifier = Modifier.padding(top = TemplateSpacing.extraSmall),
+        verticalArrangement = Arrangement.spacedBy(TemplateSpacing.extraSmall),
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleSmall.copy(fontSize = STEP_TITLE_SIZE),
+            color = MaterialTheme.colorScheme.primary,
+        )
         if (text != null) {
-            Text(text = text, style = MaterialTheme.typography.bodyLarge)
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }
@@ -119,3 +136,5 @@ private fun DailyLiturgyScreenPreview() {
         DailyLiturgyScreen(onPrayerRequestClick = {}, onBackClick = {})
     }
 }
+
+private val STEP_TITLE_SIZE = 12.sp

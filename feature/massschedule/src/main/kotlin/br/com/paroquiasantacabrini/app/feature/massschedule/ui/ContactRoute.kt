@@ -14,26 +14,27 @@
  * limitations under the License.
  */
 
-package br.com.paroquiasantacabrini.app.home
+package br.com.paroquiasantacabrini.app.feature.massschedule.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import br.com.paroquiasantacabrini.app.R
-import br.com.paroquiasantacabrini.app.core.designsystem.component.Callout
-import br.com.paroquiasantacabrini.app.core.designsystem.component.ParoquiaPage
+import androidx.compose.ui.platform.LocalUriHandler
+import br.com.paroquiasantacabrini.app.feature.massschedule.ui.model.MassScheduleUiState
 
-/** Shown until a parish catalog exists, so "Switch parish" never leads to a dead end. */
 @Composable
-fun SwitchParishScreen(
+public fun ContactRoute(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    ParoquiaPage(
-        title = stringResource(R.string.switch_parish_title),
+    val contact = remember { MassScheduleUiState.forParish().contact }
+    val uriHandler = LocalUriHandler.current
+
+    ContactScreen(
+        contact = contact,
+        // A device without a dialer, mail app or browser cannot open the link; ignore it.
+        onActionClick = { uri -> runCatching { uriHandler.openUri(uri) } },
         modifier = modifier,
         onBackClick = onBackClick,
-    ) {
-        Callout(text = stringResource(R.string.switch_parish_text))
-    }
+    )
 }

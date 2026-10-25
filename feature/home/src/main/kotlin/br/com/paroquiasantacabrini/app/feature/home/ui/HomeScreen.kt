@@ -16,48 +16,135 @@
 
 package br.com.paroquiasantacabrini.app.feature.home.ui
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import br.com.paroquiasantacabrini.app.core.designsystem.component.FixedGrid
+import br.com.paroquiasantacabrini.app.core.designsystem.component.SectionHead
 import br.com.paroquiasantacabrini.app.core.designsystem.component.TemplateBackground
 import br.com.paroquiasantacabrini.app.core.designsystem.theme.ParoquiaTheme
-import br.com.paroquiasantacabrini.app.feature.home.ui.components.HomeContent
+import br.com.paroquiasantacabrini.app.feature.home.R
+import br.com.paroquiasantacabrini.app.feature.home.ui.components.HomeHero
+import br.com.paroquiasantacabrini.app.feature.home.ui.components.MassCard
+import br.com.paroquiasantacabrini.app.feature.home.ui.components.MassModeBanner
+import br.com.paroquiasantacabrini.app.feature.home.ui.components.NoticeCard
+import br.com.paroquiasantacabrini.app.feature.home.ui.components.PatronessCard
+import br.com.paroquiasantacabrini.app.feature.home.ui.components.QuickAccessItems
+import br.com.paroquiasantacabrini.app.feature.home.ui.components.QuickAccessTile
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.AnnouncementUiModel
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
+
+private const val QUICK_ACCESS_COLUMNS = 4
 
 @Composable
 internal fun HomeScreen(
     state: HomeUiState,
     onQuickAccessClick: (HomeDestination) -> Unit,
-    onSwitchParishClick: () -> Unit,
-    onLinkClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     TemplateBackground(modifier = modifier) {
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .safeDrawingPadding(),
-            contentAlignment = Alignment.TopCenter,
+                .safeDrawingPadding()
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            HomeContent(
-                state = state,
-                onQuickAccessClick = onQuickAccessClick,
-                onSwitchParishClick = onSwitchParishClick,
-                onLinkClick = onLinkClick,
+            HomeHero()
+            Column(
                 modifier = Modifier
-                    .widthIn(max = MAX_CONTENT_WIDTH)
-                    .fillMaxHeight(),
-            )
+                    .widthIn(max = CONTENT_MAX_WIDTH)
+                    .fillMaxWidth()
+                    .padding(horizontal = 17.dp, vertical = 22.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                Welcome()
+                MassCard(onClick = { onQuickAccessClick(HomeDestination.MassSchedule) })
+                MassModeBanner(onClick = { onQuickAccessClick(HomeDestination.MassMode) })
+                SectionHead(
+                    text = stringResource(R.string.feature_home_quick_access_title),
+                    actionLabel = stringResource(R.string.feature_home_see_all),
+                    onActionClick = { onQuickAccessClick(HomeDestination.ShowAll) },
+                )
+                FixedGrid(items = QuickAccessItems, columns = QUICK_ACCESS_COLUMNS) { index, item ->
+                    QuickAccessTile(
+                        item = item,
+                        position = index + 1,
+                        onClick = { onQuickAccessClick(item.destination) },
+                    )
+                }
+                SectionHead(
+                    text = stringResource(R.string.feature_home_announcements_title),
+                    actionLabel = stringResource(R.string.feature_home_all),
+                    onActionClick = { onQuickAccessClick(HomeDestination.Notices) },
+                )
+                if (state.announcements.isEmpty()) {
+                    Text(
+                        text = stringResource(R.string.feature_home_announcements_empty),
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                }
+                state.announcements.forEach { announcement ->
+                    NoticeCard(
+                        announcement = announcement,
+                        onClick = { onQuickAccessClick(HomeDestination.Notices) },
+                    )
+                }
+                SectionHead(
+                    text = stringResource(R.string.feature_home_patroness_title),
+                    actionLabel = stringResource(R.string.feature_home_patroness_more),
+                    onActionClick = { onQuickAccessClick(HomeDestination.SaintCabrini) },
+                )
+                PatronessCard(onClick = { onQuickAccessClick(HomeDestination.SaintCabrini) })
+                Text(
+                    text = stringResource(R.string.feature_home_footer_note),
+                    modifier = Modifier.fillMaxWidth().padding(top = 14.dp, bottom = 6.dp),
+                    style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.sp, letterSpacing = 0.sp),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                )
+            }
         }
+    }
+}
+
+@Composable
+private fun Welcome() {
+    Column {
+        Text(
+            text = stringResource(R.string.feature_home_welcome_eyebrow).uppercase(),
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.secondary,
+        )
+        Text(
+            text = stringResource(R.string.feature_home_welcome_title),
+            modifier = Modifier.semantics { heading() },
+            style = MaterialTheme.typography.headlineLarge,
+        )
+        Text(
+            text = stringResource(R.string.feature_home_welcome_text),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
     }
 }
 
@@ -69,7 +156,7 @@ private fun HomeScreenPreview() {
             state = HomeUiState(
                 announcements = listOf(
                     AnnouncementUiModel(
-                        id = "1",
+                        id = "adoration",
                         title = "Adoração ao Santíssimo",
                         message = "Quintas-feiras, às 18h, antes da missa.",
                         dateLabel = "INFORMAÇÃO À COMUNIDADE",
@@ -77,10 +164,8 @@ private fun HomeScreenPreview() {
                 ),
             ),
             onQuickAccessClick = {},
-            onSwitchParishClick = {},
-            onLinkClick = {},
         )
     }
 }
 
-private val MAX_CONTENT_WIDTH = 720.dp
+private val CONTENT_MAX_WIDTH = 560.dp
