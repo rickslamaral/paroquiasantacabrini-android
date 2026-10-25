@@ -61,6 +61,17 @@ class MainNavigationTest {
     }
 
     @Test
+    fun testNavigationFlow_FromHomeToMassSchedule() {
+        composeTestRule.setContent {
+            MainNavigation(postsContent = { Text("Posts") })
+        }
+
+        composeTestRule.onNodeWithText("Mass Times").performClick()
+
+        composeTestRule.onNodeWithText("Masses and celebrations").assertIsDisplayed()
+    }
+
+    @Test
     fun testBackNavigation_RemovesEntries() {
         composeTestRule.setContent {
             MainNavigation(postsContent = { Text("Posts") })

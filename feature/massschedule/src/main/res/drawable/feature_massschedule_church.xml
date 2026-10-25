@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="240dp"
+    android:height="200dp"
+    android:viewportWidth="120"
+    android:viewportHeight="100">
+    <!-- Cross -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M58,2h4v6h6v4h-6v8h-4v-8h-6v-4h6z" />
+    <!-- Tower roof -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M60,21L84,42L36,42z" />
+    <!-- Tower with arched door cut-out -->
+    <path
+        android:fillColor="#FF000000"
+        android:fillType="evenOdd"
+        android:pathData="M42,42h36v50h-36z M54,92v-16a6,6 0 0 1 12,0v16z" />
+    <!-- Left wing -->
+    <path
+        android:fillColor="#FF000000"
+        android:fillType="evenOdd"
+        android:pathData="M4,62L25,48L46,62z M8,62h34v30h-34z M21,70h8v10h-8z" />
+    <!-- Right wing -->
+    <path
+        android:fillColor="#FF000000"
+        android:fillType="evenOdd"
+        android:pathData="M74,62L95,48L116,62z M78,62h34v30h-34z M91,70h8v10h-8z" />
+    <!-- Ground -->
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="M0,92h120v4h-120z" />
+</vector>

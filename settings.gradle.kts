@@ -47,4 +47,5 @@ include(":feature:posts:domain")
 include(":feature:posts:data")
 include(":feature:posts:presentation")
 include(":feature:pix")
+include(":feature:massschedule")
 // endregion

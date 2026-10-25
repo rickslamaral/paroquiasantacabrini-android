@@ -35,6 +35,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import br.com.paroquiasantacabrini.app.feature.home.ui.HomeRoute
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
+import br.com.paroquiasantacabrini.app.feature.massschedule.ui.MassScheduleRoute
 import br.com.paroquiasantacabrini.app.feature.pix.ui.PixRoute
 import br.com.paroquiasantacabrini.app.feature.posts.presentation.ui.PostsRoute
 import br.com.paroquiasantacabrini.app.home.ContentGreen
@@ -72,6 +73,7 @@ private fun mainEntryProvider(
                 backStack.add(
                     when (destination) {
                         HomeDestination.TithesAndOfferings -> Screen.Pix
+                        HomeDestination.MassSchedule -> Screen.MassSchedule
                         else -> Screen.ScreenC
                     },
                 )
@@ -85,6 +87,9 @@ private fun mainEntryProvider(
     }
     entry<Screen.Pix> {
         PixRoute(modifier = Modifier.fillMaxSize())
+    }
+    entry<Screen.MassSchedule> {
+        MassScheduleRoute(modifier = Modifier.fillMaxSize())
     }
     entry<Screen.ScreenC>(metadata = verticalSlideTransitionSpec()) {
         ContentGreen("This is Screen C")

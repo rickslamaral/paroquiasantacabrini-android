@@ -31,4 +31,7 @@ sealed interface Screen {
 
     @Serializable
     public data object Pix : NavKey
+
+    @Serializable
+    public data object MassSchedule : NavKey
 }

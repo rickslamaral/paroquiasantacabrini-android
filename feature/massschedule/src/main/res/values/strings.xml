@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_massschedule_title">Mass Times</string>
+    <string name="feature_massschedule_celebrations_title">Masses and celebrations</string>
+    <string name="feature_massschedule_day_tuesday_friday">Tuesday to Friday</string>
+    <string name="feature_massschedule_day_saturday">Saturday</string>
+    <string name="feature_massschedule_day_sunday">Sunday</string>
+    <string name="feature_massschedule_adoration_label">Adoration of the Blessed Sacrament (Thursday)</string>
+    <string name="feature_massschedule_confessions_title">Confessions</string>
+    <string name="feature_massschedule_confessions_text">By appointment at the parish office during the week, or on Sundays after the 08h and 10h30 Masses.</string>
+    <string name="feature_massschedule_office_title">Parish office hours</string>
+    <string name="feature_massschedule_time_range">%1$s to %2$s</string>
+    <string name="feature_massschedule_contact_title">Contact</string>
+    <string name="feature_massschedule_address_label">Address</string>
+    <string name="feature_massschedule_phone_label">Phone / WhatsApp</string>
+    <string name="feature_massschedule_email_label">E-mail</string>
+    <string name="feature_massschedule_pastor_label">Pastor</string>
+    <string name="feature_massschedule_secretary_label">Secretary</string>
+    <string name="feature_massschedule_action_call">Call the parish</string>
+    <string name="feature_massschedule_action_email">Send an e-mail</string>
+    <string name="feature_massschedule_action_map">Open in maps</string>
+</resources>
