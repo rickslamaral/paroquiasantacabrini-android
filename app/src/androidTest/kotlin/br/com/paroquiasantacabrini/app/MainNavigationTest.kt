@@ -73,7 +73,7 @@ class MainNavigationTest {
 
         composeTestRule.onNodeWithText("Times").performClick()
 
-        composeTestRule.onNodeWithText("Masses and celebrations").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Join the Masses and moments of prayer of the community.").assertIsDisplayed()
     }
 
     @Test
@@ -100,14 +100,14 @@ class MainNavigationTest {
 
         // Navigate to a destination
         composeTestRule.onNodeWithText("Times").performClick()
-        composeTestRule.onNodeWithText("Masses and celebrations").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Join the Masses and moments of prayer of the community.").assertIsDisplayed()
 
         // Trigger system back (Navigation3 handles this via the onBack lambda)
         Espresso.pressBack()
 
         // Verify we are back on the home dashboard
         composeTestRule.onNodeWithText("So good to have you here.").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Masses and celebrations").assertDoesNotExist()
+        composeTestRule.onNodeWithText("Join the Masses and moments of prayer of the community.").assertDoesNotExist()
     }
 
     @Test
