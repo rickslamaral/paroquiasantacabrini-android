@@ -158,6 +158,15 @@ Commit the intended version and wait for normal CI to pass. Then open **Actions 
 workflow**, select the default branch, and approve the `production` environment when prompted.
 Download the `release-<commit SHA>` artifact after the workflow finishes.
 
+## Automatic tag and GitHub Release
+
+The `Tag release` workflow (`.github/workflows/tag-release.yml`) creates the `vX.Y.Z` tag and a
+GitHub Release with generated notes whenever `versionName` in `app/build.gradle.kts` changes on
+`main` and that tag has no release yet. It uses only the built-in `GITHUB_TOKEN`, so it needs no
+secrets. To release: bump `versionName` and `versionCode`, merge to `main`, and the workflow does
+the rest. To tag an earlier commit, run it manually from the Actions tab and give the commit in
+the `target` input. The signed bundle is still built by the manual `Release` workflow below.
+
 ## CI signing contract
 
 Gradle accepts either the complete local `key.properties` file or this complete environment
