@@ -108,7 +108,8 @@ public class HomeScreenTest {
 
         composeTestRule.onNodeWithText("Our church").assertIsDisplayed()
         composeTestRule.onNodeWithContentDescription(
-            "Front of the parish church, with a cross on the bell tower",
+            "Front of the parish church at dusk, with the lit cross on the bell tower and a " +
+                "stained-glass window of the Sacred Heart and Saint Frances Cabrini",
         ).assertIsDisplayed()
     }
 
