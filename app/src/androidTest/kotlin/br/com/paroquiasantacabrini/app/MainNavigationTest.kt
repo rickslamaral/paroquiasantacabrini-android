@@ -33,7 +33,7 @@ class MainNavigationTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun testNavigationFlow_FromHomeToPlaceholder() {
+    fun testNavigationFlow_FromHomeToSwitchParish() {
         // Start the app
         composeTestRule.setContent {
             MainNavigation(postsContent = { Text("Posts") })
@@ -46,7 +46,7 @@ class MainNavigationTest {
         composeTestRule.onNodeWithText("Switch parish").performClick()
 
         // Wait for transition and verify the placeholder destination
-        composeTestRule.onNodeWithText("This is Screen C").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Choosing another parish is not available yet.", substring = true).assertIsDisplayed()
     }
 
     @Test
@@ -117,14 +117,14 @@ class MainNavigationTest {
 
         // Navigate to the placeholder
         composeTestRule.onNodeWithText("Switch parish").performClick()
-        composeTestRule.onNodeWithText("This is Screen C").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Choosing another parish is not available yet.", substring = true).assertIsDisplayed()
 
         // Trigger system back (Navigation3 handles this via the onBack lambda)
         Espresso.pressBack()
 
         // Verify we are back on the home dashboard
         composeTestRule.onNodeWithText("Paróquia Santa Cabrini").assertIsDisplayed()
-        composeTestRule.onNodeWithText("This is Screen C").assertDoesNotExist()
+        composeTestRule.onNodeWithText("Choosing another parish is not available yet.", substring = true).assertDoesNotExist()
     }
 
     @Test

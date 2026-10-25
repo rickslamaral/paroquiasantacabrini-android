@@ -42,6 +42,6 @@ public class HomeJourneyTest {
 
         composeRule.onNodeWithText("Switch parish").performScrollTo().performClick()
 
-        composeRule.onNodeWithText("This is Screen C").assertIsDisplayed()
+        composeRule.onNodeWithText("Choosing another parish is not available yet.", substring = true).assertIsDisplayed()
     }
 }

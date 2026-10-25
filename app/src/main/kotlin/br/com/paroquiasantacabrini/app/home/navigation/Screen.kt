@@ -82,4 +82,7 @@ sealed interface Screen {
 
     @Serializable
     public data object More : NavKey
+
+    @Serializable
+    public data object SwitchParish : NavKey
 }

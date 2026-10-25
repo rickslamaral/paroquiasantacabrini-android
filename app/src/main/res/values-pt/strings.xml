@@ -20,4 +20,6 @@
     <string name="main_tab_calendar">Agenda</string>
     <string name="main_tab_pray">Rezar</string>
     <string name="main_tab_more">Mais</string>
+    <string name="switch_parish_title">Trocar paróquia</string>
+    <string name="switch_parish_text">A escolha de outra paróquia ainda não está disponível. Por enquanto, este aplicativo atende a Paróquia Santa Francisca Xavier Cabrini.</string>
 </resources>

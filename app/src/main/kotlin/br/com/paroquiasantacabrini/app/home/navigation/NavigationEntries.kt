@@ -43,6 +43,7 @@ import br.com.paroquiasantacabrini.app.feature.prayer.ui.RosaryRoute
 import br.com.paroquiasantacabrini.app.feature.saint.ui.SaintCabriniRoute
 import br.com.paroquiasantacabrini.app.feature.saint.ui.SaintsRoute
 import br.com.paroquiasantacabrini.app.home.ContentGreen
+import br.com.paroquiasantacabrini.app.home.SwitchParishScreen
 
 internal fun EntryProviderScope<NavKey>.homeEntries(backStack: NavBackStack<NavKey>) {
     entry<Screen.ScreenA> {
@@ -61,8 +62,14 @@ internal fun EntryProviderScope<NavKey>.homeEntries(backStack: NavBackStack<NavK
                     },
                 )
             },
-            // Choosing another parish needs a parish catalog, so it opens a placeholder for now.
-            onSwitchParishClick = { backStack.add(Screen.ScreenC) },
+            // Choosing another parish needs a parish catalog; the screen says so honestly for now.
+            onSwitchParishClick = { backStack.add(Screen.SwitchParish) },
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+    entry<Screen.SwitchParish> {
+        SwitchParishScreen(
+            onBackClick = { backStack.removeLastOrNull() },
             modifier = Modifier.fillMaxSize(),
         )
     }
