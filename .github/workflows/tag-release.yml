@@ -2,8 +2,10 @@ name: Tag release
 
 # Creates the vX.Y.Z tag and a GitHub Release, with notes generated from the Conventional Commit
 # subjects since the previous tag, when the app version on `main` has no release yet.
-# It uses only the built-in GITHUB_TOKEN, so it needs no secrets. The signed release bundle is
-# built separately by the manual "Release" workflow, which needs the production signing secrets.
+# The tag and notes need only the built-in GITHUB_TOKEN. A second job then builds the app and
+# attaches the installable APK (and the Play Store AAB) to the release: signed with the production
+# upload key when the signing secrets exist in the `production` environment, otherwise a clearly
+# labelled debug APK for testing.
 
 on:
   workflow_dispatch:
@@ -27,9 +29,17 @@ concurrency:
 permissions:
   contents: write
 
+env:
+  JAVA_VERSION: 21
+  JAVA_VENDOR: 'zulu'
+
 jobs:
   tag_release:
     name: "Create tag and release"
+    outputs:
+      created: ${{ steps.release.outputs.created }}
+      tag: ${{ steps.version.outputs.tag }}
+      target: ${{ steps.release.outputs.target }}
     if: github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -53,6 +63,7 @@ jobs:
           echo "tag=v${version}" >> "${GITHUB_OUTPUT}"
 
       - name: Create release when the tag is new
+        id: release
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -63,6 +74,7 @@ jobs:
           set -euo pipefail
           if gh release view "${TAG}" >/dev/null 2>&1; then
             echo "Release ${TAG} already exists; nothing to do."
+            echo "created=false" >> "${GITHUB_OUTPUT}"
             exit 0
           fi
 
@@ -76,3 +88,104 @@ jobs:
             --title "${TAG}" \
             --notes-file release-notes.md \
             --latest
+          echo "created=true" >> "${GITHUB_OUTPUT}"
+          echo "target=$(git rev-parse "${TARGET}")" >> "${GITHUB_OUTPUT}"
+
+  build_assets:
+    name: "Build and attach APK"
+    needs: tag_release
+    if: needs.tag_release.outputs.created == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment:
+      name: production
+
+    steps:
+      - name: Checkout the tagged commit
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.tag_release.outputs.target }}
+
+      - name: Copy CI gradle.properties
+        run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: ${{ env.JAVA_VENDOR }}
+          java-version: ${{ env.JAVA_VERSION }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-read-only: true
+
+      - name: Restore upload keystore
+        id: signing
+        shell: bash
+        env:
+          SIGNING_KEYSTORE_BASE64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${SIGNING_KEYSTORE_BASE64}" || -z "${SIGNING_STORE_PASSWORD}" \
+                || -z "${SIGNING_KEY_ALIAS}" || -z "${SIGNING_KEY_PASSWORD}" ]]; then
+            echo "Signing secrets are not configured; a debug APK will be attached instead."
+            echo "signed=false" >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+          keystore_path="${RUNNER_TEMP}/release-upload.keystore"
+          umask 077
+          printf '%s' "${SIGNING_KEYSTORE_BASE64}" | base64 --decode > "${keystore_path}"
+          if [[ ! -s "${keystore_path}" ]]; then
+            echo "The restored release keystore is empty." >&2
+            exit 1
+          fi
+          echo "signed=true" >> "${GITHUB_OUTPUT}"
+          echo "keystore_path=${keystore_path}" >> "${GITHUB_OUTPUT}"
+
+      - name: Build signed release APK and AAB
+        if: steps.signing.outputs.signed == 'true'
+        env:
+          SIGNING_KEYSTORE_PATH: ${{ steps.signing.outputs.keystore_path }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: ./gradlew :app:assembleRelease :app:bundleRelease --no-configuration-cache --no-daemon
+
+      - name: Build debug APK
+        if: steps.signing.outputs.signed != 'true'
+        run: ./gradlew :app:assembleDebug --no-configuration-cache --no-daemon
+
+      - name: Attach files to the release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.tag_release.outputs.tag }}
+          SIGNED: ${{ steps.signing.outputs.signed }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          if [[ "${SIGNED}" == "true" ]]; then
+            cp app/build/outputs/apk/release/app-release.apk "dist/paroquia-santa-cabrini-${TAG}.apk"
+            cp app/build/outputs/bundle/release/app-release.aab "dist/paroquia-santa-cabrini-${TAG}.aab"
+            cp app/build/outputs/mapping/release/mapping.txt "dist/paroquia-santa-cabrini-${TAG}-mapping.txt"
+          else
+            cp app/build/outputs/apk/debug/app-debug.apk "dist/paroquia-santa-cabrini-${TAG}-debug.apk"
+            gh release view "${TAG}" --json body --jq .body > notes-with-warning.md
+            {
+              echo
+              echo "> ⚠️ **APK de teste.** Os segredos de assinatura de produção ainda não estão configurados,"
+              echo "> então este arquivo é um build *debug*, não assinado com a chave de produção e não minificado."
+              echo "> Use-o apenas para testar; não o distribua como versão final."
+            } >> notes-with-warning.md
+            gh release edit "${TAG}" --notes-file notes-with-warning.md
+          fi
+          gh release upload "${TAG}" dist/* --clobber
+
+      - name: Remove upload keystore
+        if: always()
+        shell: bash
+        run: rm -f "${RUNNER_TEMP}/release-upload.keystore"

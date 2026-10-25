@@ -168,7 +168,20 @@ CI, and Documentação e manutenção (merge commits are skipped), so keep commi
 `type(scope): summary` form. The workflow uses only the built-in `GITHUB_TOKEN`, so it needs no
 secrets. To release: bump `versionName` and `versionCode`, merge to `main`, and the workflow does
 the rest. To tag an earlier commit, run it manually from the Actions tab and give the commit in
-the `target` input. The signed bundle is still built by the manual `Release` workflow below.
+the `target` input.
+
+After the release is created, a second job (`Build and attach APK`, running in the `production`
+environment, so it waits for the environment's approval if you configured reviewers) builds the app
+and attaches the files to the release:
+
+- **With the four signing secrets configured** (see the sections above): the signed
+  `paroquia-santa-cabrini-vX.Y.Z.apk` (installable directly), the Play Store
+  `paroquia-santa-cabrini-vX.Y.Z.aab` and the R8 `...-mapping.txt`.
+- **Without them**: only `paroquia-santa-cabrini-vX.Y.Z-debug.apk`, a debug build for testing, and
+  a warning is appended to the release notes. It is not signed with the production key and must
+  not be distributed as a final version.
+
+The manual `Release` workflow below remains available to build the signed bundle on demand.
 
 ## CI signing contract
 
