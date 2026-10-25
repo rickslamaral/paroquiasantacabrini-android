@@ -26,4 +26,5 @@
     <string name="feature_pix_copy_code">Copiar Pix copia e cola</string>
     <string name="feature_pix_copied_key">Chave Pix copiada.</string>
     <string name="feature_pix_copied_code">Código Pix copiado.</string>
+    <string name="feature_pix_disclaimer">Esta tela não realiza pagamento. A transferência acontece no aplicativo do seu banco, e o aplicativo não confirma nem registra a sua contribuição.</string>
 </resources>

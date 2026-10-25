@@ -26,4 +26,5 @@
     <string name="feature_pix_copy_code">Copy Pix copy-and-paste code</string>
     <string name="feature_pix_copied_key">Pix key copied.</string>
     <string name="feature_pix_copied_code">Pix code copied.</string>
+    <string name="feature_pix_disclaimer">This screen does not make a payment. The transfer happens in your bank app, and this app does not confirm or record your contribution.</string>
 </resources>

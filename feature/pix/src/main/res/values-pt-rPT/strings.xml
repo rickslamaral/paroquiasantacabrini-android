@@ -26,4 +26,5 @@
     <string name="feature_pix_copy_code">Copiar código Pix copia e cola</string>
     <string name="feature_pix_copied_key">Chave Pix copiada.</string>
     <string name="feature_pix_copied_code">Código Pix copiado.</string>
+    <string name="feature_pix_disclaimer">Este ecrã não efetua pagamentos. A transferência é feita na aplicação do seu banco, e a aplicação não confirma nem regista a sua contribuição.</string>
 </resources>

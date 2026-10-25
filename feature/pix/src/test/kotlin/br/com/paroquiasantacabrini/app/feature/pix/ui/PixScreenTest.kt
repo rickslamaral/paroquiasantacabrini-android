@@ -48,6 +48,16 @@ public class PixScreenTest {
     }
 
     @Test
+    public fun explainsThatThePaymentHappensInTheBankApp() {
+        setPixContent()
+
+        composeTestRule.onNodeWithText(
+            "This screen does not make a payment. The transfer happens in your bank app, " +
+                "and this app does not confirm or record your contribution.",
+        ).assertIsDisplayed()
+    }
+
+    @Test
     public fun copyButtonsForwardUserIntent() {
         var keyClicks = 0
         var payloadClicks = 0

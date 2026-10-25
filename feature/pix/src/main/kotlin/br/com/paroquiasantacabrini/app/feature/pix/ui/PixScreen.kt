@@ -94,6 +94,12 @@ internal fun PixScreen(
                     modifier = Modifier.fillMaxWidth(),
                     style = MaterialTheme.typography.bodyMedium,
                 )
+                Text(
+                    text = stringResource(R.string.feature_pix_disclaimer),
+                    modifier = Modifier.fillMaxWidth(),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
                 PixDetails(state = state)
                 TemplateButton(
                     onClick = onCopyKeyClick,
