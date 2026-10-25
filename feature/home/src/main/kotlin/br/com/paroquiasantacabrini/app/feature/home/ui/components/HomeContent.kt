@@ -40,6 +40,7 @@ internal fun HomeContent(
     state: HomeUiState,
     onQuickAccessClick: (HomeDestination) -> Unit,
     onSwitchParishClick: () -> Unit,
+    onLinkClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     // Adaptive columns collapse to a single column on narrow screens or with large font scales.
@@ -83,6 +84,19 @@ internal fun HomeContent(
             ) { announcement ->
                 AnnouncementCard(announcement = announcement)
             }
+        }
+        item(key = "links_title", span = { GridItemSpan(maxLineSpan) }) {
+            SectionTitle(text = stringResource(R.string.feature_home_links_title))
+        }
+        items(
+            items = ParishLinks,
+            key = { it.url },
+            span = { GridItemSpan(maxLineSpan) },
+        ) { link ->
+            ParishLinkCard(
+                link = link,
+                onClick = { onLinkClick(link.url) },
+            )
         }
     }
 }

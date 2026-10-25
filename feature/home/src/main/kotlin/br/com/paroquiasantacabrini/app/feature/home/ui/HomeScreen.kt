@@ -38,6 +38,7 @@ internal fun HomeScreen(
     state: HomeUiState,
     onQuickAccessClick: (HomeDestination) -> Unit,
     onSwitchParishClick: () -> Unit,
+    onLinkClick: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     TemplateBackground(modifier = modifier) {
@@ -51,6 +52,7 @@ internal fun HomeScreen(
                 state = state,
                 onQuickAccessClick = onQuickAccessClick,
                 onSwitchParishClick = onSwitchParishClick,
+                onLinkClick = onLinkClick,
                 modifier = Modifier
                     .widthIn(max = MAX_CONTENT_WIDTH)
                     .fillMaxHeight(),
@@ -76,6 +78,7 @@ private fun HomeScreenPreview() {
             ),
             onQuickAccessClick = {},
             onSwitchParishClick = {},
+            onLinkClick = {},
         )
     }
 }

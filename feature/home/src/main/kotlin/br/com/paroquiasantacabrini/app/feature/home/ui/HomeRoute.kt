@@ -19,6 +19,7 @@ package br.com.paroquiasantacabrini.app.feature.home.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
 import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeUiState
 
@@ -31,11 +32,13 @@ public fun HomeRoute(
     // Parish and announcements will be collected from the offline-first data layer once a
     // repository exists; until then the dashboard shows the default parish and no announcements.
     val state = remember { HomeUiState() }
+    val uriHandler = LocalUriHandler.current
 
     HomeScreen(
         state = state,
         onQuickAccessClick = onQuickAccessClick,
         onSwitchParishClick = onSwitchParishClick,
+        onLinkClick = uriHandler::openUri,
         modifier = modifier,
     )
 }

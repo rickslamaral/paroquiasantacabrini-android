@@ -101,10 +101,28 @@ public class HomeScreenTest {
         composeTestRule.onNodeWithText("No announcements right now.").assertDoesNotExist()
     }
 
+    @Test
+    public fun parishLinksForwardTheirUrl() {
+        val opened = mutableListOf<String>()
+        setHomeContent(onLinkClick = { opened += it })
+
+        composeTestRule.onNodeWithText("Instagram").performClick()
+        composeTestRule.onNodeWithText("Facebook").performClick()
+        composeTestRule.onNodeWithText("Diocese of Santo Amaro").performClick()
+
+        assertThat(opened).containsExactly(
+            "https://www.instagram.com/stacabrini/",
+            "https://www.facebook.com/santafranciscaxaviercabrini",
+            "https://diocesedesantoamaro.org.br/paroquias-da-diocese-de-santo-amaro/" +
+                "paroquia-santa-francisca-xavier-cabrini/",
+        ).inOrder()
+    }
+
     private fun setHomeContent(
         state: HomeUiState = HomeUiState(),
         onQuickAccessClick: (HomeDestination) -> Unit = {},
         onSwitchParishClick: () -> Unit = {},
+        onLinkClick: (String) -> Unit = {},
     ) {
         composeTestRule.setContent {
             MaterialTheme {
@@ -112,6 +130,7 @@ public class HomeScreenTest {
                     state = state,
                     onQuickAccessClick = onQuickAccessClick,
                     onSwitchParishClick = onSwitchParishClick,
+                    onLinkClick = onLinkClick,
                 )
             }
         }

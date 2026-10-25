@@ -23,4 +23,11 @@
     <string name="feature_home_tithes_and_offerings">Dízimo e Oferta (PIX)</string>
     <string name="feature_home_announcements_title">Avisos em destaque</string>
     <string name="feature_home_announcements_empty">Nenhum aviso no momento.</string>
+    <string name="feature_home_links_title">Conheça a paróquia</string>
+    <string name="feature_home_link_instagram_title">Instagram</string>
+    <string name="feature_home_link_instagram_description">Acompanhe avisos, transmissões e o dia a dia da comunidade no perfil @stacabrini.</string>
+    <string name="feature_home_link_facebook_title">Facebook</string>
+    <string name="feature_home_link_facebook_description">Curta e interaja pela página de transmissões e eventos.</string>
+    <string name="feature_home_link_diocese_title">Diocese de Santo Amaro</string>
+    <string name="feature_home_link_diocese_description">Saiba mais na página dedicada à paróquia no portal oficial da Diocese.</string>
 </resources>

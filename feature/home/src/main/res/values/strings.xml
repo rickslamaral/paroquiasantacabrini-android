@@ -24,4 +24,11 @@
     <string name="feature_home_tithes_and_offerings">Tithes and Offerings (PIX)</string>
     <string name="feature_home_announcements_title">Featured announcements</string>
     <string name="feature_home_announcements_empty">No announcements right now.</string>
+    <string name="feature_home_links_title">Get to know the parish</string>
+    <string name="feature_home_link_instagram_title">Instagram</string>
+    <string name="feature_home_link_instagram_description">Follow announcements, broadcasts and community life on @stacabrini.</string>
+    <string name="feature_home_link_facebook_title">Facebook</string>
+    <string name="feature_home_link_facebook_description">Like the page for broadcasts and events.</string>
+    <string name="feature_home_link_diocese_title">Diocese of Santo Amaro</string>
+    <string name="feature_home_link_diocese_description">Learn more on the parish page of the diocese portal.</string>
 </resources>
