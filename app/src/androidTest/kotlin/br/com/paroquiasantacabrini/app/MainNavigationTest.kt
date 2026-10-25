@@ -43,7 +43,7 @@ class MainNavigationTest {
         composeTestRule.onNodeWithText("Paróquia Santa Cabrini").assertIsDisplayed()
 
         // 2. Open a quick-access destination (placeholder until its feature module exists)
-        composeTestRule.onNodeWithText("Prayer Requests").performClick()
+        composeTestRule.onNodeWithText("Switch parish").performClick()
 
         // Wait for transition and verify the placeholder destination
         composeTestRule.onNodeWithText("This is Screen C").assertIsDisplayed()
@@ -58,6 +58,17 @@ class MainNavigationTest {
         composeTestRule.onNodeWithText("Daily Liturgy").performClick()
 
         composeTestRule.onNodeWithText("Prayer guide").assertIsDisplayed()
+    }
+
+    @Test
+    fun testNavigationFlow_FromHomeToPrayerRequest() {
+        composeTestRule.setContent {
+            MainNavigation(postsContent = { Text("Posts") })
+        }
+
+        composeTestRule.onNodeWithText("Prayer Requests").performClick()
+
+        composeTestRule.onNodeWithText("Your intention").assertIsDisplayed()
     }
 
     @Test
@@ -89,7 +100,7 @@ class MainNavigationTest {
         }
 
         // Navigate to the placeholder
-        composeTestRule.onNodeWithText("Prayer Requests").performClick()
+        composeTestRule.onNodeWithText("Switch parish").performClick()
         composeTestRule.onNodeWithText("This is Screen C").assertIsDisplayed()
 
         // Trigger system back (Navigation3 handles this via the onBack lambda)

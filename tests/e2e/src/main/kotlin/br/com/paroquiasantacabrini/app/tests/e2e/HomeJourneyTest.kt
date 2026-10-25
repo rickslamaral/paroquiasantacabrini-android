@@ -40,7 +40,7 @@ public class HomeJourneyTest {
         composeRule.onNodeWithText("Prayer Requests").performScrollTo().assertIsDisplayed()
         composeRule.onNodeWithText("Tithes and Offerings (PIX)").performScrollTo().assertIsDisplayed()
 
-        composeRule.onNodeWithText("Prayer Requests").performScrollTo().performClick()
+        composeRule.onNodeWithText("Switch parish").performScrollTo().performClick()
 
         composeRule.onNodeWithText("This is Screen C").assertIsDisplayed()
     }

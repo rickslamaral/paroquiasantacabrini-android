@@ -46,4 +46,19 @@ sealed interface Screen {
 
     @Serializable
     public data object Saints : NavKey
+
+    @Serializable
+    public data object PrayerHub : NavKey
+
+    @Serializable
+    public data object Rosary : NavKey
+
+    @Serializable
+    public data object Novenas : NavKey
+
+    @Serializable
+    public data object Exam : NavKey
+
+    @Serializable
+    public data object PrayerRequest : NavKey
 }

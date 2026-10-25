@@ -25,7 +25,6 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavBackStack
@@ -33,16 +32,7 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
-import br.com.paroquiasantacabrini.app.feature.home.ui.HomeRoute
-import br.com.paroquiasantacabrini.app.feature.home.ui.model.HomeDestination
-import br.com.paroquiasantacabrini.app.feature.liturgy.ui.DailyLiturgyRoute
-import br.com.paroquiasantacabrini.app.feature.liturgy.ui.MassModeRoute
-import br.com.paroquiasantacabrini.app.feature.massschedule.ui.MassScheduleRoute
-import br.com.paroquiasantacabrini.app.feature.pix.ui.PixRoute
 import br.com.paroquiasantacabrini.app.feature.posts.presentation.ui.PostsRoute
-import br.com.paroquiasantacabrini.app.feature.saint.ui.SaintCabriniRoute
-import br.com.paroquiasantacabrini.app.feature.saint.ui.SaintsRoute
-import br.com.paroquiasantacabrini.app.home.ContentGreen
 
 private const val TRANSITION_DURATION_MS = 1000
 
@@ -69,66 +59,15 @@ fun MainNavigation(
 private fun mainEntryProvider(
     backStack: NavBackStack<NavKey>,
     postsContent: @Composable (Modifier) -> Unit,
-) = entryProvider {
-    entry<Screen.ScreenA> {
-        HomeRoute(
-            // Feature destinations land with their modules; until then they open a placeholder.
-            onQuickAccessClick = { destination ->
-                backStack.add(
-                    when (destination) {
-                        HomeDestination.TithesAndOfferings -> Screen.Pix
-                        HomeDestination.MassSchedule -> Screen.MassSchedule
-                        HomeDestination.DailyLiturgy -> Screen.DailyLiturgy
-                        else -> Screen.ScreenC
-                    },
-                )
-            },
-            onSwitchParishClick = { backStack.add(Screen.ScreenC) },
-            modifier = Modifier.fillMaxSize(),
-        )
-    }
-    entry<Screen.ScreenB> {
-        postsContent(Modifier.fillMaxSize())
-    }
-    entry<Screen.Pix> {
-        PixRoute(modifier = Modifier.fillMaxSize())
-    }
-    entry<Screen.MassMode> {
-        MassModeRoute(
-            onBackClick = { backStack.removeLastOrNull() },
-            modifier = Modifier.fillMaxSize(),
-        )
-    }
-    entry<Screen.DailyLiturgy> {
-        DailyLiturgyRoute(
-            onPrayerRequestClick = { backStack.add(Screen.ScreenC) },
-            onBackClick = { backStack.removeLastOrNull() },
-            modifier = Modifier.fillMaxSize(),
-        )
-    }
-    entry<Screen.SaintCabrini> {
-        SaintCabriniRoute(
-            onVisitCommunityClick = { backStack.add(Screen.MassSchedule) },
-            onBackClick = { backStack.removeLastOrNull() },
-            modifier = Modifier.fillMaxSize(),
-        )
-    }
-    entry<Screen.Saints> {
-        SaintsRoute(
-            onSeeCabriniClick = { backStack.add(Screen.SaintCabrini) },
-            onBackClick = { backStack.removeLastOrNull() },
-            modifier = Modifier.fillMaxSize(),
-        )
-    }
-    entry<Screen.MassSchedule> {
-        MassScheduleRoute(modifier = Modifier.fillMaxSize())
-    }
-    entry<Screen.ScreenC>(metadata = verticalSlideTransitionSpec()) {
-        ContentGreen("This is Screen C")
-    }
+) = entryProvider<NavKey> {
+    homeEntries(backStack)
+    liturgyEntries(backStack)
+    prayerEntries(backStack)
+    parishEntries(backStack)
+    demoEntries(postsContent)
 }
 
-private fun verticalSlideTransitionSpec() =
+internal fun verticalSlideTransitionSpec() =
     NavDisplay.transitionSpec {
         slideInVertically(
             initialOffsetY = { it },
