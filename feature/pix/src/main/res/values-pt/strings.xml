@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_pix_title">Dízimo e Oferta (PIX)</string>
+    <string name="feature_pix_intro">Escaneie o QR code no aplicativo do seu banco ou copie a chave Pix para contribuir com a paróquia.</string>
+    <string name="feature_pix_qr_description">QR code Pix para doações à paróquia</string>
+    <string name="feature_pix_amount_hint">O valor você escolhe no aplicativo do seu banco.</string>
+    <string name="feature_pix_receiver_label">Favorecido</string>
+    <string name="feature_pix_institution_label">Banco</string>
+    <string name="feature_pix_key_label">Chave Pix (CNPJ)</string>
+    <string name="feature_pix_copy_key">Copiar chave Pix</string>
+    <string name="feature_pix_copy_code">Copiar Pix copia e cola</string>
+    <string name="feature_pix_copied_key">Chave Pix copiada.</string>
+    <string name="feature_pix_copied_code">Código Pix copiado.</string>
+</resources>

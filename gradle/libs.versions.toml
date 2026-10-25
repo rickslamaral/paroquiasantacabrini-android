@@ -76,6 +76,7 @@ assertj = "3.27.7"
 android-junit5-plugin = "2.0.1"
 android-junit5-test = "2.0.1"
 navigation3 = "1.1.5"
+zxing = "3.5.3"                             # https://mvnrepository.com/artifact/com.google.zxing/core
 androidxLifecycleViewModelNavigation3 = "2.10.0"
 nav3Material = "1.3.0-rc01"
 lifecycleViewmodel = "2.11.0"
@@ -250,6 +251,10 @@ mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+# endregion
+
+# region qr code
+zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
 # endregion
 
 # region hilt

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Designed and developed by 2026 ashtanko (Oleksii Shtanko)
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="feature_pix_title">Tithes and Offerings (PIX)</string>
+    <string name="feature_pix_intro">Scan the QR code in your bank app or copy the Pix key to support the parish.</string>
+    <string name="feature_pix_qr_description">Pix QR code for donations to the parish</string>
+    <string name="feature_pix_amount_hint">You choose the amount in your bank app.</string>
+    <string name="feature_pix_receiver_label">Receiver</string>
+    <string name="feature_pix_institution_label">Bank</string>
+    <string name="feature_pix_key_label">Pix key (CNPJ)</string>
+    <string name="feature_pix_copy_key">Copy Pix key</string>
+    <string name="feature_pix_copy_code">Copy Pix copy-and-paste code</string>
+    <string name="feature_pix_copied_key">Pix key copied.</string>
+    <string name="feature_pix_copied_code">Pix code copied.</string>
+</resources>

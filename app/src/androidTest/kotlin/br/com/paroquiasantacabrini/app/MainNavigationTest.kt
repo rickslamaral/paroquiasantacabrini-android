@@ -50,6 +50,17 @@ class MainNavigationTest {
     }
 
     @Test
+    fun testNavigationFlow_FromHomeToPix() {
+        composeTestRule.setContent {
+            MainNavigation(postsContent = { Text("Posts") })
+        }
+
+        composeTestRule.onNodeWithText("Tithes and Offerings (PIX)").performClick()
+
+        composeTestRule.onNodeWithText("Copy Pix key").assertIsDisplayed()
+    }
+
+    @Test
     fun testBackNavigation_RemovesEntries() {
         composeTestRule.setContent {
             MainNavigation(postsContent = { Text("Posts") })

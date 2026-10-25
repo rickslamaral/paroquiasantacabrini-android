@@ -46,4 +46,5 @@ include(":feature:home")
 include(":feature:posts:domain")
 include(":feature:posts:data")
 include(":feature:posts:presentation")
+include(":feature:pix")
 // endregion

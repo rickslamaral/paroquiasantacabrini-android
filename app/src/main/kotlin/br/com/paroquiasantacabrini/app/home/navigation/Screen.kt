@@ -28,4 +28,7 @@ sealed interface Screen {
 
     @Serializable
     public data object ScreenC : NavKey
+
+    @Serializable
+    public data object Pix : NavKey
 }
